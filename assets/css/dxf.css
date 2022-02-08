@@ -4,3 +4,35 @@
 #title-dxf{
     margin-bottom: 30px;
 }
+#svg-box{
+    width: 50%;
+    height: 200px;
+    margin: auto;
+}
+#svgContainer{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+}
+#options-dxf{
+    display: flex;
+    justify-content: space-around;
+}
+#dimensions{
+    display: flex;
+    flex-direction: column;
+}
+#steel-options optgroup{
+    background-color: black;
+    font-weight: bold;
+}
+#price-box{
+    display: flex;
+    flex-direction: column;
+}

@@ -57,7 +57,54 @@
 									<input type="submit" value="Upload dxf file" id="upload-dxf">
 								</form>
 
-								<div id="svgContainer">
+								<div id="svg-box">
+									<div id="svgContainer">
+									</div>
+								</div>
+								
+
+								<div id="infos-dxf" class="hidden">
+									<div id="options-dxf">
+
+										<div id="dimensions">
+											<span>Dimensions :</span>
+											<span>Hauteur : <span id="hauteur"></span></span>
+											<span>Largeur : <span id="largeur"></span></span>
+										</div>
+
+										<label>Métaux :
+											<select name="steel" id="steel-options">
+												<!-- <option value="x">Choisissez un type de métal</option> -->
+												<optgroup label="Acier">
+													<option value="Acier standard">Acier Standard</option>
+													<option value="Acier galvanise">Acier Galvanise</option>
+													<option value="Acier brillant"> AcierBrillant</option>
+												</optgroup>
+												<optgroup label="Inox">
+													<option value="Inox standard">Inox Standard</option>
+													<option value="Inox brosse">Inox Brossé</option>
+													<option value="Inox brillant">Inox Brillant</option>
+												</optgroup>
+												<optgroup label="Alu">
+													<option value="Alu standard">Alu Standard</option>
+													<option value="Alu brosse">Alu Brossé</option>
+													<option value="Alu brillant">Alu Brillant</option>
+												</optgroup>
+											</select>
+										</label>
+
+										<label>Epaisseur :
+											<select name="width" id="width-options">
+												
+											</select>
+										</label>
+
+										<div id="price-box">
+											<span>Prix :</span>
+											<span id="price"></span>
+										</div>
+										
+									</div>
 								</div>
 							</section>
 
