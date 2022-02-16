@@ -1,0 +1,17 @@
+#adresses{
+    display: flex;
+    justify-content: space-between;
+}
+.deliveryAdressDetails{
+    width: 40%;
+}
+.name, .city, .lines{
+    display: flex;
+}
+.marg{
+    margin-right: 20px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
+}

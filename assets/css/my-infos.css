@@ -1,0 +1,15 @@
+#form{
+    width: 70%;
+    display: block;
+    margin: auto;
+}
+
+#email, #password, #new-password, #firstName, #lastName{
+    margin-bottom: 30px;
+}
+#button-update{
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

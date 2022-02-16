@@ -32,6 +32,10 @@
     background-color: black;
     font-weight: bold;
 }
+#quantity{
+    width: 50px;
+    background-color: black;
+}
 #price-box{
     display: flex;
     flex-direction: column;

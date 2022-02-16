@@ -17,26 +17,10 @@
 					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="#">Layouts</a>
-								<ul>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option 1</a></li>
-											<li><a href="#">Option 2</a></li>
-											<li><a href="#">Option 3</a></li>
-											<li><a href="#">Option 4</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="elements.html">Elements</a></li>
-							<li><a href="#" class="button primary">Sign Up</a></li>
+							<li><a href="index.html">Accueil</a></li>
+							<li><a href="functioning.html">Fonctionnement</a></li>
+							<li><a href="cart.html">Panier</a></li>
+							<li><a id="link" class="button primary">Mon Compte</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -99,11 +83,29 @@
 											</select>
 										</label>
 
+										<label>Quantité :
+											<select name="quantity" id="quantityList">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+											</select>
+										</label>
+
 										<div id="price-box">
 											<span>Prix :</span>
 											<span id="price"></span>
 										</div>
 										
+									</div>
+									<div id="addToCart-box">
+										<button class="primary small" id="addToCart">Ajouter au panier</button>
 									</div>
 								</div>
 							</section>
@@ -486,6 +488,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/DXF.js"></script>
+			<script src="assets/js/importdxf.js"></script>
+			<script src="assets/js/linkaccount.js"></script>
 	</body>
 </html>

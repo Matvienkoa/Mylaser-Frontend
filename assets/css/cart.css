@@ -1,0 +1,22 @@
+.productBox{
+    height: 100px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+#size-box, #quantity-box, #price-box, .bin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bin{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.plus, .minus{
+    cursor: pointer;
+}
