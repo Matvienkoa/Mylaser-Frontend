@@ -2,6 +2,13 @@ const products = JSON.parse(localStorage.getItem('currentCart'));
 console.log(products);
 const productsBox = document.getElementById('products-box');
 
+if(!products) {
+    const emptyCart = document.createElement('p');
+    emptyCart.className = "emptyCart";
+    emptyCart.innerHTML = 'Votre panier est vide! Allez vite le remplir ^^';
+    productsBox.appendChild(emptyCart)
+}
+
 
 if(products) {
 products.forEach(product => {

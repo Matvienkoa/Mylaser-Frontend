@@ -1,0 +1,33 @@
+#form-billing-adress{
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+#form-billing-adress input{
+    margin-bottom: 20px;
+}
+#form-billing-adress label{
+    margin-bottom: 5px;
+}
+.full-row{
+    display: flex;
+    justify-content: space-between;
+}
+.half-row{
+    width: 45%;
+}
+
+#select-box{
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+#adress-option{
+    width: 110px;
+}
+#button-adress{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}

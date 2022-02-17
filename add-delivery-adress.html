@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/my-adresses.css" />
+		<link rel="stylesheet" href="assets/css/edit-delivery-adress.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -29,9 +29,54 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major" id="title-dxf">
-							<h2>Mes Adresses</h2>
+							<h2>Ajouter mon Adresse de Livraison</h2>
 						</header>
-						<section id="adresses">
+
+						<section id="delivery-adress">
+							<div id="form-delivery-adress">
+								<div class="full-row">
+									<span class="half-row">
+										<label>Prénom</label>
+										<input type="text" id="firstName">
+									</span>
+									<span class="half-row">
+										<label>Nom</label>
+										<input type="text" id="lastName">
+									</span>
+								</div>
+								<label>Adresse</label>
+								<input type="text" id="line1">
+								<label>Copmlément</label>
+								<input type="text" id="line2">
+								<div class="full-row">
+									<span class="half-row">
+										<label>Code Postal</label>
+										<input type="text" id="postalCode">
+									</span>
+									<span class="half-row">
+										<label>Ville</label>
+										<input type="text" id="city">
+									</span>
+								</div>
+								<div class="full-row">
+									<span class="half-row">
+										<label>Pays</label>
+										<input type="text" id="country">
+									</span>
+									<span class="half-row">
+										<label>Télephone</label>
+										<input type="text" id="phone">
+									</span>
+								</div>
+							</div>
+							<div id="select-box">
+								<label>Utiliser cette Adresse comme adresse de facturation :</label>
+								<select name="select-adress" id="adress-option">
+									<option value="yes" selected>Oui</option>
+									<option value="no">Non</option>
+								</select>
+							</div>
+							<input type="button" id="button-adress" onclick="addDeliveryAdress()" value="Ajouter"/>
 						</section>
 					</div>
 				</div>
@@ -62,7 +107,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/my-adresses.js"></script>
+            <script src="assets/js/jwt-decode.js"></script>
+			<script src="assets/js/add-delivery-adress.js"></script>
 	</body>
 </html>
