@@ -1,4 +1,4 @@
-#form{
+#form, #back-box{
     width: 70%;
     display: block;
     margin: auto;
@@ -12,4 +12,7 @@
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+#back-button{
+    font-size: 0.8rem;
 }

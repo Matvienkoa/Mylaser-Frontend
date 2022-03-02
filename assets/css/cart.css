@@ -1,22 +1,41 @@
-.productBox{
+.productRow{
     height: 100px;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
-    
-    
-}
-#size-box, #quantity-box, #price-box, .bin{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 .bin{
     font-size: 1.5rem;
     cursor: pointer;
 }
-.plus, .minus{
-    cursor: pointer;
+.emptyCart{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 80px;
+}
+#import-dxf{
+    display: block;
+    margin: auto;
+    margin-top: 60px;
+}
+#total-cart{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+#tva{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+#cart-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.hidden{
+    visibility: hidden;
+}
+#total-price{
+    margin-left: 20px;
 }

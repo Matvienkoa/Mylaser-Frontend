@@ -19,7 +19,7 @@
 							<li><a href="index.html">Accueil</a></li>
 							<li><a href="functioning.html">Fonctionnement</a></li>
 							<li><a href="importdxf.html">Importer mon DXF</a></li>
-							<li><a id="link" class="button primary">Mon Compte</a></li>
+							<li id="linkOptions"><a id="link" class="button primary"></a></li>
 						</ul>
 					</nav>
 				</header>
@@ -33,7 +33,35 @@
 						</header>
 						<!-- Text -->
 						<section id="section">
-							<div id="products-box"></div>
+							<div class="table-wrapper" id="tableWrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Fichier</th>
+											<th>Dimensions</th>
+											<th>Métal</th>
+											<th>Epaisseur</th>
+											<th>Quantité</th>
+											<th>Prix</th>
+											<th>Supprimer</th>
+										</tr>
+									</thead>
+									<tbody id="table-body">
+									</tbody>
+								</table>
+
+							</div>
+							<div id="total-cart" class="visible">
+								<span>Total :</span>
+								<span id="total-price"></span>
+							</div>
+							<div id="tva" class="visible">
+								<span id="total-tva"></span>
+							</div>
+							<div id="cart-buttons" class="visible">
+								<input type="button" value="Retour" id="back">
+								<input type="button" value="Commander" id="order">
+							</div>
 						</section>
 					</div>
 				</div>
@@ -63,8 +91,9 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 			<script src="assets/js/linkaccount.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/jwt-decode.js"></script>
 			<script src="assets/js/cart.js"></script>
 	</body>
 </html>

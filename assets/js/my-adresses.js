@@ -4,6 +4,7 @@ const adressBox = document.getElementById('adresses');
 const deleteDelivery = document.getElementById('deleteDelivery');
 const editBilling = document.getElementById('editBilling');
 const deleteBilling = document.getElementById('deleteBilling');
+const backButton = document.getElementById('back-button');
 
 if(token) {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
@@ -39,6 +40,7 @@ if(token) {
             addDeliveryAdress.className = "addDeliveryAdress";
             addDeliveryAdress.innerHTML =
             '<h3>Mon adresse de Livraison</h3>' +
+            "<p>Vous n'avez pas encore enregistré d'adresse de livraison" +
             '<input type="button" value="Ajouter une adresse" id="addDelivery">';
             adressBox.appendChild(addDeliveryAdress)
 
@@ -75,6 +77,7 @@ if(token) {
             addBillingAdress.className = "addBillingAdress";
             addBillingAdress.innerHTML =
             '<h3>Mon adresse de Facturation</h3>' +
+            "<p>Vous n'avez pas encore enregistré d'adresse de facturation" +
             '<input type="button" value="Ajouter une adresse" id="addBilling">';
             adressBox.appendChild(addBillingAdress)
 
@@ -99,5 +102,7 @@ function deleteBillingAdress(adressId) {
         window.location.reload();
     })
 }
+
+backButton.addEventListener('click', () => window.location.href = '/account.html')
 
 

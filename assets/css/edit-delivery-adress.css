@@ -31,3 +31,12 @@
     margin: auto;
     margin-top: 20px;
 }
+#cancel-box{
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+#cancel-button{
+    font-size: 0.8rem;
+    margin-top: 30px;
+}

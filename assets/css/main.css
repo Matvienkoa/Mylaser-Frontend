@@ -1,11 +1,19 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
 
-/*
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+#circle-cart{
+	color: #e44c65;
+	position: relative;
+	top: -6px;
+	right: -3px;
+	font-size: 0.7rem;
+}
+.circle-hidden{
+	visibility: hidden;
+}
+.circle-visible{
+	visibility: visible;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -23,7 +31,7 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align:middle;}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -2819,7 +2827,8 @@ input, select, textarea {
 			}
 
 /* Button */
-
+			
+	#label,
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
@@ -2848,7 +2857,7 @@ input, select, textarea {
 		white-space: nowrap;
 	}
 
-		input[type="submit"]:hover, input[type="submit"]:active,
+		#label:hover, #label:active,input[type="submit"]:hover, input[type="submit"]:active,
 		input[type="reset"]:hover,
 		input[type="reset"]:active,
 		input[type="button"]:hover,

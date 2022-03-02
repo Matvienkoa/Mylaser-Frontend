@@ -39,7 +39,8 @@ function editBillingAdress() {
             postalCode: postalCode.value,
             city: city.value,
             country: country.value,
-            phone: phone.value
+            phone: phone.value,
+            userId: decodedToken.userId
         }
         const myInit = {
             method: "PUT",
@@ -51,4 +52,8 @@ function editBillingAdress() {
         fetch(`http://localhost:3000/api/mylaser/billingadress/${Adress.id}`, myInit)
         .then(() => window.location.href = '/my-adresses.html')
         })
+}
+
+function cancel() {
+    window.location.href = '/my-adresses.html'
 }

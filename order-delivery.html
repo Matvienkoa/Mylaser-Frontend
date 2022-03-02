@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/edit-billing-adress.css" />
+		<link rel="stylesheet" href="assets/css/order-delivery.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -29,52 +29,13 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major" id="title-dxf">
-							<h2>Modifier mon Adresse de Facturation</h2>
+							<h2>Mode de livraison</h2>
 						</header>
-
-						
-						<section id="billing-adress">
-							<div id="form-billing-adress">
-								<div class="full-row">
-									<span class="half-row">
-										<label>Prénom</label>
-										<input type="text" id="firstName">
-									</span>
-									<span class="half-row">
-										<label>Nom</label>
-										<input type="text" id="lastName">
-									</span>
-								</div>
-								<label>Adresse</label>
-								<input type="text" id="line1">
-								<label>Copmlément</label>
-								<input type="text" id="line2">
-								<div class="full-row">
-									<span class="half-row">
-										<label>Code Postal</label>
-										<input type="text" id="postalCode">
-									</span>
-									<span class="half-row">
-										<label>Ville</label>
-										<input type="text" id="city">
-									</span>
-								</div>
-								<div class="full-row">
-									<span class="half-row">
-										<label>Pays</label>
-										<input type="text" id="country">
-									</span>
-									<span class="half-row">
-										<label>Télephone</label>
-										<input type="text" id="phone">
-									</span>
-								</div>
-							</div>
-							<input type="button" id="button-adress" onclick="editBillingAdress()" value="Modifier"/>
-							<span id="cancel-box">
-								<input type="button" id="cancel-button" onclick="cancel()" value="Annuler">
-							</span>
-						</section>
+						<section id="deliveries">
+                            <div class="delivery" data-delivery="colissimo"><span class="delivery-title"><img src="./images/colissimo.svg" alt=""></span><span class="delivery-price">4,90 €</span><span class="delivery-description">Description</span></div>
+                            <div class="delivery" data-delivery="chronopost"><span class="delivery-title"><img src="./images/chronopost.svg" alt=""></span><span class="delivery-price">6,90 €</span><span class="delivery-description">Description</span></div>
+                            <div class="delivery" data-delivery="ups"><span class="delivery-title"><img src="./images/ups.svg" alt=""></span><span class="delivery-price">8,90 €</span><span class="delivery-description">Description</span></div>
+                        </section>
 					</div>
 				</div>
 
@@ -106,7 +67,7 @@
 			<script src="assets/js/linkaccount.js"></script>
 			<script src="assets/js/cart-circle.js"></script>
 			<script src="assets/js/main.js"></script>
-            <script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/edit-billing-adress.js"></script>
+			<script src="assets/js/jwt-decode.js"></script>
+			<script src="assets/js/order-delivery.js"></script>
 	</body>
 </html>

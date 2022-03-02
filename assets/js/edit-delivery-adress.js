@@ -8,6 +8,7 @@ const postalCode = document.getElementById('postalCode');
 const city = document.getElementById('city');
 const country = document.getElementById('country');
 const phone = document.getElementById('phone');
+const adressOption = document.getElementById('adress-option');
 
 if(token) {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
@@ -30,7 +31,8 @@ function editDeliveryAdress() {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
     .then((res) => res.json())
     .then((user) => {
-        const Adress = user.deliveryAdresses[0];
+        const dAdress = user.deliveryAdresses[0];
+        const bAdress = user.billingAdresses[0];
         const updateAdress = {
             firstName: firstName.value,
             lastName: lastName.value,
@@ -39,7 +41,8 @@ function editDeliveryAdress() {
             postalCode: postalCode.value,
             city: city.value,
             country: country.value,
-            phone: phone.value
+            phone: phone.value,
+            userId: decodedToken.userId
         }
         const myInit = {
             method: "PUT",
@@ -48,7 +51,26 @@ function editDeliveryAdress() {
                 "Content-Type": "application/json; charset=utf-8",
             },
         }
-        fetch(`http://localhost:3000/api/mylaser/deliveryadress/${Adress.id}`, myInit)
-        .then(() => window.location.href = '/my-adresses.html')
+        const myInit2 = {
+            method: "POST",
+            body: JSON.stringify(updateAdress),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        }
+        fetch(`http://localhost:3000/api/mylaser/deliveryadress/${dAdress.id}`, myInit)
+        .then(() => {
+            if(adressOption.value === "yes" && user.billingAdresses.length === 1) {
+                fetch(`http://localhost:3000/api/mylaser/billingadress/${bAdress.id}`, myInit)
+            }
+            if(adressOption.value === "yes" && user.billingAdresses.length === 0) {
+                fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit2)
+            }
         })
+        .then(() => window.location.href = '/my-adresses.html')
+    })
+}
+
+function cancel() {
+    window.location.href = '/my-adresses.html'
 }

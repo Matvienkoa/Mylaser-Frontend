@@ -30,7 +30,7 @@ function addBillingAdress() {
         },
     }
     fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
-    .then(() => window.location.href = '/my-adresses.html')
+    .then(() => window.location.href = '/order-adresses.html')
 }
 
 function cancel() {

@@ -1,10 +1,37 @@
+// ----------- Upload DXF -----------
 document.getElementById("form-dxf").addEventListener("submit", (e) => {
-    e.preventDefault();
-    uploadDXF();
+    if(document.getElementById("file").files.length !== 0 && document.getElementById('infos-dxf').className === 'hidden') {
+        e.preventDefault();
+        showSpinner();
+        uploadDXF();
+    }
 })  
 
-widthOptions()
+// ----------- Show file name + size -----------
+const file = document.getElementById('file');
+file.addEventListener('change', (e) => {
+    const [file] = e.target.files;
+    const { name: fileName, size } = file;
+    const fileSize = (size / 1000).toFixed(2);
+    const fileNameAndSize = `${fileName} - ${fileSize} KB`;
+    document.querySelector('.file-name').textContent = fileNameAndSize;
+})
 
+// ----------- Spinner -----------
+function showSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.replace('spinner-off', 'lds-ring')
+    const body = document.querySelector('body');
+    body.classList.add('on');
+}
+function hideSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.replace('lds-ring', 'spinner-off');
+    const body = document.querySelector('body');
+    body.classList.remove('on');
+}
+
+// ----------- DXF -----------
 function uploadDXF() {
     const formData = new FormData();
     const file = document.getElementById("file").files[0];
@@ -19,11 +46,13 @@ function uploadDXF() {
     fetch("http://localhost:3000/api/mylaser/dxf", myInit)
     .then((res) => res.json())
     .then((arrayData) => {
-        showSVG(arrayData)
+        hideSpinner();
+        showSVG(arrayData);
         showOptions();
     })
 }
 
+// ----------- Show SVG -----------
 function showSVG(arrayData) {
     // Load SVG in DOM
     let svgContainer = document.getElementById('svgContainer');
@@ -34,8 +63,6 @@ function showSVG(arrayData) {
     document.getElementById('hauteur').innerHTML = Math.round(heightSvg)
     document.getElementById('largeur').innerHTML = Math.round(widthSvg)
     let surfaceUtile = heightSvg*widthSvg
-    console.log(surfaceUtile)
-
     // Paths
     let lengthPath = [];
     let paths = document.querySelectorAll('path');
@@ -74,38 +101,25 @@ function showSVG(arrayData) {
         line.removeAttribute('style')
         line.setAttribute('style', 'stroke:white;stroke-width:1')
     })
-
     // Total Paths
     let totalLengthPath = 0;
     for (let i = 0; i < lengthPath.length; i++) {
         totalLengthPath += lengthPath[i];
     }
-    console.log(totalLengthPath);
-
     // Coef Acier
     let coef =  parseFloat(document.getElementById('width-options').value)
-    console.log(coef)
-
     // Quantity
     let quantity = parseInt(document.getElementById('quantityList').value)
-    console.log(quantity)
-
     // Steel
     let steel = document.getElementById('steel-options').value
-    console.log(steel)
-
     // Thickness
     let thickness = document.getElementById('width-options').value
-    console.log(thickness)
-
     // Scale SVG for frontend
     svg.removeAttribute('width')
     svg.setAttribute('width', '100%')
     svg.removeAttribute('height')
     svg.setAttribute('height', '100%')
-
     let svgData = JSON.stringify(arrayData[0])
-
     // Send Quote to DB
     const quoteInfos = {
         length: totalLengthPath,
@@ -138,11 +152,10 @@ function showOptions() {
     document.getElementById('infos-dxf').classList.replace("hidden", "visible")
 }
 
+widthOptions()
+
 function updatePrice() {
     const currentQuote = localStorage.getItem('currentQuote')
-
-    console.log(currentQuote)
-
     const coef = document.getElementById('width-options').value
     const quantity = document.getElementById('quantityList').value
     const thickness = document.getElementById('width-options').value
@@ -203,22 +216,41 @@ function widthOptions() {
     }
 }
 
+// Update price on change Options
 document.getElementById('steel-options').addEventListener('change', (e) => {
     widthOptions()
     updatePrice()
 })
-
 document.getElementById('width-options').addEventListener('change', (e) => {
     updatePrice()
 })
-
 document.getElementById('quantityList').addEventListener('change', (e) => {
     updatePrice()
 })
-
+// Add to cart
 document.getElementById('addToCart').addEventListener('click', (e) => {
     addToCart()
 })
+// If change file, delete current quote and reset
+document.getElementById('file').addEventListener('change', (e) => {
+    if(document.getElementById('infos-dxf').className === 'visible') {
+        deleteQuote();
+        changeQuote();
+        hideOptions();
+    }
+})
+function deleteQuote() {
+    const quote = localStorage.getItem('currentQuote');
+    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote}`, {method: "DELETE"})
+    .then(() => localStorage.removeItem('currentQuote'))
+}
+function changeQuote() {
+    let svgContainer = document.getElementById('svgContainer');
+    svgContainer.innerHTML = '';
+}
+function hideOptions() {
+    document.getElementById('infos-dxf').classList.replace("visible", "hidden")
+}
 
 function addToCart () {
     const currentQuote = localStorage.getItem('currentQuote');

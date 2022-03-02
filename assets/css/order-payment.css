@@ -1,0 +1,36 @@
+#paymentChoice{
+    display: flex;
+    flex-wrap: wrap;
+}
+.choice{
+    width: 33%;
+    height: 60px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+label img{
+    width: 60px;
+    margin-right: 10px;
+}
+#prices{
+    display: flex;
+    flex-direction: column;
+}
+#cgv-box{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+#validate{
+    display: block;
+    margin: auto;
+}
+h3{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+

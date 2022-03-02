@@ -3,7 +3,8 @@ const email = document.getElementById('email');
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const password = document.getElementById("new-password");
-const decodedToken = jwt_decode(token)
+const decodedToken = jwt_decode(token);
+const backButton = document.getElementById('back-button');
 
 if(token) {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
@@ -32,3 +33,5 @@ function updateInfos() {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, myInit)
     .then(() => window.location.reload())
 }
+
+backButton.addEventListener('click', () => window.location.href = '/account.html')
