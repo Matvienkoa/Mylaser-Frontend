@@ -7,6 +7,7 @@ const deliveryChoice = localStorage.getItem('deliveryChoice');
 const deliveryPrice = document.getElementById('delivery-price');
 const totalPrice = document.getElementById('total-price');
 let productPrice = 0;
+let price = 0;
 const validate = document.getElementById('validate');
 const CGV = document.getElementById('CGV');
 
@@ -94,6 +95,7 @@ function checkAdresses() {
             const order = {
                 userId: user.id,
                 shipping: deliveryChoice,
+                shippingPrice: deliveryChoice,
                 daFN: da.firstName,
                 daLN: da.lastName,
                 daPhone: da.phone,
@@ -154,31 +156,54 @@ function sendOrder(order) {
     .then((order) => {
         console.log(order)
         products.forEach(product => {
-            const orderDetails = {
-                orderId: order.id,
-                quote: product
-            }
-            console.log(orderDetails)
-            const myInit = {
-                method: "POST",
-                body: JSON.stringify(orderDetails),
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-            }
-            fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
+            fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product}`)
             .then((res) => res.json())
-            .then((orderdetails) => {
-                console.log(orderdetails)
-            })
+            .then((quote) => {
+                const orderDetails = {
+                    orderId: order.id,
+                    quote: quote.id,
+                    price: quote.price
+                }
+                console.log(orderDetails)
+
+                const myInit = {
+                    method: "POST",
+                    body: JSON.stringify(orderDetails),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                }
+                fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
+                .then((res) => res.json())
+                .then((orderdetails) => {
+                    console.log(orderdetails)
+                    price = price + orderDetails.price
+                    const edit = {
+                        price: price
+                    }
+                    const myInitPrice = {
+                        method: "PUT",
+                        body: JSON.stringify(edit),
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                    }
+                    fetch(`http://localhost:3000/api/mylaser/order/${order.id}/price`, myInitPrice)
+                    .then((res) => res.json())
+                    .then(() => {
+                        localStorage.removeItem('currentCart');
+                        localStorage.removeItem('deliveryChoice');
+                        localStorage.removeItem('currentPrice');
+                        localStorage.removeItem('currentQuote');
+                        window.location.href = `/confirmation.html?order=${order.number}`
+                    })
+                })
+            }) 
         })
-        localStorage.removeItem('currentCart');
-        localStorage.removeItem('deliveryChoice');
-        localStorage.removeItem('currentPrice');
-        localStorage.removeItem('currentQuote');
-        window.location.href = `/confirmation.html?order=${order.number}`
     })
 }
+
+
 
 
 

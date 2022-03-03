@@ -1,0 +1,42 @@
+p{
+    margin: 0;
+}
+
+#box-infos{
+    margin-bottom: 50px;
+}
+
+#ref-infos, #date-infos{
+    display: flex;
+    align-items: center;
+}
+h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
+    margin: 0;
+}
+#number-order, #date-order, #subtotal, #shipping, #total-price{
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+#box-prices{
+    margin-top: 30px;
+}
+#box-prices div{
+    display: flex;
+    align-items: center;
+}
+
+#box-shipping{
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-around;
+}
+#box-shipping div{
+    display: flex;
+    flex-direction: column;
+}
+.infos-row{
+    display: flex;
+}

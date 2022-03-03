@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Mon Projet</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/my-order.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Accueil</a></li>
+							<li><a href="functioning.html">Fonctionnement</a></li>
+							<li><a href="importdxf.html">Importer mon DXF</a></li>
+							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
+							<li id="linkOptions"><a id="link" class="button primary"></a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major" id="title-dxf">
+							<h2>Détails de ma Commande</h2>
+							<!-- <p>Ipsum dolor feugiat aliquam tempus sed magna lorem consequat accumsan</p> -->
+						</header>
+                        <section id="box-infos">
+                            <div id="ref-infos">
+                                <h3>Référence :</h3><p id="number-order"></p>
+                            </div>
+                            <div id="date-infos">
+                                <h3>Date :</h3><p id="date-order"></p>
+                            </div>
+                        </section>
+						<section id="orders">
+							<div class="table-wrapper" id="tableWrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Fichier</th>
+											<th>Dimensions</th>
+											<th>Métal</th>
+											<th>Epaisseur</th>
+											<th>Quantité</th>
+											<th>Prix</th>
+										</tr>
+									</thead>
+									<tbody id="table-body">
+									</tbody>
+								</table>
+							</div>
+						</section>
+                        <section id="box-prices">
+                            <div id="subtotal-infos"><h3>Sous Total (TTC) :</h3><p id="subtotal"></p></div>
+                            <div id="shipping-infos"><h3>Transport :</h3><p id="shipping"></p></div>
+                            <div id="total-price-infos"><h3>TOTAL TTC :</h3><p id="total-price"></p></div>
+                        </section>
+                        <section id="box-shipping">
+                            <div>
+                                <h3>Transporteur</h3>
+                                <p id="delivery"></p>
+                            </div>
+                            <div>
+                                <h3>Livraison</h3>
+                                <div>
+                                    <span class="infos-row">
+                                        <p id="dafn"></p>
+                                        <p id="daln"></p>
+                                    </span>
+                                    <p id="dal1"></p>
+                                    <p id="dal2"></p>
+                                    <span class="infos-row">
+                                        <p id="dapc"></p>
+                                        <p id="dacity"></p>
+                                    </span>
+                                    <p id="dacountry"></p>
+                                    <p id="daphone"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Facturation</h3>
+                                <div>
+                                    <span class="infos-row">
+                                        <p id="bafn"></p>
+                                        <p id="baln"></p>
+                                    </span>
+                                    <p id="bal1"></p>
+                                    <p id="bal2"></p>
+                                    <span class="infos-row">
+                                        <p id="bapc"></p>
+                                        <p id="bacity"></p>
+                                    </span>
+                                    <p id="bacountry"></p>
+                                    <p id="baphone"></p>
+                                </div>
+                            </div>
+                        </section>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/linkaccount.js"></script>
+			<script src="assets/js/cart-circle.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/jwt-decode.js"></script>
+			<script src="assets/js/my-order.js"></script>
+	</body>
+</html>

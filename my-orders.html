@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		
+		<link rel="stylesheet" href="assets/css/my-orders.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -29,28 +29,27 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major" id="title-dxf">
-							<h2>Mon Compte</h2>
+							<h2>Mes Commandes</h2>
 							<!-- <p>Ipsum dolor feugiat aliquam tempus sed magna lorem consequat accumsan</p> -->
 						</header>
 
-						<!-- Text -->
-						<section id="section-account">
-							<div class="line-infos" id="personnal-infos">
-								<i class="icon solid major fa-user"></i>
-								<a href="my-infos.hmtl"><h3>Mes Informations Personnelles</h3></a>
-							</div>
-							<div class="line-infos" id="personnal-adresses">
-								<i class="icon solid major fa-map"></i>
-								<a href="my-adresses.hmtl"><h3>Mes adresses</h3></a>
-							</div>
-							<div class="line-infos" id="personnal-orders">
-								<i class="icon solid major fa-file"></i>
-								<a href="my-orders.hmtl"><h3>Mes Commandes</h3></a>
-							</div>
-						</section>
+						<section id="orders">
+							<div class="table-wrapper" id="tableWrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Référence</th>
+											<th>Date</th>
+											<th>Prix Total</th>
+											<th>Statut</th>
+											<th>Détails</th>
+										</tr>
+									</thead>
+									<tbody id="table-body">
+									</tbody>
+								</table>
 
-						<section id="section">
-							<input type="button" id="logout" onclick="logOut()" value="Déconnexion"/>
+							</div>
 						</section>
 					</div>
 				</div>
@@ -83,5 +82,7 @@
 			<script src="assets/js/linkaccount.js"></script>
 			<script src="assets/js/cart-circle.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/jwt-decode.js"></script>
+			<script src="assets/js/my-orders.js"></script>
 	</body>
 </html>
