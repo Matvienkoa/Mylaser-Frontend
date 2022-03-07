@@ -1,3 +1,5 @@
+
+
 function login() {
     return new Promise((resolve, reject) => {
         const loginInfos = {
@@ -14,9 +16,21 @@ function login() {
         fetch(`http://localhost:3000/api/mylaser/auth/login`, myInit)
         .then(res => res.json())
         .then(data => {
-            if(data.token){
-                localStorage.setItem("customer", data.token);
-                window.location.href = '/account.html'
+            const token = data.token;
+            const decodedToken = jwt_decode(token);
+            if(token){
+                fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+                .then((res) => res.json())
+                .then((user) => {
+                    if(user.role === "customer") {
+                        localStorage.setItem("customer", token);
+                        window.location.href = '/account.html'
+                    }
+                    if(user.role === "admin") {
+                        localStorage.setItem("customer", token);
+                        window.location.href = '/admin-access-bo.html'
+                    }
+                })
             }
         })
         .catch(function (error) {

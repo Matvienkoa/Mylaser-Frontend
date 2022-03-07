@@ -2,6 +2,7 @@ const products = JSON.parse(localStorage.getItem('currentCart'));
 const token = localStorage.getItem('customer');
 const tableBody = document.getElementById('table-body');
 const tableWrapper = document.getElementById('tableWrapper');
+const backButton = document.getElementById('back-button');
 
 
 if(token) {
@@ -28,10 +29,10 @@ if(token) {
                 window.location.href = `/my-order.html?order=${glass.dataset.number}`
                 console.log('yo')
             })
-            
         })
     })
-    
 } 
+
+backButton.addEventListener('click', () => window.location.href = '/account.html')
 
 

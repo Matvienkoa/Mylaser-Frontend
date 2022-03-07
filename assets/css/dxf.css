@@ -43,11 +43,15 @@
 #options-dxf{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-bottom: 20px;
 }
 #dimensions{
+    font-size: 11.5pt;
     display: flex;
-    flex-direction: column;
+    padding: 10px 15px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 #steel-options optgroup{
     background-color: black;
@@ -61,8 +65,18 @@
     display: flex;
     flex-direction: column;
 }
+#price{
+  font-size: 11.5pt;
+  padding: 10px 15px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
 .on{
   opacity: 0.3;
+  transition: 400ms;
+}
+.on2{
+  opacity: 0.1;
   transition: 400ms;
 }
 .lds-ring {
@@ -100,4 +114,49 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Reidrect after add to Cart */
+.add-cart-next-page{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  animation: apparition-addCart 300ms;
+  transform: scale(1);
+}
+.add-cart-next-box{
+  width: 50%;
+  display: flex;
+  margin: auto;
+  margin-top: 25%;
+  padding: 50px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  background: rgba(39, 40, 51, 0.965);
+}
+
+@keyframes apparition-addCart{
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.add-cart-next-box p{
+  color: white;
+  font-size: 1.3rem;
+}
+#go-to-import{
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+#go-to-cart{
+  font-size: 0.8rem;
+  margin-left: 10px;
 }

@@ -103,3 +103,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
             })
         });
     })
+
+document.getElementById('back-to-orders').addEventListener('click', () => {
+    window.location.href = '/my-orders.html'
+})

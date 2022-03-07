@@ -14,23 +14,24 @@ if(token) {
         const billingAdress = user.billingAdresses[0]
         if(user.deliveryAdresses.length === 1) {
             const deliveryAdressDetails = document.createElement('div');
-            deliveryAdressDetails.className = "deliveryAdressDetails"
+            deliveryAdressDetails.className = "adresses-box"
             deliveryAdressDetails.innerHTML = 
             '<h3>Mon adresse de Livraison</h3>' +
-            '<span class="name"><h4 class="marg">' + deliveryAdress.firstName + '</h4><h4>' + deliveryAdress.lastName + '</h4></span>' +
-            '<span class="lines"><h4>' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
-            '<span class="city"><h4 class="marg">' + deliveryAdress.postalCode + '</h4><h4>' + deliveryAdress.city + '</h4></span>' +
-            '<h4>' + deliveryAdress.country + '</h4>' +
-            '<h4>' + deliveryAdress.phone + '</h4>' +
-            `<span class="buttons"><input type="button" value="Modifier" id="editDelivery" data-id=${deliveryAdress.id}><input type="button" value="Supprimer" id="deleteDelivery" data-id=${deliveryAdress.id}></span>`;
+            '<div class="adress-details"><span class="name"><p class="marg">' + deliveryAdress.firstName + '</p><p>' + deliveryAdress.lastName + '</p></span>' +
+            '<p>' + deliveryAdress.line1 + '</p>' + 
+            '<p>' + deliveryAdress.line2 + '</p>' +
+            '<span class="city"><p class="marg">' + deliveryAdress.postalCode + '</p><p>' + deliveryAdress.city + '</p></span>' +
+            '<p>' + deliveryAdress.country + '</p>' +
+            '<p>' + deliveryAdress.phone + '</p></div>' +
+            `<span class="buttons"><input type="button" value="Modifier" id="edit-delivery-button" data-id=${deliveryAdress.id}><input type="button" value="Supprimer" id="delete-delivery-button" data-id=${deliveryAdress.id}></span>`;
             adressBox.appendChild(deliveryAdressDetails)
 
-            const editDelivery = document.getElementById('editDelivery');
+            const editDelivery = document.getElementById('edit-delivery-button');
             editDelivery.addEventListener('click', () => {
                 window.location.href = `/edit-delivery-adress.html`;
             })
 
-            const deleteDelivery = document.getElementById('deleteDelivery');
+            const deleteDelivery = document.getElementById('delete-delivery-button');
             deleteDelivery.addEventListener('click', () => {
                 deleteDeliveryAdress(deliveryAdress.id)
             })
@@ -51,23 +52,24 @@ if(token) {
         }
         if(user.billingAdresses.length === 1) {
             const billingAdressDetails = document.createElement('div');
-            billingAdressDetails.className = "deliveryAdressDetails"
+            billingAdressDetails.className = "adresses-box"
             billingAdressDetails.innerHTML = 
             '<h3>Mon adresse de Facturation</h3>' +
-            '<span class="name"><h4 class="marg">' + billingAdress.firstName + '</h4><h4>' + billingAdress.lastName + '</h4></span>' +
-            '<span class="lines"><h4>' + billingAdress.line1 + '</h4><h4>' + billingAdress.line2 + '</h4></span>' +
-            '<span class="city"><h4 class="marg">' + billingAdress.postalCode + '</h4><h4>' + billingAdress.city + '</h4></span>' +
-            '<h4>' + billingAdress.country + '</h4>' +
-            '<h4>' + billingAdress.phone + '</h4>' +
-            `<span class="buttons"><input type="button" value="Modifier" id="editBilling" data-id=${billingAdress.id}><input type="button" value="Supprimer" id="deleteBilling" data-id=${billingAdress.id}></span>`;
+            '<div class="adress-details"><span class="name"><p class="marg">' + billingAdress.firstName + '</p><p>' + billingAdress.lastName + '</p></span>' +
+            '<p>' + billingAdress.line1 + '</p>' + 
+            '<p>' + billingAdress.line2 + '</p>' +
+            '<span class="city"><p class="marg">' + billingAdress.postalCode + '</p><p>' + billingAdress.city + '</p></span>' +
+            '<p>' + billingAdress.country + '</p>' +
+            '<p>' + billingAdress.phone + '</p></div>' +
+            `<span class="buttons"><input type="button" value="Modifier" id="edit-billing-button" data-id=${billingAdress.id}><input type="button" value="Supprimer" id="delete-billing-button" data-id=${billingAdress.id}></span>`;
             adressBox.appendChild(billingAdressDetails);
 
-            const editBilling = document.getElementById('editBilling');
+            const editBilling = document.getElementById('edit-billing-button');
             editBilling.addEventListener('click', () => {
                 window.location.href = `/edit-billing-adress.html`;
             })
 
-            const deleteBilling = document.getElementById('deleteBilling');
+            const deleteBilling = document.getElementById('delete-billing-button');
             deleteBilling.addEventListener('click', () => {
                 deleteBillingAdress(billingAdress.id)
             })

@@ -1,0 +1,15 @@
+#home-admin{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.icon.solid.major{
+    margin-bottom: 10px;
+}
+.line-infos{
+    text-align: center;
+    width: 33%;
+}
+h3:hover{
+    color: #e44c65;
+}

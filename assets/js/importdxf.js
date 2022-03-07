@@ -272,8 +272,33 @@ function addToCart () {
         localStorage.setItem('currentCart', JSON.stringify(currentCart))
     })
     .then(() => {
-        window.location.reload();
+        apparitionNext();
     })
 }
+
+function apparitionNext () {
+    const box = document.createElement('span');
+    box.className = "add-cart-next-box";
+    box.innerHTML = 
+    "<p>Produit ajouté au panier!</p>" +
+	'<span id="option-buttons">' + 
+	'<input type="button" value="Importer un autre DXF" id="go-to-import">' +
+    '<input type="button" value="Voir mon panier" id="go-to-cart"></span>';
+    const page = document.getElementById('add-cart-next-page');
+    page.className = 'add-cart-next-page';
+    page.appendChild(box);
+    const main = document.querySelector('#main');
+    main.classList.add('on2');
+
+    document.getElementById('go-to-import').addEventListener('click', () => {
+        window.location.href = '/importdxf.html'
+    })
+
+    document.getElementById('go-to-cart').addEventListener('click', () => {
+        window.location.href = '/cart.html'
+    })
+}
+
+
 
 

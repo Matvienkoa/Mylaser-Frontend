@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/my-orders.css" />
+		<link rel="stylesheet" href="assets/css/admin-access-bo-customers.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -13,14 +13,13 @@
 
 			<!-- Header -->
 				<header id="header">
-					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
+					<h1 id="logo"><a href="admin-access-bo.html">Mylaser</a></h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Accueil</a></li>
-							<li><a href="functioning.html">Fonctionnement</a></li>
-							<li><a href="importdxf.html">Importer mon DXF</a></li>
-							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
-							<li id="linkOptions"><a id="link" class="button primary"></a></li>
+							<li><a href="admin-access-bo.html">Accueil</a></li>
+							<li><a href="admin-access-bo-customers.html">Clients</a></li>
+							<li><a href="admin-access-bo-orders.html">Commandes</a></li>
+							<li><a id="link" class="button primary" onclick="logOut()">Déconnexion</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -29,27 +28,27 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major" id="title-dxf">
-							<h2>Mes Commandes</h2>
+							<h2>Clients</h2>
 							<!-- <p>Ipsum dolor feugiat aliquam tempus sed magna lorem consequat accumsan</p> -->
 						</header>
 
-						<section id="orders">
+						<!-- Text -->
+						<section id="customers">
 							<div class="table-wrapper" id="tableWrapper">
 								<table>
 									<thead>
 										<tr>
-											<th>Référence</th>
-											<th>Date</th>
-											<th>Prix Total</th>
-											<th>Statut</th>
-											<th>Détails</th>
+											<th>Numéro</th>
+											<th>Mail</th>
+											<th>Prénom</th>
+											<th>Nom</th>
 										</tr>
 									</thead>
 									<tbody id="table-body">
 									</tbody>
 								</table>
 							</div>
-							<input type="button" value="Retour à mon Compte" id="back-button">
+							<input type="button" value="Retour" id="back-button">
 						</section>
 					</div>
 				</div>
@@ -79,10 +78,8 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/linkaccount.js"></script>
-			<script src="assets/js/cart-circle.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/my-orders.js"></script>
+			<script src="assets/js/admin-access-bo-customers.js"></script>
+            
 	</body>
 </html>

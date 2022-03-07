@@ -25,6 +25,8 @@
 					</nav>
 				</header>
 
+				<div id="add-cart-next-page"></div>
+
 			<!-- Main -->
 				<div id="main" class="wrapper style1">
 					<div class="container">
@@ -39,6 +41,8 @@
 								<input type="submit" value="Téléchargez le fichier" id="upload-dxf">
 							</form>
 
+							
+
 							<div id="spinner" class="spinner-off"><div></div><div></div><div></div><div></div></div>
 
 							<div id="svg-box">
@@ -48,11 +52,13 @@
 							
 							<div id="infos-dxf" class="hidden">
 								<div id="options-dxf">
-									<div id="dimensions">
-										<span>Dimensions :</span>
-										<span>Hauteur : <span id="hauteur"></span></span>
-										<span>Largeur : <span id="largeur"></span></span>
-									</div>
+									<label>Dimensions :
+										<span id="dimensions">
+											<span id="hauteur"></span>
+											<span> X </span>
+											<span id="largeur"></span>
+										</span>
+									</label>
 									<label>Métaux :
 										<select name="steel" id="steel-options">
 											<optgroup label="Acier">
@@ -91,10 +97,9 @@
 											<option value="10">10</option>
 										</select>
 									</label>
-									<div id="price-box">
-										<span>Prix :</span>
+									<label id="price-box">Prix :
 										<span id="price"></span>
-									</div>
+									</label>
 								</div>
 								<div id="addToCart-box">
 									<input type="button" class="primary small" id="addToCart" value="Ajouter au panier"/>
