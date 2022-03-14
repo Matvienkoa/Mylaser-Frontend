@@ -21,7 +21,7 @@ label img{
 #cgv-box{
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 #validate{
     display: block;
@@ -31,6 +31,17 @@ h3{
     text-align: center;
     margin-top: 50px;
     margin-bottom: 30px;
+}
+
+#no-checked{
+    color: #e44c65;
+    text-align: center;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
 }
 
 

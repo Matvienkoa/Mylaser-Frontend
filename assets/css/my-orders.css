@@ -1,3 +1,15 @@
+/* Table Orders */
+#no-order{
+    text-align: center;
+}
+.glass{
+    cursor: pointer;
+}
+.glass:hover{
+    color: #e44c65;
+}
+
+/* Button Back */
 #back-button{
     font-size: 0.8rem;
     display: block;

@@ -1,6 +1,8 @@
 h3, p{
     margin: 0;
 }
+
+/* Infos */
 #infos{
     font-size: 1.2rem;
     margin-bottom: 60px;
@@ -10,6 +12,7 @@ h3, p{
     color: white;
 }
 
+/* Adresses */
 #adresses{
     display: flex;
 }
@@ -23,10 +26,49 @@ h3, p{
 #delivery-adress{
     margin-right: 60px;
 }
+.no-adress{
+    margin-top: 20px;
+    text-align: center;
+}
 
+/* Table Orders */
 #orders{
     margin-bottom: 40px;
 }
 #orders h3{
     margin-bottom: 20px;
+}
+.glass{
+    cursor: pointer;
+}
+.glass:hover{
+    color: #e44c65;
+}
+#no-order{
+    text-align: center;
+}
+
+/* Button Back */
+#buttons{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+#buttons input {
+    font-size: 0.8rem;
+}
+
+/* Confirmation */
+#confirmation-delete-customer{
+    text-align: center;
+}
+#yes, #no{
+    font-size: 0.7rem;
+    margin-left: 20px;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
 }

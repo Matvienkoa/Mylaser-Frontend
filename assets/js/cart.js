@@ -1,6 +1,6 @@
 const products = JSON.parse(localStorage.getItem('currentCart'));
-console.log(products);
 const token = localStorage.getItem('customer');
+console.log(products);
 
 const tableBody = document.getElementById('table-body');
 const tableWrapper = document.getElementById('tableWrapper');
@@ -26,16 +26,16 @@ if(!products) {
     totalCart.classList.replace('visible', 'hidden');
     cartButtons.classList.replace('visible', 'hidden');
     goToImportdxf.addEventListener('click', () => {
-        window.location.href = '/importdxf.html'
-    })
-}
+        window.location.href = '/importdxf.html';
+    });
+};
 
 if(products) {
     products.forEach(product => {
         fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product}`)
         .then((res) => res.json())
         .then((product) => {
-            console.log(product)
+            console.log(product);
 
             const productRow = document.createElement('tr');
             productRow.className = "productRow";
@@ -46,50 +46,50 @@ if(products) {
             '<td>' + product.thickness + ' mm</td>' +
             '<td>' + product.quantity + '</td>' +
             '<td>' + product.price + ' €</td>' +
-            '<td class="bin" data-id=' + product.id + '>🗑️</td>'
+            '<td><i class="icon solid fa-trash bin" data-id=' + product.id + '></i></td>';
             tableBody.appendChild(productRow);
 
             let paths = document.querySelectorAll('path');
             paths.forEach(path => {
-                path.removeAttribute('style')
-                path.setAttribute('style', 'stroke:white;stroke-width:1')
+                path.removeAttribute('style');
+                path.setAttribute('style', 'stroke:white;stroke-width:1');
             });
             let circles = document.querySelectorAll('circle');
             circles.forEach(circle => {
-                circle.removeAttribute('style')
-                circle.setAttribute('style', 'stroke:white;stroke-width:1')
-            })
+                circle.removeAttribute('style');
+                circle.setAttribute('style', 'stroke:white;stroke-width:1');
+            });
             let lines = document.querySelectorAll('line');
             lines.forEach(line => {
-                line.removeAttribute('style')
-                line.setAttribute('style', 'stroke:white;stroke-width:1')
-            })
-            let svgs = document.querySelectorAll('svg')
+                line.removeAttribute('style');
+                line.setAttribute('style', 'stroke:white;stroke-width:1');
+            });
+            let svgs = document.querySelectorAll('svg');
             svgs.forEach(svg => {
-                svg.removeAttribute('width')
-                svg.setAttribute('width', '100')
-                svg.removeAttribute('height')
-                svg.setAttribute('height', '100')
-            })
+                svg.removeAttribute('width');
+                svg.setAttribute('width', '100');
+                svg.removeAttribute('height');
+                svg.setAttribute('height', '100');
+            });
             let buttonsDelete = document.querySelectorAll('.bin');
             buttonsDelete.forEach(button => {
                 button.addEventListener('click', () => {
                     if(product.id === parseInt(button.dataset.id)) {
-                        deleteProduct(product)
-                    }
-                })
-            })
+                        deleteProduct(product);
+                    };
+                });
+            });
             totalPrice = totalPrice + product.price;
             console.log(totalPrice);
             let boxPrice = document.getElementById('total-price');
             boxPrice.innerHTML = totalPrice.toFixed(2) + ' €';
             totalTVA.innerHTML = 'dont TVA (20%) : ' + ((totalPrice/(1+20/100))*20/100).toFixed(2) + ' €';
-        })
+        });
     });
 
     back.addEventListener('click', () => {
-        window.location.href = 'importdxf.html'
-    })
+        window.location.href = 'importdxf.html';
+    });
 
     order.addEventListener('click', () => {
         if(token) {
@@ -98,31 +98,28 @@ if(products) {
             .then((res) => res.json())
             .then((user) => {
                 if(user.deliveryAdresses.length === 1) {
-                    window.location.href = 'order-adresses.html'
+                    window.location.href = 'order-adresses.html';
                 } else {
-                    window.location.href = 'order-add-delivery-adress.html'
-                }
-            })
-        } 
-        else {
-            window.location.href = 'order-connection.html'
-        }
-    })
-    
-    
-}
+                    window.location.href = 'order-add-delivery-adress.html';
+                };
+            });
+        } else {
+            window.location.href = 'order-connection.html';
+        };
+    });
+};
 
 function deleteProduct(product) {
     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE"})
     .then(() => {
-        const index = products.findIndex(p => p === product.id)
+        const index = products.findIndex(p => p === product.id);
         if(index !== -1) {
             products.splice(index, 1);
-        }
-        localStorage.setItem('currentCart', JSON.stringify(products))
+        };
+        localStorage.setItem('currentCart', JSON.stringify(products));
         if(products.length === 0){
-            localStorage.removeItem('currentCart')
-        }
+            localStorage.removeItem('currentCart');
+        };
         window.location.reload();
-    })
-}
+    });
+};

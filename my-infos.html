@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Mon Projet</title>
+		<title>Mes informations personnelles</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -11,7 +11,6 @@
 	<body class="is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
 				<header id="header">
 					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
 					<nav id="nav">
@@ -25,7 +24,6 @@
 					</nav>
 				</header>
 
-			<!-- Main -->
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major" id="title-dxf">
@@ -35,23 +33,25 @@
 						<section id="form-login">
 							<div id="form">
 								<label>Mon email</label>
-								<input type="email" id="email">
+								<input class="input" type="email" id="email">
 								<label>Mon prénom</label>
-								<input type="text" id="firstName">
+								<input class="input" type="text" id="firstName">
 								<label>Mon nom</label>
-								<input type="text" id="lastName">
+								<input class="input" type="text" id="lastName">
 								<label>Nouveau Mot de passe : (optionnel)</label>
 								<input type="password" id="new-password" placeholder="Nouveau Mot de Passe">
 							</div>
+							<p id="box-error"></p>
 							<input type="button" onclick="updateInfos()" id="button-update" value="Mettre à jour">
 							<span id="back-box">
 								<input type="button" value="Retour à mon Compte" id="back-button">
+								<input type="button" value="Supprimer mon compte" id="delete-account" onclick="showConfirm()">
 							</span>
+							<p id="confirmation-delete-user" class="hidden">Etes-vous sûr de vouloir supprimer votre compte?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
 						</section>
 					</div>
 				</div>
 
-			<!-- Footer -->
 				<footer id="footer">
 					<ul class="icons">
 						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
@@ -67,19 +67,17 @@
 				</footer>
 
 		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/linkaccount.js"></script>
-			<script src="assets/js/cart-circle.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/my-infos.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/linkaccount.js"></script>
+		<script src="assets/js/cart-circle.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jwt-decode.js"></script>
+		<script src="assets/js/my-infos.js"></script>
 	</body>
 </html>

@@ -1,5 +1,9 @@
 #back-button{
     font-size: 0.8rem;
-    display: block;
-    margin: auto;
+}
+.glass{
+    cursor: pointer;
+}
+.glass:hover{
+    color: #e44c65;
 }

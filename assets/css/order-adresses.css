@@ -1,3 +1,4 @@
+/* Adresses */
 #adresses{
     display: flex;
     justify-content: center;
@@ -36,6 +37,8 @@ h4{
     cursor: pointer;
     transition: color 300ms;
 }
+
+/* Buttons */
 #edit-adresse{
     display: block;
     margin: auto;

@@ -1,118 +1,113 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Mon Projet</title>
+		<title>Ajouter une adresse de livraison</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/edit-delivery-adress.css" />
+		<link rel="stylesheet" href="assets/css/adresses.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
+			<header id="header">
+				<h1 id="logo"><a href="index.html">Mylaser</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Accueil</a></li>
+						<li><a href="functioning.html">Fonctionnement</a></li>
+						<li><a href="importdxf.html">Importer mon DXF</a></li>
+						<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
+						<li id="linkOptions"><a id="link" class="button primary"></a></li>
+					</ul>
+				</nav>
+			</header>
 
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Accueil</a></li>
-							<li><a href="functioning.html">Fonctionnement</a></li>
-							<li><a href="importdxf.html">Importer mon DXF</a></li>
-							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
-							<li id="linkOptions"><a id="link" class="button primary"></a></li>
-						</ul>
-					</nav>
-				</header>
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<header class="major" id="title-dxf">
+						<h2>Ajouter mon Adresse de Livraison</h2>
+					</header>
 
-			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major" id="title-dxf">
-							<h2>Ajouter mon Adresse de Livraison</h2>
-						</header>
-
-						<section id="delivery-adress">
-							<div id="form-delivery-adress">
-								<div class="full-row">
-									<span class="half-row">
-										<label>Prénom</label>
-										<input type="text" id="firstName">
-									</span>
-									<span class="half-row">
-										<label>Nom</label>
-										<input type="text" id="lastName">
-									</span>
-								</div>
-								<label>Adresse</label>
-								<input type="text" id="line1">
-								<label>Copmlément</label>
-								<input type="text" id="line2">
-								<div class="full-row">
-									<span class="half-row">
-										<label>Code Postal</label>
-										<input type="text" id="postalCode">
-									</span>
-									<span class="half-row">
-										<label>Ville</label>
-										<input type="text" id="city">
-									</span>
-								</div>
-								<div class="full-row">
-									<span class="half-row">
-										<label>Pays</label>
-										<input type="text" id="country">
-									</span>
-									<span class="half-row">
-										<label>Télephone</label>
-										<input type="text" id="phone">
-									</span>
-								</div>
+					<section id="delivery-adress">
+						<div id="form-delivery-adress">
+							<div class="full-row">
+								<span class="half-row">
+									<label>Prénom</label>
+									<input class="input" type="text" id="firstName">
+								</span>
+								<span class="half-row">
+									<label>Nom</label>
+									<input class="input" type="text" id="lastName">
+								</span>
 							</div>
-							<div id="select-box">
-								<label>Utiliser cette Adresse comme adresse de facturation :</label>
-								<select name="select-adress" id="adress-option">
-									<option value="yes" selected>Oui</option>
-									<option value="no">Non</option>
-								</select>
+							<label>Adresse</label>
+							<input class="input" type="text" id="line1">
+							<label>Complément (optionnel)</label>
+							<input type="text" id="line2">
+							<div class="full-row">
+								<span class="half-row">
+									<label>Code Postal</label>
+									<input class="input" type="text" id="postalCode">
+								</span>
+								<span class="half-row">
+									<label>Ville</label>
+									<input class="input" type="text" id="city">
+								</span>
 							</div>
-							<input type="button" id="button-adress" onclick="addDeliveryAdress()" value="Ajouter"/>
-							<span id="cancel-box">
-								<input type="button" id="cancel-button" onclick="cancel()" value="Annuler">
-							</span>
-						</section>
-					</div>
+							<div class="full-row">
+								<span class="half-row">
+									<label>Pays</label>
+									<input class="input" type="text" id="country">
+								</span>
+								<span class="half-row">
+									<label>Télephone (optionnel)</label>
+									<input type="text" id="phone">
+								</span>
+							</div>
+						</div>
+						<div id="select-box">
+							<label>Utiliser cette Adresse comme adresse de facturation :</label>
+							<select name="select-adress" id="adress-option">
+								<option value="yes" selected>Oui</option>
+								<option value="no">Non</option>
+							</select>
+						</div>
+						<p id="box-error"></p>
+						<input type="button" id="button-adress" onclick="addDeliveryAdress()" value="Ajouter"/>
+						<span id="cancel-box">
+							<input type="button" id="cancel-button" onclick="cancel()" value="Annuler">
+						</span>
+					</section>
 				</div>
+			</div>
 
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
-					</ul>
-				</footer>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
+				</ul>
+			</footer>
 
 		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/linkaccount.js"></script>
-			<script src="assets/js/cart-circle.js"></script>
-			<script src="assets/js/main.js"></script>
-            <script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/add-delivery-adress.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/linkaccount.js"></script>
+		<script src="assets/js/cart-circle.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jwt-decode.js"></script>
+		<script src="assets/js/add-delivery-adress.js"></script>
 	</body>
 </html>

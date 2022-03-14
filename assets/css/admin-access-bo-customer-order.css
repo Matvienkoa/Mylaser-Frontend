@@ -22,10 +22,10 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 #select-status{
     width: 150px;
     margin-left: 10px;
-    font-size: 0.7rem;
+    height: 40px ;
 }
 #edit-status{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-left: 20px;
 }
 

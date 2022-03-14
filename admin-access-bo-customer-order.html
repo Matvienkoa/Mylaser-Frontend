@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/admin-access-bo-order.css" />
+		<link rel="stylesheet" href="assets/css/admin-access-bo-customer-order.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -53,7 +53,7 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Visuel</th>
+											<th>Fichier</th>
 											<th>Dimensions</th>
 											<th>Métal</th>
 											<th>Epaisseur</th>
@@ -67,7 +67,6 @@
 								</table>
 							</div>
 						</section>
-						<section id="files"></section>
                         <section id="box-prices">
                             <div id="subtotal-infos"><h3>Sous Total (TTC) :</h3><p id="subtotal"></p></div>
                             <div id="shipping-infos"><h3>Transport :</h3><p id="shipping"></p></div>
@@ -114,7 +113,7 @@
                             </div>
                         </section>
 						<section id="buttons">
-							<input type="button" value="Retour" id="back-to-orders">
+							<input type="button" value="Retour" id="back-to-customer">
 							<input type="button" value="Supprimer" id="delete-order" onclick="showConfirm()">
 						</section>
 						<p id="confirmation-delete-order" class="hidden">Supprimer cette commande?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
@@ -148,7 +147,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/admin-access-bo-order.js"></script>
+			<script src="assets/js/admin-access-bo-customer-order.js"></script>
 			<script src="assets/js/logout.js"></script>
 	</body>
 </html>

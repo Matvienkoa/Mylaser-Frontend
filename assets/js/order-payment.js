@@ -24,64 +24,70 @@ if(products) {
             '<td>' + product.steel + '</td>' +
             '<td>' + product.thickness + ' mm</td>' +
             '<td>' + product.quantity + '</td>' +
-            '<td>' + product.price + ' €</td>'
+            '<td>' + product.price + ' €</td>';
             tableBody.appendChild(productRow);
 
             let paths = document.querySelectorAll('path');
             paths.forEach(path => {
-                path.removeAttribute('style')
-                path.setAttribute('style', 'stroke:white;stroke-width:1')
+                path.removeAttribute('style');
+                path.setAttribute('style', 'stroke:white;stroke-width:1');
             });
             let circles = document.querySelectorAll('circle');
             circles.forEach(circle => {
-                circle.removeAttribute('style')
-                circle.setAttribute('style', 'stroke:white;stroke-width:1')
-            })
+                circle.removeAttribute('style');
+                circle.setAttribute('style', 'stroke:white;stroke-width:1');
+            });
             let lines = document.querySelectorAll('line');
             lines.forEach(line => {
-                line.removeAttribute('style')
-                line.setAttribute('style', 'stroke:white;stroke-width:1')
-            })
-            let svgs = document.querySelectorAll('svg')
+                line.removeAttribute('style');
+                line.setAttribute('style', 'stroke:white;stroke-width:1');
+            });
+            let svgs = document.querySelectorAll('svg');
             svgs.forEach(svg => {
-                svg.removeAttribute('width')
-                svg.setAttribute('width', '100')
-                svg.removeAttribute('height')
-                svg.setAttribute('height', '100')
+                svg.removeAttribute('width');
+                svg.setAttribute('width', '100');
+                svg.removeAttribute('height');
+                svg.setAttribute('height', '100');
             })
             productPrice = productPrice + product.price;
             if(products.length === 1) {
                 productPriceBox.innerHTML = products.length + ' Article : ' + productPrice + '€';
-                localStorage.setItem('currentPrice', productPrice)
+                localStorage.setItem('currentPrice', productPrice);
+                calculTotalPrice();
             } else {
                 productPriceBox.innerHTML = products.length + ' Articles : ' + productPrice + '€';
-                localStorage.setItem('currentPrice', productPrice)
-            }
-        })
+                localStorage.setItem('currentPrice', productPrice);
+                calculTotalPrice();
+            };
+        });
     });
+};
+
+function calculTotalPrice() {
+    switch(deliveryChoice) {
+        case 'chronopost' :
+            deliveryPrice.innerHTML = '6,90 €';
+            totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 6.90 + ' €';
+        break;
+        case 'colissimo' :
+            deliveryPrice.innerHTML = '4,90 €';
+            totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 4.90 + ' €';
+        break;
+        case 'ups' :
+            deliveryPrice.innerHTML = '8,90 €';
+            totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 8.90 + ' €';
+        break;
+    }
 }
 
-switch(deliveryChoice) {
-    case 'chronopost' :
-        deliveryPrice.innerHTML = '6,90 €';
-        totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 6.90 + ' €'
-    break;
-    case 'colissimo' :
-        deliveryPrice.innerHTML = '4,90 €';
-        totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 4.90 + ' €'
-    break;
-    case 'ups' :
-        deliveryPrice.innerHTML = '8,90 €';
-        totalPrice.innerHTML = parseFloat(localStorage.getItem('currentPrice')) + 8.90 + ' €'
-    break;
-}
 
 validate.addEventListener('click', () => {
     if(CGV.checked === true) {
         checkAdresses();
-    } 
-    
-})
+    } else {
+        document.getElementById('no-checked').classList.replace('hidden', 'visible');
+    }
+});
 
 function checkAdresses() {
     const decodedToken = jwt_decode(token);
@@ -112,7 +118,7 @@ function checkAdresses() {
                 baCity: ba.city,
                 baPC: ba.postalCode,
                 baCountry: ba.country
-            }
+            };
             sendOrder(order);
         }
         if(user.billingAdresses.length === 0 && (deliveryChoice === 'chronopost' || deliveryChoice === 'colissimo' || deliveryChoice === 'ups')) {
@@ -137,11 +143,11 @@ function checkAdresses() {
                 baCity: da.city,
                 baPC: da.postalCode,
                 baCountry: da.country
-            }
+            };
             sendOrder(order);
-        }
-    })
-}
+        };
+    });
+};
 
 function sendOrder(order) {
     const myInit = {
@@ -150,11 +156,11 @@ function sendOrder(order) {
         headers: {
             "Content-Type": "application/json; charset=utf-8"
         },
-    }
+    };
     fetch("http://localhost:3000/api/mylaser/order", myInit)
     .then((res) => res.json())
     .then((order) => {
-        console.log(order)
+        console.log(order);
         products.forEach(product => {
             fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product}`)
             .then((res) => res.json())
@@ -163,8 +169,8 @@ function sendOrder(order) {
                     orderId: order.id,
                     quote: quote.id,
                     price: quote.price
-                }
-                console.log(orderDetails)
+                };
+                console.log(orderDetails);
 
                 const myInit = {
                     method: "POST",
@@ -172,22 +178,22 @@ function sendOrder(order) {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     },
-                }
+                };
                 fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
                 .then((res) => res.json())
                 .then((orderdetails) => {
-                    console.log(orderdetails)
-                    price = price + orderDetails.price
+                    console.log(orderdetails);
+                    price = price + orderDetails.price;
                     const edit = {
                         price: price
-                    }
+                    };
                     const myInitPrice = {
                         method: "PUT",
                         body: JSON.stringify(edit),
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"
                         },
-                    }
+                    };
                     fetch(`http://localhost:3000/api/mylaser/order/${order.id}/price`, myInitPrice)
                     .then((res) => res.json())
                     .then(() => {
@@ -195,13 +201,13 @@ function sendOrder(order) {
                         localStorage.removeItem('deliveryChoice');
                         localStorage.removeItem('currentPrice');
                         localStorage.removeItem('currentQuote');
-                        window.location.href = `/confirmation.html?order=${order.number}`
-                    })
-                })
-            }) 
-        })
-    })
-}
+                        window.location.href = `/confirmation.html?order=${order.number}`;
+                    });
+                });
+            });
+        });
+    });
+};
 
 
 

@@ -7,10 +7,10 @@ if(token) {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
     .then((res) => res.json())
     .then((user) => {
-        const deliveryAdress = user.deliveryAdresses[0]
+        const deliveryAdress = user.deliveryAdresses[0];
         if(user.deliveryAdresses.length === 1 && user.billingAdresses.length === 1) {
             const deliveryAdressDetails = document.createElement('div');
-            deliveryAdressDetails.className = "deliveryAdressDetails"
+            deliveryAdressDetails.className = "deliveryAdressDetails";
             deliveryAdressDetails.innerHTML = 
             '<div id="box-adress"><span class="name"><h4 class="marg">' + deliveryAdress.firstName + '</h4><h4>' + deliveryAdress.lastName + '</h4></span>' +
             '<span class="lines"><h4>' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
@@ -23,16 +23,16 @@ if(token) {
             const editAdress = document.getElementById('edit-adresse');
             editAdress.addEventListener('click', () => {
                 window.location.href = `/my-adresses.html`;
-            })
+            });
 
             const goToDelivery = document.getElementById('box-adress');
             goToDelivery.addEventListener('click', () => {
                 window.location.href = `/order-delivery.html`;
-            })
+            });
         }
         if(user.deliveryAdresses.length === 1 && user.billingAdresses.length === 0) {
             const deliveryAdressDetails = document.createElement('div');
-            deliveryAdressDetails.className = "deliveryAdressDetails"
+            deliveryAdressDetails.className = "deliveryAdressDetails";
             deliveryAdressDetails.innerHTML = 
             '<div id="box-adress"><span class="name"><h4 class="marg">' + deliveryAdress.firstName + '</h4><h4>' + deliveryAdress.lastName + '</h4></span>' +
             '<span class="lines"><h4>' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
@@ -46,17 +46,17 @@ if(token) {
             const editAdress = document.getElementById('edit-adresse');
             editAdress.addEventListener('click', () => {
                 window.location.href = `/my-adresses.html`;
-            })
+            });
 
             const otherAdress = document.getElementById('other-adress');
             otherAdress.addEventListener('click', () => {
                 window.location.href = `/order-add-billing-adress.html`;
-            })
+            });
 
             const goToDelivery = document.getElementById('box-adress');
             goToDelivery.addEventListener('click', () => {
                 window.location.href = `/order-delivery.html`;
-            })
+            });
         }
         if(user.deliveryAdresses.length === 0) {
             const noDeliveryAdress = document.createElement('div');
@@ -66,8 +66,8 @@ if(token) {
             adressBox.appendChild(noDeliveryAdress);
             const createAdress = document.getElementById('create-adress');
             createAdress.addEventListener('click', () => {
-                window.location.href = 'order-add-delivery-adress.html'
-            })
-        }
-    })
-}
+                window.location.href = 'order-add-delivery-adress.html';
+            });
+        };
+    });
+};

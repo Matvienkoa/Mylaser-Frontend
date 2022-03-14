@@ -22,9 +22,8 @@ if(token) {
         city.value = billingAdress.city;
         country.value = billingAdress.country;
         phone.value = billingAdress.phone;
-    })
-
-}
+    });
+};
 
 function editBillingAdress() {
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
@@ -41,19 +40,46 @@ function editBillingAdress() {
             country: country.value,
             phone: phone.value,
             userId: decodedToken.userId
-        }
+        };
         const myInit = {
             method: "PUT",
             body: JSON.stringify(updateAdress),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
-        }
+        };
         fetch(`http://localhost:3000/api/mylaser/billingadress/${Adress.id}`, myInit)
-        .then(() => window.location.href = '/my-adresses.html')
+        .then(res =>{
+            if(!res.ok) {
+                // Error states
+                res.json().then((data) => {
+                    console.log(data.message);
+                    const boxError = document.getElementById('box-error');
+                    boxError.innerHTML = data.message;
+                    const emptyInput = document.querySelectorAll('.input');
+                    emptyInput.forEach(input => {
+                        if(input.value === "") {
+                            input.classList.add('empty');
+                        };
+                    });
+                });
+            } else {
+                window.location.href = '/my-adresses.html';
+            };
         })
-}
+        .catch(function (error) {
+            console.log(error);
+        });
+    });
+};
 
 function cancel() {
-    window.location.href = '/my-adresses.html'
-}
+    window.location.href = '/my-adresses.html';
+};
+
+const emptyInput = document.querySelectorAll('.input');
+emptyInput.forEach(input => {
+    input.addEventListener('input', () => {
+        input.classList.replace('empty', 'full');
+    });
+});

@@ -55,8 +55,13 @@
 									</tbody>
 								</table>
 							</div>
+							<p id="no-order"></p>
 						</section>
-                        <input type="button" value="Retour" id="back-button">
+                        <section id="buttons">
+							<input type="button" value="Retour" id="back-button">
+							<input type="button" value="Supprimer" id="delete-customer" onclick="showConfirm()">
+						</section>
+						<p id="confirmation-delete-customer" class="hidden">Supprimer cet utilisateur?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
 					</div>
 				</div>
 
@@ -87,6 +92,6 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/admin-access-bo-customer.js"></script>
-            
+            <script src="assets/js/logout.js"></script>
 	</body>
 </html>
