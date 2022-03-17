@@ -15,7 +15,7 @@ if(token) {
         } else {
             user.orders.forEach(order => {
                 const date = new Date(order.createdAt);
-                const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+                const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
                 const orderRow = document.createElement('tr');
                 orderRow.className = "orderRow";
                 orderRow.innerHTML =

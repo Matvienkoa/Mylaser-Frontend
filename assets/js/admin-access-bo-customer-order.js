@@ -43,6 +43,12 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
 
         editStatus.addEventListener('click', () => {
             editOrderStatus(number);
+            if(statusOption.value === 'En Préparation') {
+                sendEmailToCustomerOrderPrepared(order.userId)
+            }
+            if(statusOption.value === 'Expédiée') {
+                sendEmailToCustomerOrderShipped(order.userId);
+            }
         })
 
         subTotal.innerHTML = order.price + ' €';
@@ -132,6 +138,54 @@ function editOrderStatus(number) {
     fetch(`http://localhost:3000/api/mylaser/order/${number}`, myInit)
     .then(() => {
         window.location.reload();
+    })
+}
+
+function sendEmailToCustomerOrderPrepared(user) {
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`)
+    .then((res) => res.json())
+    .then((user) => {
+        const mailInfos = {
+            email: user.email,
+            subject: 'Commande en préparation',
+            text: 'Votre commande est en cours de préparation',
+            html: 'Votre commande est en cours de préparation'
+        }
+        const mailInit = {
+            method: "POST",
+            body: JSON.stringify(mailInfos),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        }
+        fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+        .then((res) => {
+            console.log(res)
+        })
+    })
+}
+
+function sendEmailToCustomerOrderShipped(user) {
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`)
+    .then((res) => res.json())
+    .then((user) => {
+        const mailInfos = {
+            email: user.email,
+            subject: 'Commande expédiée',
+            text: 'Votre commande a été expédiée',
+            html: 'Votre commande a été expédiée'
+        }
+        const mailInit = {
+            method: "POST",
+            body: JSON.stringify(mailInfos),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        }
+        fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+        .then((res) => {
+            console.log(res)
+        })
     })
 }
 

@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/order-payment.css" />
+		<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    	<script src="https://js.stripe.com/v3/"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -28,28 +30,7 @@
 					<header class="major" id="title-dxf">
 						<h2>Moyen de Paiement</h2>
 					</header>
-					<section id="paymentChoice">
-						<div class="choice">
-							<input type="radio" id="CB" name="payment" checked>
-							<label for="CB"><img src="./images/CB.png" alt="">Carte bancaire CB</label>
-						</div>
-						<div class="choice">
-							<input type="radio" id="visa" name="payment">
-							<label for="visa"><img src="./images/VISA.png" alt="">Carte bancaire Visa</label>
-						</div>
-						<div class="choice">
-							<input type="radio" id="mastercard" name="payment">
-							<label for="mastercard"><img src="./images/EUROCARD_MASTERCARD.png" alt="">Carte bancaire Mastercard</label>
-						</div>
-						<div class="choice">
-							<input type="radio" id="paypal" name="payment">
-							<label for="paypal"><img src="./images/paypal_logo.png" alt="">Paypal</label>
-						</div>
-						<div class="choice">
-							<input type="radio" id="virement" name="payment">
-							<label for="virement"><img src="./images/virement.jpg" alt="">Virement bancaire</label>
-						</div>
-					</section>
+					
 					<div id="prices">
 						<span id="product-price"></span>
 						<span>Livraison :<span id="delivery-price"></span></span>

@@ -9,7 +9,7 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`)
 .then((res) => res.json())
 .then((user) => {
     const date = new Date(user.createdAt);
-    const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+    const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
 
     infos.innerHTML = 
     '<p>Numéro :<span class="number">' + user.id + '</span></p>' +

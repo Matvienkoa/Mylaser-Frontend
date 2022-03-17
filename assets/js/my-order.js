@@ -33,7 +33,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
         console.log(order)
 
         const date = new Date(order.createdAt);
-        const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+        const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         dateOrder.innerHTML = dateFormated;
 
         subTotal.innerHTML = order.price + ' €';

@@ -6,7 +6,7 @@ fetch('http://localhost:3000/api/mylaser/order')
 .then((orders) => {
     orders.forEach(order => {
         const date = new Date(order.createdAt)
-        const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+        const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         const orderRow = document.createElement('tr');
         orderRow.className = "orderRow";
         orderRow.innerHTML =
@@ -14,7 +14,7 @@ fetch('http://localhost:3000/api/mylaser/order')
         '<td>' + dateFormated + '</td>' +
         '<td>' + order.price + ' €</td>' +
         '<td>' + order.status + '</td>' +
-        '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>'
+        '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>';
         tableBody.appendChild(orderRow);
     });
     let searchGlasses = document.querySelectorAll('.glass');
