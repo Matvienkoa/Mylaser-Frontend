@@ -32,7 +32,7 @@ function login() {
                     const token = data.token;
                     const decodedToken = jwt_decode(token);
                     if(token){
-                        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+                        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
                         .then((res) => res.json())
                         .then((user) => {
                             if(user.role === "customer") {

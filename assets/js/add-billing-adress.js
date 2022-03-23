@@ -27,6 +27,7 @@ function addBillingAdress() {
         body: JSON.stringify(adressInfos),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
+            "Authorization": 'Bearer ' + token,
         },
     };
     fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)

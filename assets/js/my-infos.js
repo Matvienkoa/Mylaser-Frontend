@@ -8,7 +8,7 @@ const backButton = document.getElementById('back-button');
 const deleteUser = document.getElementById('confirmation-delete-user');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         email.value = user.email
@@ -30,6 +30,7 @@ function updateInfos() {
                 body: JSON.stringify(updateInfos),
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": 'Bearer ' + token,
                 },
     }
     fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, myInit)
@@ -70,7 +71,7 @@ document.getElementById('yes').addEventListener('click', () => {
 });
 
 function deleteAccount(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE"})
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         localStorage.removeItem('customer');
         window.location.href = `/index.html`;

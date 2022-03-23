@@ -94,7 +94,7 @@ validate.addEventListener('click', () => {
 function checkAdresses() {
     return new Promise(resolve => {
         const decodedToken = jwt_decode(token);
-        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             if(user.billingAdresses.length === 1 && (deliveryChoice === 'chronopost' || deliveryChoice === 'colissimo' || deliveryChoice === 'ups')) {
@@ -159,7 +159,8 @@ function sendOrder(order) {
             method: "POST",
             body: JSON.stringify(order),
             headers: {
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         fetch("http://localhost:3000/api/mylaser/order", myInit)
@@ -180,7 +181,8 @@ function sendOrder(order) {
                         method: "POST",
                         body: JSON.stringify(orderDetails),
                         headers: {
-                            "Content-Type": "application/json; charset=utf-8"
+                            "Content-Type": "application/json; charset=utf-8",
+                            "Authorization": 'Bearer ' + token,
                         },
                     };
                     fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
@@ -195,7 +197,8 @@ function sendOrder(order) {
                             method: "PUT",
                             body: JSON.stringify(edit),
                             headers: {
-                                "Content-Type": "application/json; charset=utf-8"
+                                "Content-Type": "application/json; charset=utf-8",
+                                "Authorization": 'Bearer ' + token,
                             },
                         };
                         fetch(`http://localhost:3000/api/mylaser/order/${order.id}/price`, myInitPrice)
@@ -222,7 +225,8 @@ function sendOrder(order) {
         method: "POST",
         body: JSON.stringify(infosOrder),
         headers: {
-            "Content-Type": "application/json; charset=utf-8"
+            "Content-Type": "application/json; charset=utf-8",
+            "Authorization": 'Bearer ' + token,
         },
     };
     fetch("http://localhost:3000/api/mylaser/payment", myInit4)

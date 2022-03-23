@@ -4,14 +4,14 @@ const orders = document.getElementById('orders');
 const token = localStorage.getItem('customer');
 const decodedToken = jwt_decode(token);
 
-fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((user) => {
     sendEmailToCustomer(user.email);
     sendEmailToAdmin(user.email);
 })
 
-fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`)
+fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then(res => {
     if(res.ok) {
         localStorage.removeItem('currentCart');
@@ -28,7 +28,8 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`)
                 method: "PUT",
                 body: JSON.stringify(editPayment),
                 headers: {
-                    "Content-Type": "application/json; charset=utf-8"
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": 'Bearer ' + token,
                 },
             };
             fetch(`http://localhost:3000/api/mylaser/order/${number}/payment`, myInitPayment)
@@ -51,6 +52,7 @@ function sendEmailToCustomer(mail) {
         body: JSON.stringify(mailInfos),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
+            "Authorization": 'Bearer ' + token,
         },
     }
     fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
@@ -71,6 +73,7 @@ function sendEmailToAdmin(mail) {
         body: JSON.stringify(mailInfos),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
+            "Authorization": 'Bearer ' + token,
         },
     }
     fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)

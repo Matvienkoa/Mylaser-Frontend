@@ -1,5 +1,6 @@
 const number = new URL (location.href).searchParams.get('order');
 const numberOrder = document.getElementById('number-order');
+const token = localStorage.getItem('customer');
 const dateOrder = document.getElementById('date-order');
 const statusOption = document.getElementById('select-status');
 const editStatus = document.getElementById('edit-status');
@@ -28,7 +29,7 @@ const baphone = document.getElementById('baphone');
 
 numberOrder.innerHTML = number;
 
-fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
+fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
 
@@ -132,6 +133,7 @@ function editOrderStatus(number) {
         body: JSON.stringify(editOrder),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
+            "Authorization": 'Bearer ' + token,
         },
     };
     fetch(`http://localhost:3000/api/mylaser/order/${number}`, myInit)
@@ -141,7 +143,7 @@ function editOrderStatus(number) {
 }
 
 function sendEmailToCustomerOrderPrepared(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const mailInfos = {
@@ -155,6 +157,7 @@ function sendEmailToCustomerOrderPrepared(user) {
             body: JSON.stringify(mailInfos),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         }
         fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
@@ -165,7 +168,7 @@ function sendEmailToCustomerOrderPrepared(user) {
 }
 
 function sendEmailToCustomerOrderShipped(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const mailInfos = {
@@ -179,6 +182,7 @@ function sendEmailToCustomerOrderShipped(user) {
             body: JSON.stringify(mailInfos),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         }
         fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
@@ -203,7 +207,7 @@ function hideConfirm() {
 }
 
 function deleteOrder(order) {
-    fetch(`http://localhost:3000/api/mylaser/order/${order}`, {method: "DELETE"})
+    fetch(`http://localhost:3000/api/mylaser/order/${order}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         window.location.href = `/admin-access-bo-orders.html`;
     })

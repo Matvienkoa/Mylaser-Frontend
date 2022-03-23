@@ -46,3 +46,7 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     margin-top: 50px;
     font-size: 0.8rem;
 }
+
+#pdf{
+    text-align: center;
+}

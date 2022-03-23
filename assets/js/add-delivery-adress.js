@@ -11,7 +11,7 @@ const phone = document.getElementById('phone');
 const adressOption = document.getElementById('adress-option');
 
 function addDeliveryAdress() {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const bAdress = user.billingAdresses[0];
@@ -31,6 +31,7 @@ function addDeliveryAdress() {
             body: JSON.stringify(adressInfos),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         const myInit2 = {
@@ -38,6 +39,7 @@ function addDeliveryAdress() {
             body: JSON.stringify(adressInfos),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         fetch(`http://localhost:3000/api/mylaser/deliveryadress`, myInit)
@@ -62,7 +64,7 @@ function addDeliveryAdress() {
                 if(adressOption.value === "yes" && user.billingAdresses.length === 1) {
                     fetch(`http://localhost:3000/api/mylaser/billingadress/${bAdress.id}`, myInit2);
                 };
-                window.location.href = '/my-adresses.html';
+                // window.location.href = '/my-adresses.html';
             };
         })
         .catch(function (error) {

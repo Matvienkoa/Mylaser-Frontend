@@ -27,7 +27,7 @@ if(token) {
 };
 
 function editDeliveryAdress() {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const dAdress = user.deliveryAdresses[0];
@@ -48,6 +48,7 @@ function editDeliveryAdress() {
             body: JSON.stringify(updateAdress),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         const myInit2 = {
@@ -55,6 +56,7 @@ function editDeliveryAdress() {
             body: JSON.stringify(updateAdress),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         fetch(`http://localhost:3000/api/mylaser/deliveryadress/${dAdress.id}`, myInit)

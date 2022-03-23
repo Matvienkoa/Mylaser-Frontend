@@ -4,7 +4,7 @@ const adressBox = document.getElementById('adresses');
 
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const deliveryAdress = user.deliveryAdresses[0];

@@ -94,7 +94,7 @@ if(products) {
     order.addEventListener('click', () => {
         if(token) {
             const decodedToken = jwt_decode(token);
-            fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+            fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
             .then((res) => res.json())
             .then((user) => {
                 if(user.deliveryAdresses.length === 1) {
@@ -110,7 +110,7 @@ if(products) {
 };
 
 function deleteProduct(product) {
-    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE"})
+    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         const index = products.findIndex(p => p === product.id);
         if(index !== -1) {

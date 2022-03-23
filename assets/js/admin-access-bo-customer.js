@@ -1,11 +1,12 @@
 const userNumber = new URL (location.href).searchParams.get('customer');
+const token = localStorage.getItem('customer');
 const infos = document.getElementById('infos');
 const deliveryAdress = document.getElementById('delivery-adress');
 const billingAdress = document.getElementById('billing-adress');
 const tableBody = document.getElementById('table-body');
 const backButton = document.getElementById('back-button');
 
-fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`)
+fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((user) => {
     const date = new Date(user.createdAt);
@@ -96,7 +97,7 @@ function hideConfirm() {
 }
 
 function deleteCustomer(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE"})
+    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         window.location.href = `/admin-access-bo-customers.html`;
     })

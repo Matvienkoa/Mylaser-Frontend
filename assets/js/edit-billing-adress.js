@@ -10,7 +10,7 @@ const country = document.getElementById('country');
 const phone = document.getElementById('phone');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const billingAdress = user.billingAdresses[0];
@@ -26,7 +26,7 @@ if(token) {
 };
 
 function editBillingAdress() {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const Adress = user.billingAdresses[0];
@@ -46,6 +46,7 @@ function editBillingAdress() {
             body: JSON.stringify(updateAdress),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                "Authorization": 'Bearer ' + token,
             },
         };
         fetch(`http://localhost:3000/api/mylaser/billingadress/${Adress.id}`, myInit)

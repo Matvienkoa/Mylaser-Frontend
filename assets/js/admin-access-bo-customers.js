@@ -1,7 +1,8 @@
 const tableBody = document.getElementById('table-body');
 const backButton = document.getElementById('back-button');
+const token = localStorage.getItem('customer');
 
-fetch(`http://localhost:3000/api/mylaser/user`)
+fetch(`http://localhost:3000/api/mylaser/user`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((users) => {
     console.log(users);

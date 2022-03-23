@@ -1,4 +1,5 @@
 const number = new URL (location.href).searchParams.get('order');
+const token = localStorage.getItem('customer');
 const numberOrder = document.getElementById('number-order');
 const dateOrder = document.getElementById('date-order');
 const tableBody = document.getElementById('table-body');
@@ -26,7 +27,7 @@ const baphone = document.getElementById('baphone');
 
 numberOrder.innerHTML = number;
 
-fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
+fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
 
@@ -58,6 +59,8 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
         bacity.innerHTML = order.baCity;
         bacountry.innerHTML = order.baCountry;
         baphone.innerHTML = order.baPhone;
+
+        
 
         order.orderdetails.forEach(quote => {
             console.log(quote.quote);
@@ -107,3 +110,86 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`)
 document.getElementById('back-to-orders').addEventListener('click', () => {
     window.location.href = '/my-orders.html'
 })
+
+function downloadInvoice() {
+    fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+    .then((res) => res.json())
+    .then((order) => {
+        fetch(`http://localhost:3000/api/mylaser/user/${order.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        .then((res) => res.json())
+        .then((user) => {
+            
+            const date = new Date(order.createdAt);
+            const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
+            
+            var data = {
+                // "customize": {
+                //     "template": "SGVsbG8gd29ybGQh" // Must be base64 encoded html. This example contains 'Hello World!' in base64
+                // },
+                images: {
+                    logo: 'https://public.easyinvoice.cloud/img/logo_en_original.png'
+                },
+                sender: {
+                    company: 'DT Systèmes',
+                    address: '12 Rue Louis Lumière',
+                    zip: '44980',
+                    city: 'Sainte-Luce-sur-Loire',
+                    country: 'France'
+                    // "custom1": "custom value 1",
+                    // "custom2": "custom value 2",
+                    // "custom3": "custom value 3"
+                },
+                client: {
+                    company: user.firstName + ' ' + user.lastName,
+                    address: order.baLine1 + order.baLine2,
+                    zip: order.baPC,
+                    city: order.baCity,
+                    country: order.baCountry
+                    // "custom1": "custom value 1",
+                    // "custom2": "custom value 2",
+                    // "custom3": "custom value 3"
+                },
+                information: {
+                    number: order.number,
+                    date: dateFormated,
+                    'due-date': dateFormated
+                },
+                products: [
+                    {
+                        quantity: 1,
+                        description: 'Découpe métal - Commande N° : ' +  order.number,
+                        'tax-rate': 20,
+                        price: order.price
+                    },
+                    {
+                        quantity: 1,
+                        description: 'Frais de Transport',
+                        'tax-rate': 20,
+                        price: order.shippingPrice
+                    }
+                ],
+                'bottom-notice': 'Kindly pay your invoice within 15 days.',
+                settings: {
+                    currency: 'EUR',
+                    locale: 'fr-FR',
+                    "tax-notation": 'TVA'
+                },
+                translate: {
+                    "invoice": "FACTURE",
+                    "number": "Numéro",
+                    "date": "Date",
+                    "due-date": "Date d'échéance",
+                    "subtotal": "Sous Total",
+                    "products": "Produits",
+                    "quantity": "Quantité",
+                    "price": "Prix",
+                    "product-total": "Total",
+                    "total": "Total"
+                }
+            };
+            easyinvoice.createInvoice(data, function(result) {
+                easyinvoice.download('myInvoice.pdf', result.pdf);
+            });
+        })
+    })
+}
