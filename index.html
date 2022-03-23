@@ -11,8 +11,6 @@
 
 	<body class="is-preload landing">
 		<div id="page-wrapper">
-
-			<!-- Header -->
 				<header id="header">
 					<h1 id="logo"><a href="index.html">MyLaser</a></h1>
 					<nav id="nav">
@@ -25,7 +23,6 @@
 					</nav>
 				</header>
 
-			<!-- Banner -->
 				<section id="banner">
 					<div class="content">
 						<header>
@@ -38,7 +35,6 @@
 					<a href="#one" class="goto-next scrolly">Next</a>
 				</section>
 
-			<!-- One -->
 				<section id="one" class="spotlight style1 bottom">
 					<span class="image fit main"><img src="images/pic102.jpg" alt="" /></span>
 					<div class="content">
@@ -74,7 +70,6 @@
 					<a href="#two" class="goto-next scrolly">Next</a>
 				</section>
 
-			<!-- Two -->
 				<section id="two" class="spotlight style2 right">
 					<span class="image fit main"><img src="images/pic103.jpg" alt="" /></span>
 					<div class="content">
@@ -92,7 +87,6 @@
 					<a href="#three" class="goto-next scrolly">Next</a>
 				</section>
 
-			<!-- Three -->
 				<section id="three" class="spotlight style3 left">
 					<span class="image fit main bottom"><img src="images/pic104.jpg" alt="" /></span>
 					<div class="content">
@@ -109,7 +103,6 @@
 					<a href="#four" class="goto-next scrolly">Next</a>
 				</section>
 
-			<!-- Four -->
 				<section id="four" class="wrapper style1 special fade-up">
 					<div class="container">
 						<header class="major">
@@ -160,40 +153,33 @@
 					</div>
 				</section>
 
-			<!-- Five -->
 				<section id="five" class="wrapper style2 special fade">
 					<div class="container">
 						<header>
 							<h2>Vous avez une question? Vous souhaitez un renseignement?</h2>
 							<p>N' hésitez pas à nous envoyer un mail!</p>
 						</header>
-						<form method="post" action="#" class="cta">
-							<div class="row gtr-uniform gtr-50">
-								<div class="col-8 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Votre adresse mail" /></div>
-								<div class="col-4 col-12-xsmall"><input type="submit" value="Envoyer" class="fit primary" /></div>
-							</div>
-						</form>
+						<div id="form-contact">
+							<input type="email" id="email" placeholder="Votre adresse mail" />
+							<textarea id="message" placeholder="Votre message"></textarea>
+							<p id="box-error"></p>
+							<input type="button" value="Envoyer" class="primary" id="send" onclick="sendEmail()"/>
+						</div>
 					</div>
 				</section>
 
-			<!-- Footer -->
 				<footer id="footer">
 					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
 						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
 						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
 						<li>&copy; Tous droits réservés.</li><li>Design: Bigjucode</a></li>
 					</ul>
 				</footer>
-
 		</div>
-
-		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -204,7 +190,6 @@
 			<script src="assets/js/linkaccount.js"></script>
 			<script src="assets/js/cart-circle.js"></script>
 			<script src="assets/js/main.js"></script>
-			
-
+			<script src="assets/js/index.js"></script>
 	</body>
 </html>

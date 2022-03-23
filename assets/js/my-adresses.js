@@ -1,4 +1,4 @@
-const token = localStorage.getItem('customer');
+let token = localStorage.getItem('customer');
 const decodedToken = jwt_decode(token);
 const adressBox = document.getElementById('adresses');
 const deleteDelivery = document.getElementById('deleteDelivery');
