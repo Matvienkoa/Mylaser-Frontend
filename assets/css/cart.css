@@ -1,6 +1,9 @@
 /* Table products */
 .productRow{
-    height: 100px;
+    height: 135px!important;
+}
+.bin-td{
+    text-align: center;
 }
 .bin{
     font-size: 1.5rem;
@@ -10,11 +13,20 @@
     color: #e44c65;
 }
 
-
-.emptyCart{
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 80px;
+/*------Delete Cart------*/
+#delete-box{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+#delete-box i{
+    color: #e44c65;
+    margin-right: 10px;
+}
+#delete-cart{
+    font-size: 0.7rem;
 }
 
 /* Prices */
@@ -36,11 +48,51 @@
     font-weight: 600;
 }
 
+/*------Buttons------*/
 #cart-buttons{
     display: flex;
     justify-content: space-between;
 }
 
+/*------Empty------*/
+.emptyCart{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 80px;
+}
+#import-dxf{
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+}
 .hidden{
     visibility: hidden;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #delete-box{
+        margin-bottom: 30px;
+    }
+    #delete-cart{
+        font-size: 0.7rem;
+        padding: 0 20px;
+    }
+    #total-cart{
+        font-size: 1.4rem;
+    }
+    #tva{
+        font-size: 0.9rem;
+    }
+    #cart-buttons input{
+        font-size: 0.8rem;
+        padding: 0 20px;
+    }
+    .emptyCart{
+        font-size: 1.2rem;
+    }
+    #import-dxf{
+        font-size: 0.8rem;
+        padding: 0 20px;
+    }
 }

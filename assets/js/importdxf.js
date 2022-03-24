@@ -68,7 +68,7 @@ function showSVG(arrayData) {
     let widthSvg = svg.getAttribute('width');
     let heightSvg = svg.getAttribute('height');
     document.getElementById('hauteur').innerHTML = Math.round(heightSvg);
-    document.getElementById('largeur').innerHTML = Math.round(widthSvg);
+    document.getElementById('largeur').innerHTML = Math.round(widthSvg) + ' mm';
     let surfaceUtile = heightSvg*widthSvg;
     // Paths
     let lengthPath = [];

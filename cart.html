@@ -10,7 +10,6 @@
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
-
 			<header id="header">
 				<h1 id="logo"><a href="index.html">Mylaser</a></h1>
 				<nav id="nav">
@@ -22,13 +21,11 @@
 					</ul>
 				</nav>
 			</header>
-
 			<div id="main" class="wrapper style1">
 				<div class="container">
 					<header class="major" id="title-dxf">
 						<h2>Mon Panier</h2>
 					</header>
-					
 					<section id="section">
 						<div class="table-wrapper" id="tableWrapper">
 							<table>
@@ -46,7 +43,10 @@
 								<tbody id="table-body">
 								</tbody>
 							</table>
-
+						</div>
+						<div id="delete-box" class="visible">
+							<i class="icon solid fa-trash bin"></i>
+							<input type="button" value="Vider mon Panier" id="delete-cart" onclick="deleteCart()">
 						</div>
 						<div id="total-cart" class="visible">
 							<span>Total :</span>
@@ -57,26 +57,22 @@
 						</div>
 						<div id="cart-buttons" class="visible">
 							<input type="button" value="Retour" id="back">
-							<input type="button" value="Commander" id="order">
+							<input type="button" value="Commander" id="order" class="primary">
 						</div>
 					</section>
 				</div>
 			</div>
-
 			<footer id="footer">
 				<ul class="icons">
-					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
 					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
 					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
 				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
+					<li>&copy; Untitled. All rights reserved.</li><li>Site Web by Westcode</a></li>
 				</ul>
 			</footer>
-
 		</div>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>

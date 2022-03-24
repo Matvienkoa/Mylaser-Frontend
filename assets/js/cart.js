@@ -7,6 +7,7 @@ const tableWrapper = document.getElementById('tableWrapper');
 const totalCart = document.getElementById('total-cart');
 const tva = document.getElementById('tva');
 const totalTVA = document.getElementById('total-tva');
+const deleteBox = document.getElementById('delete-box');
 const cartButtons = document.getElementById('cart-buttons');
 const importDxf = document.getElementById('import-dxf');
 const back = document.getElementById('back');
@@ -16,13 +17,15 @@ let totalPrice = 0;
 if(!products) {
     const emptyCart = document.createElement('p');
     emptyCart.className = "emptyCart";
-    emptyCart.innerHTML = 'Votre panier est vide! Allez vite le remplir ^^';
+    emptyCart.innerHTML = 'Votre panier est vide! Allez vite le remplir ;)';
     const goToImportdxf = document.createElement('input');
     goToImportdxf.setAttribute('type', 'button');
     goToImportdxf.setAttribute('value', 'Importer mon DXF');
+    goToImportdxf.classList.add('primary');
     goToImportdxf.id = 'import-dxf';
     tableWrapper.appendChild(emptyCart);
     tableWrapper.appendChild(goToImportdxf);
+    deleteBox.classList.replace('visible', 'hidden');
     totalCart.classList.replace('visible', 'hidden');
     cartButtons.classList.replace('visible', 'hidden');
     goToImportdxf.addEventListener('click', () => {
@@ -41,12 +44,12 @@ if(products) {
             productRow.className = "productRow";
             productRow.innerHTML =
             '<td class="img">' + JSON.parse(product.svg) + '</td>' +
-            '<td>' + (product.width).toFixed(2) + ' X ' + (product.height).toFixed(2) +'</td>' + 
+            '<td>' + (product.width).toFixed(2) + ' X ' + (product.height).toFixed(2) +' mm</td>' + 
             '<td>' + product.steel + '</td>' +
             '<td>' + product.thickness + ' mm</td>' +
             '<td>' + product.quantity + '</td>' +
-            '<td>' + product.price + ' €</td>' +
-            '<td><i class="icon solid fa-trash bin" data-id=' + product.id + '></i></td>';
+            '<td nowrap="nowrap">' + product.price + ' €</td>' +
+            '<td class="bin-td"><i class="icon solid fa-trash bin" data-id=' + product.id + '></i></td>';
             tableBody.appendChild(productRow);
 
             let paths = document.querySelectorAll('path');
@@ -121,5 +124,15 @@ function deleteProduct(product) {
             localStorage.removeItem('currentCart');
         };
         window.location.reload();
+    });
+};
+
+function deleteCart() {
+    products.forEach(product => {
+        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
+        .then(() => {
+            localStorage.removeItem('currentCart');
+            window.location.reload();
+        });
     });
 };

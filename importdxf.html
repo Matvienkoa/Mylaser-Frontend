@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Mon Projet</title>
+		<title>Importez votre DXF</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -10,134 +10,116 @@
 		<script src="https://cdn.jsdelivr.net/npm/svg-path-commander/dist/svg-path-commander.min.js"></script>
 	</head>
 	<body class="is-preload">
+		<div id="add-cart-next-page"></div>
 		<div id="page-wrapper">
-
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Accueil</a></li>
-							<li><a href="functioning.html">Fonctionnement</a></li>
-							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
-							<li id="linkOptions"><a id="link" class="button primary"></a></li>
-						</ul>
-					</nav>
-				</header>
-
-				<div id="add-cart-next-page"></div>
-
-			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major" id="title-dxf">
-							<h2>Importez vos fichiers .DXF</h2>
-						</header>
-
-						<section id="section-input-dxf">
-							<form id="form-dxf" class="file-input">
-								<input type="file" name="dxf" id="file" class="file">
-								<label for="file" id="label">Sélectionnez un fichier .DXF<p class="file-name"></p></label>
-								<input type="submit" value="Téléchargez le fichier" id="upload-dxf">
-							</form>
-
-							
-
-							<div id="spinner" class="spinner-off"><div></div><div></div><div></div><div></div></div>
-
-							<div id="svg-box">
-								<div id="svgContainer">
-								</div>
+			<header id="header">
+				<h1 id="logo"><a href="index.html">Mylaser</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Accueil</a></li>
+						<li><a href="functioning.html">Fonctionnement</a></li>
+						<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
+						<li id="linkOptions"><a id="link" class="button primary"></a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<header class="major" id="title-dxf">
+						<h2>Importez vos fichiers .DXF</h2>
+					</header>
+					<section id="section-input-dxf">
+						<h3>Séléctionnez votre fichier .dxf* et téléchargez le! Votre devis en un clin d'oeil!</h3>
+						<p>* Uniquement un Fichier à plat et sans pliage est autorisé.</p>
+						<form id="form-dxf" class="file-input">
+							<input type="file" name="dxf" id="file" class="file">
+							<label for="file" id="label">Sélectionnez un fichier .DXF<p class="file-name"></p></label>
+							<input type="submit" value="Téléchargez le fichier" id="upload-dxf" class="primary">
+						</form>
+						<div id="spinner" class="spinner-off"><div></div><div></div><div></div><div></div></div>
+						<p id="box-error" class="box-hidden">Une erreur est survenue! Veuillez réessayer ou vérifier que votre fichier correspond aux critères demandés.</p>
+						<div id="svg-box">
+							<div id="svgContainer">
 							</div>
-
-							<p id="box-error" class="box-hidden">Une erreur est survenue! Veuillez réessayer ou vérifier que votre fichier correspond aux critères demandés.</p>
-							
-							<div id="infos-dxf" class="hidden">
-								<div id="options-dxf">
-									<label>Dimensions :
-										<span id="dimensions">
-											<span id="hauteur"></span>
-											<span> X </span>
-											<span id="largeur"></span>
-										</span>
-									</label>
-									<label>Métaux :
-										<select name="steel" id="steel-options">
-											<optgroup label="Acier">
-												<option value="Acier standard">Acier Standard</option>
-												<option value="Acier galvanise">Acier Galvanise</option>
-												<option value="Acier brillant"> AcierBrillant</option>
-											</optgroup>
-											<optgroup label="Inox">
-												<option value="Inox standard">Inox Standard</option>
-												<option value="Inox brosse">Inox Brossé</option>
-												<option value="Inox brillant">Inox Brillant</option>
-											</optgroup>
-											<optgroup label="Alu">
-												<option value="Alu standard">Alu Standard</option>
-												<option value="Alu brosse">Alu Brossé</option>
-												<option value="Alu brillant">Alu Brillant</option>
-											</optgroup>
-										</select>
-									</label>
-									<label>Epaisseur :
-										<select name="width" id="width-options">
-											
-										</select>
-									</label>
-									<label>Quantité :
-										<select name="quantity" id="quantityList">
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10</option>
-										</select>
-									</label>
-									<label id="price-box">Prix :
-										<span id="price"></span>
-									</label>
-								</div>
-								<div id="addToCart-box">
-									<input type="button" class="primary small" id="addToCart" value="Ajouter au panier"/>
-								</div>
+						</div>
+						<div id="infos-dxf" class="hidden">
+							<div id="options-dxf">
+								<label>Dimensions :
+									<span id="dimensions">
+										<span id="hauteur"></span>
+										<span> X </span>
+										<span id="largeur"></span>
+									</span>
+								</label>
+								<label>Métaux :
+									<select name="steel" id="steel-options">
+										<optgroup label="Acier">
+											<option value="Acier standard">Acier Standard</option>
+											<option value="Acier galvanise">Acier Galvanise</option>
+											<option value="Acier brillant"> AcierBrillant</option>
+										</optgroup>
+										<optgroup label="Inox">
+											<option value="Inox standard">Inox Standard</option>
+											<option value="Inox brosse">Inox Brossé</option>
+											<option value="Inox brillant">Inox Brillant</option>
+										</optgroup>
+										<optgroup label="Alu">
+											<option value="Alu standard">Alu Standard</option>
+											<option value="Alu brosse">Alu Brossé</option>
+											<option value="Alu brillant">Alu Brillant</option>
+										</optgroup>
+									</select>
+								</label>
+								<label>Epaisseur :
+									<select name="width" id="width-options"></select>
+								</label>
+								<label>Quantité :
+									<select name="quantity" id="quantityList">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</label>
+								<label id="price-box">Prix :
+									<span id="price"></span>
+								</label>
 							</div>
-						</section>
-					</div>
+							<div id="addToCart-box">
+								<input type="button" class="primary small" id="addToCart" value="Ajouter au panier"/>
+							</div>
+						</div>
+					</section>
 				</div>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
-					</ul>
-				</footer>
+			</div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Site Web by Westcode</a></li>
+				</ul>
+			</footer>
 		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/linkaccount.js"></script>
-			<script src="assets/js/cart-circle.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/importdxf.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/linkaccount.js"></script>
+		<script src="assets/js/cart-circle.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/importdxf.js"></script>
 	</body>
 </html>

@@ -17,3 +17,28 @@ h3:hover{
     display: block;
     margin: auto;
 }
+
+/*------Responsive------*/
+@media screen and (max-width: 736px) {
+    #section-account{
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width: 600px) {
+    #section-account{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .line-infos{
+        margin-bottom: 40px;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    #logout{
+        font-size: 0.8rem;
+        padding: 0 20px;
+    }
+}
