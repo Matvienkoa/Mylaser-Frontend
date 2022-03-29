@@ -31,8 +31,9 @@
 
 #box-error{
     text-align: center;
-    margin: 20px 0 0 0;
+    margin: 30px 0 0 0;
     color: #e44c65;
+    font-weight: 600;
 }
 
 #button-adress{
@@ -56,4 +57,17 @@
 }
 .full{
     border-color: unset;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    .full-row{
+        display: block;
+    }
+    #button-adress, #cancel-button{
+        padding: 0 20px;
+    }
+    #button-adress{
+        margin-top: 40px;
+    }
 }

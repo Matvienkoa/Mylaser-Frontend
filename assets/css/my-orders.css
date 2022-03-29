@@ -1,6 +1,12 @@
 /* Table Orders */
+table{
+    margin-bottom: 80px;
+}
 #no-order{
     text-align: center;
+    margin-top: 40px;
+    margin-bottom: 70px;
+    font-size: 1.2rem;
 }
 .glass{
     cursor: pointer;
@@ -14,4 +20,15 @@
     font-size: 0.8rem;
     display: block;
     margin: auto;
+    margin-bottom: 30px;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #back-button{
+        padding: 0 20px;
+    }
+    #no-order{
+        font-size: 1rem;
+    }
 }

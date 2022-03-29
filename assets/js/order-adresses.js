@@ -13,7 +13,7 @@ if(token) {
             deliveryAdressDetails.className = "deliveryAdressDetails";
             deliveryAdressDetails.innerHTML = 
             '<div id="box-adress"><span class="name"><h4 class="marg">' + deliveryAdress.firstName + '</h4><h4>' + deliveryAdress.lastName + '</h4></span>' +
-            '<span class="lines"><h4>' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
+            '<span class="lines"><h4 class="marg">' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
             '<span class="city"><h4 class="marg">' + deliveryAdress.postalCode + '</h4><h4>' + deliveryAdress.city + '</h4></span>' +
             '<h4>' + deliveryAdress.country + '</h4>' +
             '<h4>' + deliveryAdress.phone + '</h4></div>' +
@@ -35,7 +35,7 @@ if(token) {
             deliveryAdressDetails.className = "deliveryAdressDetails";
             deliveryAdressDetails.innerHTML = 
             '<div id="box-adress"><span class="name"><h4 class="marg">' + deliveryAdress.firstName + '</h4><h4>' + deliveryAdress.lastName + '</h4></span>' +
-            '<span class="lines"><h4>' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
+            '<span class="lines"><h4 class="marg">' + deliveryAdress.line1 + '</h4><h4>' + deliveryAdress.line2 + '</h4></span>' +
             '<span class="city"><h4 class="marg">' + deliveryAdress.postalCode + '</h4><h4>' + deliveryAdress.city + '</h4></span>' +
             '<h4>' + deliveryAdress.country + '</h4>' +
             '<h4>' + deliveryAdress.phone + '</h4></div>' +
@@ -59,10 +59,10 @@ if(token) {
             });
         }
         if(user.deliveryAdresses.length === 0) {
-            const noDeliveryAdress = document.createElement('div');
+            const noDeliveryAdress = document.createElement('p');
             noDeliveryAdress.className = 'no-delivery-adress';
             noDeliveryAdress.innerHTML = 
-            "<p>Vous n'avez pas encore d'adresse enregistrée.<span id='create-adress'>Ajouter une adresse</span></p>";
+            "Vous n'avez pas encore d'adresse enregistrée.<span id='create-adress'>Ajouter une adresse</span>";
             adressBox.appendChild(noDeliveryAdress);
             const createAdress = document.getElementById('create-adress');
             createAdress.addEventListener('click', () => {

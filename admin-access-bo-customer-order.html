@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Mon Projet</title>
+		<title>Détail de la Commande</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -10,145 +10,133 @@
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
-
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="admin-access-bo.html">Mylaser</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="admin-access-bo.html">Accueil</a></li>
-							<li><a href="admin-access-bo-customers.html">Clients</a></li>
-							<li><a href="admin-access-bo-orders.html">Commandes</a></li>
-							<li><a id="link" class="button primary" onclick="logOut()">Déconnexion</a></li>
-						</ul>
-					</nav>
-				</header>
-
-			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major" id="title-dxf">
-							<h2>Détails de la Commande</h2>
-							<!-- <p>Ipsum dolor feugiat aliquam tempus sed magna lorem consequat accumsan</p> -->
-						</header>
-                        <section id="box-infos">
-                            <div id="ref-infos">
-                                <h3>Référence :</h3><p id="number-order"></p>
-                            </div>
-                            <div id="date-infos">
-                                <h3>Date :</h3><p id="date-order"></p>
-                            </div>
-							<div id="status-infos">
-								<h3>Statut :</h3>
-								<select name="select-status" id="select-status">
-									<option value="En Attente">En Attente</option>
-									<option value="En Préparation">En Préparation</option>
-									<option value="Expédiée">Expédiée</option>
-								</select>
-								<input type="button" value="Modifier" id="edit-status">
+			<header id="header">
+				<h1 id="logo"><a href="admin-access-bo.html">Mylaser</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="admin-access-bo.html">Accueil</a></li>
+						<li><a href="admin-access-bo-customers.html">Clients</a></li>
+						<li><a href="admin-access-bo-orders.html">Commandes</a></li>
+						<li><a id="link" class="button primary" onclick="logOut()">Déconnexion</a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<header class="major" id="title-dxf">
+						<h2>Détails de la Commande</h2>
+					</header>
+					<section id="box-infos">
+						<div id="ref-infos">
+							<h3>Référence :</h3><p id="number-order"></p>
+						</div>
+						<div id="date-infos">
+							<h3>Date :</h3><p id="date-order"></p>
+						</div>
+						<div id="status-infos">
+							<h3>Statut :</h3>
+							<select name="select-status" id="select-status">
+								<option value="En Attente">En Attente</option>
+								<option value="En Préparation">En Préparation</option>
+								<option value="Expédiée">Expédiée</option>
+							</select>
+							<input type="button" value="Modifier" id="edit-status">
+						</div>
+					</section>
+					<section id="orders">
+						<div class="table-wrapper" id="tableWrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Fichier</th>
+										<th>Dimensions</th>
+										<th>Métal</th>
+										<th>Epaisseur</th>
+										<th>Quantité</th>
+										<th>Prix</th>
+										<th>Fichier</th>
+									</tr>
+								</thead>
+								<tbody id="table-body">
+								</tbody>
+							</table>
+						</div>
+					</section>
+					<section id="box-prices">
+						<div id="subtotal-infos"><h3>Sous Total (TTC) :</h3><p id="subtotal"></p></div>
+						<div id="shipping-infos"><h3>Transport :</h3><p id="shipping"></p></div>
+						<div id="total-price-infos"><h3>TOTAL TTC :</h3><p id="total-price"></p></div>
+					</section>
+					<section id="box-shipping">
+						<div class="div-ship">
+							<h3>Transporteur</h3>
+							<p id="delivery"></p>
+						</div>
+						<div class="div-ship">
+							<h3>Livraison</h3>
+							<div>
+								<span class="infos-row">
+									<p id="dafn" class="marge"></p>
+									<p id="daln"></p>
+								</span>
+								<p id="dal1"></p>
+								<p id="dal2"></p>
+								<span class="infos-row">
+									<p id="dapc" class="marge"></p>
+									<p id="dacity"></p>
+								</span>
+								<p id="dacountry"></p>
+								<p id="daphone"></p>
 							</div>
-                        </section>
-						<section id="orders">
-							<div class="table-wrapper" id="tableWrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>Fichier</th>
-											<th>Dimensions</th>
-											<th>Métal</th>
-											<th>Epaisseur</th>
-											<th>Quantité</th>
-											<th>Prix</th>
-											<th>Fichier</th>
-										</tr>
-									</thead>
-									<tbody id="table-body">
-									</tbody>
-								</table>
+						</div>
+						<div class="div-ship">
+							<h3>Facturation</h3>
+							<div>
+								<span class="infos-row">
+									<p id="bafn" class="marge"></p>
+									<p id="baln"></p>
+								</span>
+								<p id="bal1"></p>
+								<p id="bal2"></p>
+								<span class="infos-row">
+									<p id="bapc" class="marge"></p>
+									<p id="bacity"></p>
+								</span>
+								<p id="bacountry"></p>
+								<p id="baphone"></p>
 							</div>
-						</section>
-                        <section id="box-prices">
-                            <div id="subtotal-infos"><h3>Sous Total (TTC) :</h3><p id="subtotal"></p></div>
-                            <div id="shipping-infos"><h3>Transport :</h3><p id="shipping"></p></div>
-                            <div id="total-price-infos"><h3>TOTAL TTC :</h3><p id="total-price"></p></div>
-                        </section>
-                        <section id="box-shipping">
-                            <div>
-                                <h3>Transporteur</h3>
-                                <p id="delivery"></p>
-                            </div>
-                            <div>
-                                <h3>Livraison</h3>
-                                <div>
-                                    <span class="infos-row">
-                                        <p id="dafn"></p>
-                                        <p id="daln"></p>
-                                    </span>
-                                    <p id="dal1"></p>
-                                    <p id="dal2"></p>
-                                    <span class="infos-row">
-                                        <p id="dapc"></p>
-                                        <p id="dacity"></p>
-                                    </span>
-                                    <p id="dacountry"></p>
-                                    <p id="daphone"></p>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>Facturation</h3>
-                                <div>
-                                    <span class="infos-row">
-                                        <p id="bafn"></p>
-                                        <p id="baln"></p>
-                                    </span>
-                                    <p id="bal1"></p>
-                                    <p id="bal2"></p>
-                                    <span class="infos-row">
-                                        <p id="bapc"></p>
-                                        <p id="bacity"></p>
-                                    </span>
-                                    <p id="bacountry"></p>
-                                    <p id="baphone"></p>
-                                </div>
-                            </div>
-                        </section>
-						<section id="buttons">
-							<input type="button" value="Retour" id="back-to-customer">
-							<input type="button" value="Supprimer" id="delete-order" onclick="showConfirm()">
-						</section>
-						<p id="confirmation-delete-order" class="hidden">Supprimer cette commande?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
-					</div>
+						</div>
+					</section>
+					<section id="buttons">
+						<input type="button" value="Retour" id="back-to-customer">
+						<input type="button" value="Supprimer la Commande" id="delete-order" onclick="showConfirm()">
+					</section>
+					<p id="confirmation-delete-order" class="hidden">Supprimer cette commande?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
 				</div>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
-					</ul>
-				</footer>
-
+			</div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
+				</ul>
+			</footer>
 		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/admin-access-bo-customer-order.js"></script>
-			<script src="assets/js/logout.js"></script>
-			<script src="assets/js/not-logged-as-admin.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jwt-decode.js"></script>
+		<script src="assets/js/admin-access-bo-customer-order.js"></script>
+		<script src="assets/js/logout.js"></script>
+		<script src="assets/js/not-logged-as-admin.js"></script>
 	</body>
 </html>

@@ -49,7 +49,11 @@ function addDeliveryAdress() {
                 res.json().then((data) => {
                     console.log(data.message);
                     const boxError = document.getElementById('box-error');
-                    boxError.innerHTML = data.message;
+                    if(data.message === undefined) {
+                        boxError.innerHTML = 'Une erreur est survenue, veuillez vérifier vos informations';
+                    } else {
+                        boxError.innerHTML = data.message;
+                    }
                     const emptyInput = document.querySelectorAll('.input');
                     emptyInput.forEach(input => {
                         if(input.value === "") {
@@ -59,12 +63,12 @@ function addDeliveryAdress() {
                 });
             } else {
                 if(adressOption.value === "yes" && user.billingAdresses.length === 0) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit);
+                    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
                 };
                 if(adressOption.value === "yes" && user.billingAdresses.length === 1) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress/${bAdress.id}`, myInit2);
+                    fetch(`http://localhost:3000/api/mylaser/billingadress/${bAdress.id}`, myInit2)
                 };
-                // window.location.href = '/my-adresses.html';
+                window.location.href = '/my-adresses.html';
             };
         })
         .catch(function (error) {

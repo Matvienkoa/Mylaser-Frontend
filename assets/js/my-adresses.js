@@ -42,8 +42,8 @@ if(token) {
             addDeliveryAdress.className = "addDeliveryAdress";
             addDeliveryAdress.innerHTML =
             '<h3>Mon adresse de Livraison</h3>' +
-            "<p>Vous n'avez pas encore enregistré d'adresse de livraison" +
-            '<input type="button" value="Ajouter une adresse" id="addDelivery">';
+            "<p>Vous n'avez pas encore enregistré d'adresse de livraison</p>" +
+            '<input type="button" value="Ajouter une adresse" id="addDelivery" class="button primary">';
             adressBox.appendChild(addDeliveryAdress);
 
             const addDelivery = document.getElementById('addDelivery');
@@ -81,8 +81,8 @@ if(token) {
             addBillingAdress.className = "addBillingAdress";
             addBillingAdress.innerHTML =
             '<h3>Mon adresse de Facturation</h3>' +
-            "<p>Vous n'avez pas encore enregistré d'adresse de facturation" +
-            '<input type="button" value="Ajouter une adresse" id="addBilling">';
+            "<p>Vous n'avez pas encore enregistré d'adresse de facturation</p>" +
+            '<input type="button" value="Ajouter une adresse" id="addBilling" class="button primary">';
             adressBox.appendChild(addBillingAdress);
 
             const addBilling = document.getElementById('addBilling');

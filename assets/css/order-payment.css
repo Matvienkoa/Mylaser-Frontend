@@ -1,7 +1,18 @@
 #prices{
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 }
+#prices h3{
+    margin: 0;
+    text-align: start;
+}
+#product-price, #delivery-price, #total-price{
+    margin-left: 10px;
+    color: #e44c65;
+    font-weight: 500;
+}
+
 #cgv-box{
     text-align: center;
     margin-top: 20px;
@@ -11,21 +22,32 @@
     display: block;
     margin: auto;
 }
-h3{
+#details-title{
     text-align: center;
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 30px;
 }
-
 #no-checked{
     color: #e44c65;
     text-align: center;
+    font-weight: 600;
 }
 .hidden{
-    visibility: hidden;
+    display: none;
 }
-.visible{
-    visibility: visible;
+#section{
+    margin-bottom: 50px;
+}
+
+.productRow{
+    height: 135px!important;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #validate{
+        padding: 0 20px;
+    }
 }
 
 

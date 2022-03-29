@@ -11,7 +11,7 @@ const phone = document.getElementById('phone');
 const adressOption = document.getElementById('adress-option');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`)
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const deliveryAdress = user.deliveryAdresses[0];
@@ -66,7 +66,11 @@ function editDeliveryAdress() {
                 res.json().then((data) => {
                     console.log(data.message);
                     const boxError = document.getElementById('box-error');
-                    boxError.innerHTML = data.message;
+                    if(data.message === undefined) {
+                        boxError.innerHTML = 'Une erreur est survenue, veuillez vérifier vos informations';
+                    } else {
+                        boxError.innerHTML = data.message;
+                    }
                     const emptyInput = document.querySelectorAll('.input');
                     emptyInput.forEach(input => {
                         if(input.value === "") {

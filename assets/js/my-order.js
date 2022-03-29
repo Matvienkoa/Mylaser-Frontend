@@ -74,11 +74,11 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 productRow.className = "productRow";
                 productRow.innerHTML =
                 '<td class="img">' + JSON.parse(quote.svg) + '</td>' +
-                '<td>' + (quote.width).toFixed(2) + ' X ' + (quote.height).toFixed(2) +'</td>' + 
+                '<td>' + (quote.width).toFixed(2) + ' X ' + (quote.height).toFixed(2) +' mm</td>' + 
                 '<td>' + quote.steel + '</td>' +
                 '<td>' + quote.thickness + ' mm</td>' +
                 '<td>' + quote.quantity + '</td>' +
-                '<td>' + quote.price + ' €</td>'
+                '<td nowrap="nowrap">' + quote.price + ' €</td>'
                 tableBody.appendChild(productRow);
 
                 let paths = document.querySelectorAll('path');

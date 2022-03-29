@@ -1,9 +1,18 @@
 #back-button{
     font-size: 0.8rem;
+    margin-top: 40px;
+    margin-bottom: 100px;
 }
 .glass{
     cursor: pointer;
 }
 .glass:hover{
     color: #e44c65;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #back-button{
+        padding: 0 20px;
+    }
 }

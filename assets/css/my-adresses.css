@@ -3,8 +3,17 @@
     display: flex;
     justify-content: space-around;
 }
-.adresses-box{
+.adresses-box, .addBillingAdress, .addDeliveryAdress{
     max-width: 350px;
+}
+.addBillingAdress, .addDeliveryAdress{
+    text-align: center;
+    
+}
+#addBilling, #addDelivery{
+    margin-top: 30px;
+    font-size: 0.8rem;
+    margin-bottom: 100px;
 }
 h3, h4, p{
     margin: 0;
@@ -16,7 +25,7 @@ h3{
 .adress-details{
     padding: 20px 40px;
     border-radius: 4px;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 0 3px #e44c65ad;
     color: white;
 }
 .name, .city, .lines{
@@ -42,6 +51,7 @@ h3{
     display: block;
     margin: auto;
     margin-top: 30px;
+    margin-bottom: 40px;
 }
 #back-button{
     font-size: 0.8rem;
@@ -54,7 +64,7 @@ h3{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 #yes-da, #no-da, #yes-ba, #no-ba{
     font-size: 0.7rem;
@@ -67,4 +77,25 @@ h3{
 }
 .visible{
     visibility: visible;
+}
+
+/*------Responsiv------*/
+@media screen and (max-width: 900px) {
+    #adresses{
+        flex-direction: column;
+        align-items: center;
+    }
+    #confirmation-delete-da, #confirmation-delete-ba{
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    #back-box{
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    input{
+        padding: 0 20px!important;
+    }
 }

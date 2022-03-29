@@ -72,3 +72,22 @@ h3, p{
 .visible{
     visibility: visible;
 }
+
+/*------Responsive------*/
+@media screen and (max-width: 700px) {
+    #adresses{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #delivery-adress{
+        margin-right: 0;
+    }
+}
+@media screen and (max-width: 480px) {
+    #back-button, #delete-customrer{
+        padding: 0 20px;
+    }
+    #delete-customer{
+        width: 180px;
+    }
+}

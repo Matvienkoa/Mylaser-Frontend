@@ -1,0 +1,24 @@
+p{
+    text-align: center;
+    font-size: 1.2rem;
+}
+#order-number{
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 500;
+    margin-left: 15px;
+}
+#orders{
+    margin-left: 15px;
+    margin-top: 20px;
+}
+#thx{
+    margin-bottom: 400px;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #orders{
+        padding: 0 20px;
+    }
+}

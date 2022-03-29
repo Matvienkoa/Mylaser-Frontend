@@ -21,11 +21,11 @@ if(products) {
             productRow.className = "productRow";
             productRow.innerHTML =
             '<td class="img">' + JSON.parse(product.svg) + '</td>' +
-            '<td>' + (product.width).toFixed(2) + ' X ' + (product.height).toFixed(2) +'</td>' + 
+            '<td>' + (product.width).toFixed(2) + ' X ' + (product.height).toFixed(2) +' mm</td>' + 
             '<td>' + product.steel + '</td>' +
             '<td>' + product.thickness + ' mm</td>' +
             '<td>' + product.quantity + '</td>' +
-            '<td>' + product.price + ' €</td>';
+            '<td nowrap="nowrap">' + product.price + ' €</td>';
             tableBody.appendChild(productRow);
 
             let paths = document.querySelectorAll('path');
@@ -53,15 +53,9 @@ if(products) {
 
             // Show price for client only
             productPrice = productPrice + product.price;
-            if(products.length === 1) {
-                productPriceBox.innerHTML = products.length + ' Article : ' + productPrice + '€';
-                localStorage.setItem('currentPrice', productPrice);
-                calculTotalPrice();
-            } else {
-                productPriceBox.innerHTML = products.length + ' Articles : ' + productPrice + '€';
-                localStorage.setItem('currentPrice', productPrice);
-                calculTotalPrice();
-            };
+            productPriceBox.innerHTML = productPrice + ' €';
+            localStorage.setItem('currentPrice', productPrice);
+            calculTotalPrice();
         });
     });
 };
@@ -87,7 +81,7 @@ validate.addEventListener('click', () => {
     if(CGV.checked === true) {
         test();
     } else {
-        document.getElementById('no-checked').classList.replace('hidden', 'visible');
+        document.getElementById('no-checked').classList.remove('hidden');
     }
 });
 

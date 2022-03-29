@@ -13,3 +13,15 @@
 h3:hover{
     color: #e44c65;
 }
+
+/*------Responsive------*/
+@media screen and (max-width: 480px) {
+    #home-admin{
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .line-infos{
+        margin-bottom: 40px;
+    }
+}
