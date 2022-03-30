@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Mon Projet</title>
+		<title>Connexion à mon compte client</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -10,97 +10,86 @@
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
-
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.html">Mylaser</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Accueil</a></li>
-							<li><a href="functioning.html">Fonctionnement</a></li>
-							<li><a href="importdxf.html">Importer mon DXF</a></li>
-							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
-							<li id="linkOptions"><a id="link" class="button primary"></a></li>
-						</ul>
-					</nav>
-				</header>
-
-			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major" id="title-dxf">
-							<h2>Mes Informations Personnelles</h2>
-						</header>
-
-						<section id="form-login-connection">
-							<h3>Vous avez déjà un compte?</h3>
-							<div id="form-login">
-								<span class="form-login-input">
-									<label>E-mail :</label>
-									<input type="email" id="login-email" placeholder="e-mail">
-								</span>
-								<span class="form-login-input">
-									<label>Mot de passe :</label>
-									<input type="password" id="login-password" placeholder="Mot de passe">
-								</span>
-							</div>
-							<input type="button" onclick="login()" id="button-login" value="Connexion">
-						</section>
-
-						<section id="form-signup-connection">
-							<h3>Nouveau Client</h3>
-							<div id="form-signup">
-								<span class="form-signup-input">
-									<label>E-mail :</label>
-									<input type="email" id="signup-email" placeholder="e-mail">
-								</span>
-								<span class="form-signup-input">
-									<label>Mot de Passe :</label>
-									<input type="password" id="signup-password" placeholder="Mot de Passe">
-								</span>
-								<span class="form-signup-input">
-									<label>Prénom :</label>
-									<input type="text" id="signup-firstName" placeholder="Prénom">
-								</span>
-								<span class="form-signup-input">
-									<label>Nom :</label>
-									<input type="text" id="signup-lastName" placeholder="Nom">
-								</span>
-							</div>
-							<input type="button" onclick="signUp()" id="button-signup" value="Inscription">
-						</section>
-					</div>
+			<header id="header">
+				<h1 id="logo"><a href="index.html">Mylaser</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Accueil</a></li>
+						<li><a href="functioning.html">Fonctionnement</a></li>
+						<li><a href="importdxf.html">Importer mon DXF</a></li>
+						<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
+						<li id="linkOptions"><a id="link" class="button primary"></a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<header class="major" id="title-dxf">
+						<h2>Mes Informations Personnelles</h2>
+					</header>
+					<section id="form-login-connection">
+						<h3>Vous avez déjà un compte?</h3>
+						<div id="form-login">
+							<span class="form-login-input">
+								<label>E-mail :</label>
+								<input class="input-login" type="email" id="login-email" placeholder="e-mail">
+							</span>
+							<span class="form-login-input">
+								<label>Mot de passe :</label>
+								<input class="input-login" type="password" id="login-password" placeholder="Mot de passe">
+							</span>
+							<p id="box-error-login"></p>
+						</div>
+						<input type="button" onclick="login()" id="button-login" value="Connexion" class="button primary">
+					</section>
+					<section id="form-signup-connection">
+						<h3>Nouveau Client</h3>
+						<div id="form-signup">
+							<span class="form-signup-input">
+								<label>E-mail :</label>
+								<input class="input-signup" type="email" id="signup-email" placeholder="e-mail">
+							</span>
+							<span class="form-signup-input">
+								<label>Mot de Passe :</label>
+								<input class="input-signup" type="password" id="signup-password" placeholder="Mot de Passe">
+							</span>
+							<span class="form-signup-input">
+								<label>Prénom :</label>
+								<input class="input-signup" type="text" id="signup-firstName" placeholder="Prénom">
+							</span>
+							<span class="form-signup-input">
+								<label>Nom :</label>
+								<input class="input-signup" type="text" id="signup-lastName" placeholder="Nom">
+							</span>
+							<p id="box-error-signup"></p>
+						</div>
+						<input type="button" onclick="signUp()" id="button-signup" value="Inscription" class="button primary">
+					</section>
 				</div>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: Westcode</a></li>
-					</ul>
-				</footer>
-
+			</div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Site Web by Westcode</a></li>
+				</ul>
+			</footer>
 		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/linkaccount.js"></script>
-			<script src="assets/js/cart-circle.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/jwt-decode.js"></script>
-			<script src="assets/js/order-connection.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/linkaccount.js"></script>
+		<script src="assets/js/cart-circle.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/jwt-decode.js"></script>
+		<script src="assets/js/order-connection.js"></script>
 	</body>
 </html>

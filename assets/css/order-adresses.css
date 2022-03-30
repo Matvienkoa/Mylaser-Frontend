@@ -50,17 +50,6 @@ h4{
     margin-top: 80px;
     font-size: 0.7rem;
 }
-#create-adress{
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    margin-left: 10px;
-    text-decoration: underline;
-}
-#create-adress:hover{
-    color: #e44c65;
-}
-
 #footer{
     margin-top: 400px;
 }
@@ -70,7 +59,7 @@ h4{
     .city, .lines{
         flex-direction: column;
     }
-    #edit-adresse{
+    #edit-adresse, #create-adress{
         padding: 0 20px;
     }
 }

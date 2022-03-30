@@ -65,6 +65,9 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 .infos-row{
     display: flex;
 }
+.marge{
+    margin-right: 10px;
+}
 #back-to-orders{
     display: block;
     margin: auto;

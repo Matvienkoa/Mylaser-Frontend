@@ -17,7 +17,7 @@ let totalPrice = 0;
 if(!products) {
     const emptyCart = document.createElement('p');
     emptyCart.className = "emptyCart";
-    emptyCart.innerHTML = 'Votre panier est vide! Allez vite le remplir ;)';
+    emptyCart.innerHTML = "Vous n'avez pas encore ajouter de produits au panier";
     const goToImportdxf = document.createElement('input');
     goToImportdxf.setAttribute('type', 'button');
     goToImportdxf.setAttribute('value', 'Importer mon DXF');

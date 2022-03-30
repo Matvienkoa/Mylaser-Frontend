@@ -1,14 +1,6 @@
+/*------All------*/
 p{
     margin: 0;
-}
-
-/* Infos */
-#box-infos{
-    margin-bottom: 50px;
-}
-#ref-infos, #date-infos, #status-infos{
-    display: flex;
-    align-items: center;
 }
 h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     margin: 0;
@@ -19,17 +11,29 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     font-weight: 500;
     margin-left: 10px;
 }
+
+/*------Infos Order------*/
+#box-infos{
+    margin-bottom: 50px;
+}
+#ref-infos, #date-infos, #status-infos{
+    display: flex;
+    align-items: center;
+}
 #select-status{
     width: 150px;
     margin-left: 10px;
-    font-size: 0.7rem;
+    height: 40px ;
 }
 #edit-status{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-left: 20px;
 }
 
-/* Table */
+/*------Table------*/
+.productRow{
+    height: 135px!important;
+}
 #file-link{
     border: none;
     color: white;
@@ -38,7 +42,7 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     font-size: 1.5rem;
 }
 
-/* Price */
+/*------Prices------*/
 #box-prices{
     margin-top: 30px;
 }
@@ -47,18 +51,34 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     align-items: center;
 }
 
-/* Shipping */
+/*------Shipping------*/
 #box-shipping{
     display: flex;
     margin-top: 40px;
     justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
-#box-shipping div{
+#box-shipping>div{
     display: flex;
     flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 2px #e44c65ad;
+}
+.div-ship{
+    margin-bottom: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.div-ship h3{
+    margin-bottom: 10px;
 }
 .infos-row{
     display: flex;
+}
+.marge{
+    margin-right: 10px;
 }
 
 /* Button Back */
@@ -84,4 +104,17 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 }
 .visible{
     visibility: visible;
+}
+
+/*------Responsive------*/
+@media screen and (max-width: 480px){
+    #select-status{
+        width: 130px;
+    }
+    #edit-status, #back-to-customer, #delete-order{
+        padding: 0 20px;
+    }
+    #box-infos h3, #box-infos p, #box-prices h3, #box-prices p{
+        font-size: 1.1rem;
+    }
 }

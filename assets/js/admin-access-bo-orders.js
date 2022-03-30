@@ -12,9 +12,9 @@ fetch('http://localhost:3000/api/mylaser/order', {headers: {"Authorization": 'Be
         orderRow.className = "orderRow";
         orderRow.innerHTML =
         '<td>' + order.number + '</td>' +
-        '<td>' + dateFormated + '</td>' +
-        '<td>' + order.price + ' €</td>' +
-        '<td>' + order.status + '</td>' +
+        '<td nowrap="nowrap">' + dateFormated + '</td>' +
+        '<td nowrap="nowrap">' + order.price + ' €</td>' +
+        '<td nowrap="nowrap">' + order.status + '</td>' +
         '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>';
         tableBody.appendChild(orderRow);
     });

@@ -59,10 +59,11 @@ if(token) {
             });
         }
         if(user.deliveryAdresses.length === 0) {
-            const noDeliveryAdress = document.createElement('p');
+            const noDeliveryAdress = document.createElement('span');
             noDeliveryAdress.className = 'no-delivery-adress';
             noDeliveryAdress.innerHTML = 
-            "Vous n'avez pas encore d'adresse enregistrée.<span id='create-adress'>Ajouter une adresse</span>";
+            "<p>Vous n'avez pas encore d'adresse enregistrée.</p>" +
+            "<input type='button' class='button primary' id='create-adress' value='Ajouter une adresse'>";
             adressBox.appendChild(noDeliveryAdress);
             const createAdress = document.getElementById('create-adress');
             createAdress.addEventListener('click', () => {
