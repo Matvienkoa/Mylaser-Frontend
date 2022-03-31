@@ -34,7 +34,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
             };
             fetch(`http://localhost:3000/api/mylaser/order/${number}/payment`, myInitPayment)
             .then((response) => response.json())
-            .then((order) => console.log(order))
             .catch(e => {console.error(e.error)})
         })
     }

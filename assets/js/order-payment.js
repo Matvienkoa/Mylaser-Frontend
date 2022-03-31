@@ -92,7 +92,6 @@ function checkAdresses() {
         .then((res) => res.json())
         .then((user) => {
             if(user.billingAdresses.length === 1 && (deliveryChoice === 'chronopost' || deliveryChoice === 'colissimo' || deliveryChoice === 'ups')) {
-                console.log(user);
                 const da = user.deliveryAdresses[0];
                 const ba = user.billingAdresses[0];
                 const order = {
@@ -119,7 +118,6 @@ function checkAdresses() {
                 resolve(order)
             }
             if(user.billingAdresses.length === 0 && (deliveryChoice === 'chronopost' || deliveryChoice === 'colissimo' || deliveryChoice === 'ups')) {
-                console.log(user);
                 const da = user.deliveryAdresses[0];
                 const order = {
                     userId: user.id,
@@ -169,8 +167,6 @@ function sendOrder(order) {
                         quote: quote.id,
                         price: quote.price
                     };
-                    console.log(orderDetails);
-
                     const myInit = {
                         method: "POST",
                         body: JSON.stringify(orderDetails),
@@ -182,7 +178,6 @@ function sendOrder(order) {
                     fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
                     .then((res) => res.json())
                     .then((orderdetails) => {
-                        console.log(orderdetails);
                         price = price + orderDetails.price;
                         const edit = {
                             price: price

@@ -30,7 +30,6 @@ if(token) {
             searchGlasses.forEach(glass => {
                 glass.addEventListener('click', () => {
                     window.location.href = `/my-order.html?order=${glass.dataset.number}`;
-                    console.log('yo');
                 });
             });
         };

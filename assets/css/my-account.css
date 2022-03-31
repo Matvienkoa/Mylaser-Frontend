@@ -1,3 +1,7 @@
+footer{
+    margin-top: 320px;
+}
+
 #section-account{
     display: flex;
     justify-content: space-between;

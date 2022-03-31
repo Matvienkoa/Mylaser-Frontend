@@ -72,7 +72,6 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
         searchGlasses.forEach(glass => {
             glass.addEventListener('click', () => {
                 window.location.href = `/admin-access-bo-customer-order.html?customer=${userNumber}&order=${glass.dataset.number}`
-                console.log('yo')
             })
         })
     };

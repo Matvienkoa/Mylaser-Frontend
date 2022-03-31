@@ -33,9 +33,6 @@ numberOrder.innerHTML = number;
 fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
-
-        console.log(order)
-
         const date = new Date(order.createdAt);
         const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
         dateOrder.innerHTML = dateFormated;
@@ -76,13 +73,9 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
         baphone.innerHTML = order.baPhone;
 
         order.orderdetails.forEach(quote => {
-            console.log(quote.quote);
             fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.quote}`)
             .then((res) => res.json())
             .then((quote) => {
-
-                console.log(quote)
-
                 const productRow = document.createElement('tr');
                 productRow.className = "productRow";
                 productRow.innerHTML =

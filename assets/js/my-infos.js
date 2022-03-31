@@ -38,7 +38,6 @@ function updateInfos() {
         if(!res.ok) {
             // Error states
             res.json().then((data) => {
-                console.log(data.message)
                 const boxError = document.getElementById('box-error');
                 boxError.innerHTML = data.message;
                 const emptyInput = document.querySelectorAll('.input');

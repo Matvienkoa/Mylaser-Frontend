@@ -1,11 +1,19 @@
 const tableBody = document.getElementById('table-body');
 const backButton = document.getElementById('back-button');
+const searchInput = document.getElementById('search-input');
 const token = localStorage.getItem('customer');
+
+let ordersArray;
 
 fetch('http://localhost:3000/api/mylaser/order', {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((orders) => {
-    orders.forEach(order => {
+    createOrderList(orders);
+    ordersArray = orders;
+})
+
+function createOrderList(orderList) {
+    orderList.forEach(order => {
         const date = new Date(order.createdAt)
         const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         const orderRow = document.createElement('tr');
@@ -24,6 +32,15 @@ fetch('http://localhost:3000/api/mylaser/order', {headers: {"Authorization": 'Be
             window.location.href = `/admin-access-bo-order.html?order=${glass.dataset.number}`
         })
     })
-})
+}
+
+searchInput.addEventListener("input", filterOrders)
+
+function filterOrders(e) {
+    tableBody.innerHTML = ""
+    const searchedString = e.target.value.toLowerCase();
+    const filteredArray = ordersArray.filter(order => order.number.toLowerCase().includes(searchedString));
+    createOrderList(filteredArray);
+};
 
 backButton.addEventListener('click', () => window.location.href = '/admin-access-bo.html')

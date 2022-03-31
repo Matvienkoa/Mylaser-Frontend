@@ -22,7 +22,6 @@ function sendEmail() {
         if(!res.ok) {
             // Error states
             res.json().then((data) => {
-                console.log(data.message)
                 boxError.innerHTML = data.message;
             })
         } else {

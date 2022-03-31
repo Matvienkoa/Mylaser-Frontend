@@ -16,7 +16,6 @@ function login() {
             if(!res.ok) {
                 // Error states
                 res.json().then((data) => {
-                    console.log(data.message)
                     const boxError = document.getElementById('box-error-login');
                     boxError.innerHTML = data.message;
                     const emptyInput = document.querySelectorAll('.input-login');
@@ -48,6 +47,7 @@ function signUp() {
         const loginInfos = {
             email: document.getElementById("signup-email").value,
             password: document.getElementById("signup-password").value,
+            password2: document.getElementById("signup-password2").value,
             firstName: document.getElementById("signup-firstName").value,
             lastName: document.getElementById("signup-lastName").value
         }
@@ -63,7 +63,6 @@ function signUp() {
             if(!res.ok) {
                 // Error states
                 res.json().then((data) => {
-                    console.log(data.message)
                     const boxError = document.getElementById('box-error-signup');
                     boxError.innerHTML = data.message;
                     const emptyInput = document.querySelectorAll('.input-signup');
@@ -76,7 +75,6 @@ function signUp() {
             } else {
                 res.json()
                 .then((res) => {
-                    console.log(res)
                     //Send email auto
                     sendEmailToCustomer(res.user.email);
                     sendEmailToAdmin(res.user.email);

@@ -3,6 +3,7 @@ function signUp() {
         const loginInfos = {
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
+            password2: document.getElementById("password2").value,
             firstName: document.getElementById("firstName").value,
             lastName: document.getElementById("lastName").value
         }
@@ -18,7 +19,6 @@ function signUp() {
             if(!res.ok) {
                 // Error states
                 res.json().then((data) => {
-                    console.log(data.message)
                     const boxError = document.getElementById('box-error');
                     boxError.innerHTML = data.message;
                     const emptyInput = document.querySelectorAll('.input');
@@ -31,7 +31,6 @@ function signUp() {
             } else {
                 res.json()
                 .then((res) => {
-                    console.log(res)
                     //Send email auto
                     sendEmailToCustomer(res.user.email);
                     sendEmailToAdmin(res.user.email);

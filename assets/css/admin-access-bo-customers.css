@@ -1,3 +1,22 @@
+/*------Search------*/
+#search{
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+#search-input{
+    width: 300px;
+    height: 40px;
+}
+#search-glass{
+    cursor: unset;
+    margin-right: 20px;
+    font-size: 1.4rem;
+}
+#search-glass:hover{
+    color: unset;
+}
+
 #back-button{
     font-size: 0.8rem;
     margin-top: 40px;

@@ -1,12 +1,19 @@
 const tableBody = document.getElementById('table-body');
 const backButton = document.getElementById('back-button');
+const searchInput = document.getElementById('search-input');
 const token = localStorage.getItem('customer');
+
+let customersArray;
 
 fetch(`http://localhost:3000/api/mylaser/user`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((users) => {
-    console.log(users);
-    users.forEach(user => {
+    createCustomersList(users);
+    customersArray = users;
+})
+
+function createCustomersList(customerList) {
+    customerList.forEach(user => {
         if(user.role === 'customer') {
             const userRow = document.createElement('tr');
             userRow.className = "userRow";
@@ -25,6 +32,15 @@ fetch(`http://localhost:3000/api/mylaser/user`, {headers: {"Authorization": 'Bea
             window.location.href = `/admin-access-bo-customer.html?customer=${glass.dataset.id}`
         })
     })
-})
+}
+
+searchInput.addEventListener("input", filterCustomers)
+
+function filterCustomers(e) {
+    tableBody.innerHTML = ""
+    const searchedString = e.target.value.toLowerCase();
+    const filteredArray = customersArray.filter(user => user.lastName.toLowerCase().includes(searchedString) || user.firstName.toLowerCase().includes(searchedString));
+    createCustomersList(filteredArray);
+};
 
 backButton.addEventListener('click', () => window.location.href = '/admin-access-bo.html')

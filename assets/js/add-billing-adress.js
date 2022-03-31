@@ -35,7 +35,6 @@ function addBillingAdress() {
         if(!res.ok) {
             // Error states
             res.json().then((data) => {
-                console.log(data.message);
                 const boxError = document.getElementById('box-error');
                 if(data.message === undefined) {
                     boxError.innerHTML = 'Une erreur est survenue, veuillez vérifier vos informations';

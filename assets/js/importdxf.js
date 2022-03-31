@@ -151,7 +151,6 @@ function showSVG(arrayData) {
     .then(res => {
         if(!res.ok) {
             // Error states
-            console.log(arrayData[1])
             const fileDXF = {
                 filename: arrayData[1]
             };
@@ -162,7 +161,6 @@ function showSVG(arrayData) {
                     "Content-Type": "application/json; charset=utf-8"
                 },
             };
-            console.log(myInitFile)
             fetch("http://localhost:3000/api/mylaser/dxf/file", myInitFile)
             .then(() => {
                 document.getElementById('box-error').classList.replace('box-hidden', 'box-visible');
@@ -293,19 +291,15 @@ function hideError() {
 
 function addToCart () {
     const currentQuote = localStorage.getItem('currentQuote');
-    console.log(currentQuote);
     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`)
     .then((res) => res.json())
     .then((json) => {
         let currentCart = JSON.parse(localStorage.getItem('currentCart'));
-        console.log(currentCart);
         if(currentCart !== null) {
             if(currentCart[json.id] === undefined) {
                 currentCart.push(json.id);
             };
-            console.log('existe');
         } else {
-            console.log('n existe pas');
             currentCart = [json.id];
         };
         localStorage.setItem('currentCart', JSON.stringify(currentCart));

@@ -90,10 +90,16 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 #buttons input {
     font-size: 0.8rem;
 }
+#delete-order{
+    color: #e44c65!important;
+    box-shadow: inset 0 0 0 1px #e44c65;
+}
 
 /* Confirmation */
 #confirmation-delete-order{
     text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 #yes, #no{
     font-size: 0.7rem;
@@ -111,10 +117,13 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     #select-status{
         width: 130px;
     }
-    #edit-status, #back-to-customer, #delete-order{
+    #edit-status, #back-to-customer, #back-to-orders, #delete-order, #yes, #no{
         padding: 0 20px;
     }
     #box-infos h3, #box-infos p, #box-prices h3, #box-prices p{
         font-size: 1.1rem;
     }
+    #confirmation-delete-order{
+    font-size: 0.8rem;
+}
 }

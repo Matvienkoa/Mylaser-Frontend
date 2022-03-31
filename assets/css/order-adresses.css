@@ -1,3 +1,7 @@
+#footer{
+    margin-top: 330px;
+}
+
 /* Adresses */
 #adresses{
     display: flex;
@@ -41,6 +45,8 @@ h4{
 }
 .no-delivery-adress{
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: 130px;
 }
 
 /* Buttons */
@@ -49,9 +55,6 @@ h4{
     margin: auto;
     margin-top: 80px;
     font-size: 0.7rem;
-}
-#footer{
-    margin-top: 400px;
 }
 
 /*------Responsiv------*/

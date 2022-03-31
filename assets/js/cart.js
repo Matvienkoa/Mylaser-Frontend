@@ -1,6 +1,5 @@
 const products = JSON.parse(localStorage.getItem('currentCart'));
 const token = localStorage.getItem('customer');
-console.log(products);
 
 const tableBody = document.getElementById('table-body');
 const tableWrapper = document.getElementById('tableWrapper');
@@ -38,8 +37,6 @@ if(products) {
         fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product}`)
         .then((res) => res.json())
         .then((product) => {
-            console.log(product);
-
             const productRow = document.createElement('tr');
             productRow.className = "productRow";
             productRow.innerHTML =
@@ -83,7 +80,6 @@ if(products) {
                 });
             });
             totalPrice = totalPrice + product.price;
-            console.log(totalPrice);
             let boxPrice = document.getElementById('total-price');
             boxPrice.innerHTML = totalPrice.toFixed(2) + ' €';
             totalTVA.innerHTML = 'dont TVA (20%) : ' + ((totalPrice/(1+20/100))*20/100).toFixed(2) + ' €';
