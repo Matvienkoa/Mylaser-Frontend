@@ -178,7 +178,7 @@ function sendOrder(order) {
                     fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
                     .then((res) => res.json())
                     .then((orderdetails) => {
-                        price = price + orderDetails.price;
+                        price = price + orderdetails.price;
                         const edit = {
                             price: price
                         };

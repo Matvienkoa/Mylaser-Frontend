@@ -113,24 +113,41 @@ function showSVG(arrayData) {
     for (let i = 0; i < lengthPath.length; i++) {
         totalLengthPath += lengthPath[i];
     };
-    // Coef Acier
-    let coef =  parseFloat(document.getElementById('width-options').value);
     // Quantity
     let quantity = parseInt(document.getElementById('quantityList').value);
     // Steel
     let steel = document.getElementById('steel-options').value;
     // Thickness
-    let thickness = document.getElementById('width-options').value;
+    let thickness = JSON.parse(document.getElementById('width-options').value);
+    // Weight
+    let density = getDensity();
+    function getDensity() {
+        let density;
+        if(steel === 'Acier Standard' || steel === 'Acier Hardox') {
+            density = 8;
+            return density;
+        }
+        if(steel === 'Inox Standard') {
+            density = 8;
+            return density;
+        }
+        if(steel === 'Alu Standard') {
+            density = 4;
+            return density;
+        }
+    };
+    // Speed
+    let speed = JSON.parse(document.getElementById('width-options').value);
     // Scale SVG for frontend
     svg.removeAttribute('width');
     svg.setAttribute('width', '100%');
     svg.removeAttribute('height');
     svg.setAttribute('height', '100%');
     let svgData = JSON.stringify(arrayData[0]);
+
     // Send Quote to DB
     const quoteInfos = {
         length: totalLengthPath,
-        coef: coef,
         surface: surfaceUtile,
         quantity: quantity,
         width: widthSvg,
@@ -138,8 +155,11 @@ function showSVG(arrayData) {
         dxf: arrayData[1],
         svg: svgData,
         steel: steel,
-        thickness: thickness
+        thickness: thickness.thickness,
+        density: density,
+        speed: speed.speed
     };
+
     const myInit2 = {
         method: "POST",
         body: JSON.stringify(quoteInfos),
@@ -187,18 +207,35 @@ widthOptions();
 
 function updatePrice() {
     const currentQuote = localStorage.getItem('currentQuote');
-    const coef = document.getElementById('width-options').value;
     const quantity = document.getElementById('quantityList').value;
-    const thickness = document.getElementById('width-options').value;
+    const thickness = JSON.parse(document.getElementById('width-options').value);
     const steel = document.getElementById('steel-options').value;
+    let speed = JSON.parse(document.getElementById('width-options').value);
+    let density = getDensity();
 
-    const modifs = {
-        coef: coef,
-        quantity: quantity,
-        steel: steel,
-        thickness: thickness
+    function getDensity() {
+        let density;
+        if(steel === 'Acier Standard' || steel === 'Acier Hardox') {
+            density = 8;
+            return density;
+        }
+        if(steel === 'Inox Standard') {
+            density = 8;
+            return density;
+        }
+        if(steel === 'Alu Standard') {
+            density = 4;
+            return density;
+        }
     };
 
+    const modifs = {
+        quantity: quantity,
+        steel: steel,
+        thickness: thickness.thickness,
+        density: density,
+        speed: speed.speed
+    };
     const myInit = {
         method: "PUT",
         body: JSON.stringify(modifs),
@@ -209,7 +246,7 @@ function updatePrice() {
     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`, myInit)
     .then((res) => res.json())
     .then((json) => {
-        document.getElementById('price').textContent = (json.price).toFixed(2);
+        document.getElementById('price').textContent = json.price;
     });
 };
 
@@ -217,32 +254,17 @@ function widthOptions() {
     let steelValue = document.getElementById('steel-options').value;
     let widthOption = document.getElementById('width-options');
     switch (steelValue) {
-        case 'Acier standard' : 
-        widthOption.innerHTML = `<option class="options-width" value="1">1 MM</option><option class="options-width" value="2">2 MM</option><option class="options-width" value="1.5">1.5 MM</option>`;
+        case 'Acier Standard' : 
+        widthOption.innerHTML = `<option class="options-width" value='{"thickness":1,"speed":30000}'>1 MM</option><option class="options-width" value='{"thickness":1.5,"speed":25000}'>1,5 MM</option><option class="options-width" value='{"thickness":2,"speed":18000}'>2 MM</option><option class="options-width" value='{"thickness":2.5,"speed":14000}'>2,5 MM</option><option class="options-width" value='{"thickness":3,"speed":3000}'>3 MM</option><option class="options-width" value='{"thickness":4,"speed":2800}'>4 MM</option><option class="options-width" value='{"thickness":5,"speed":2600}'>5 MM</option><option class="options-width" value='{"thickness":6,"speed":2600}'>6 MM</option><option class="options-width" value='{"thickness":8,"speed":2000}'>8 MM</option><option class="options-width" value='{"thickness":10,"speed":1800}'>10 MM</option><option class="options-width" value='{"thickness":12,"speed":1500}'>12 MM</option><option class="options-width" value='{"thickness":15,"speed":1100}'>15 MM</option><option class="options-width" value='{"thickness":20,"speed":750}'>20 MM</option>`;
         break;
-        case 'Acier galvanise' : 
-        widthOption.innerHTML = `<option class="options-width" value="1">1 MM</option><option class="options-width" value="2">2 MM</option><option class="options-width" value="1.5">1.5 MM</option>`;
+        case 'Acier Hardox' : 
+        widthOption.innerHTML = `<option class="options-width" value='{"thickness":4,"speed":2000}'>4 MM</option><option class="options-width" value='{"thickness":5,"speed":2000}'>5 MM</option><option class="options-width" value='{"thickness":6,"speed":1800}'>6 MM</option><option class="options-width" value='{"thickness":8,"speed":1400}'>8 MM</option><option class="options-width" value='{"thickness":10,"speed":1300}'>10 MM</option><option class="options-width" value='{"thickness":12,"speed":1000}'>12 MM</option><option class="options-width" value='{"thickness":15,"speed":900}'>15 MM</option><option class="options-width" value='{"thickness":20,"speed":700}'>20 MM</option>`;
         break;
-        case 'Acier brillant' : 
-        widthOption.innerHTML = `<option class="options-width" value="1">1 MM</option><option class="options-width" value="2">2 MM</option><option class="options-width" value="1.5">1.5 MM</option>`;
+        case 'Inox Standard' : 
+        widthOption.innerHTML = `<option class="options-width" value='{"thickness":1,"speed":30000}'>1 MM</option><option class="options-width" value='{"thickness":1.5,"speed":25000}'>1,5 MM</option><option class="options-width" value='{"thickness":2,"speed":20000}'>2 MM</option><option class="options-width" value='{"thickness":2.5,"speed":16000}'>2,5 MM</option><option class="options-width" value='{"thickness":3,"speed":13000}'>3 MM</option><option class="options-width" value='{"thickness":4,"speed":6500}'>4 MM</option><option class="options-width" value='{"thickness":5,"speed":4800}'>5 MM</option><option class="options-width" value='{"thickness":6,"speed":3600}'>6 MM</option><option class="options-width" value='{"thickness":8,"speed":2500}'>8 MM</option><option class="options-width" value='{"thickness":10,"speed":1600}'>10 MM</option><option class="options-width" value='{"thickness":12,"speed":800}'>12 MM</option><option class="options-width" value='{"thickness":15,"speed":450}'>15 MM</option>`;
         break;
-        case 'Inox standard' : 
-        widthOption.innerHTML = `<option class="options-width" value="4">4 MM</option><option class="options-width" value="5">5 MM</option><option class="options-width" value="7">7 MM</option>`;
-        break;
-        case 'Inox brosse' : 
-        widthOption.innerHTML = `<option class="options-width" value="4">4 MM</option><option class="options-width" value="5">5 MM</option><option class="options-width" value="7">7 MM</option>`;
-        break;
-        case 'Inox brillant' : 
-        widthOption.innerHTML = `<option class="options-width" value="4">4 MM</option><option class="options-width" value="5">5 MM</option><option class="options-width" value="7">7 MM</option>`;
-        break;
-        case 'Alu standard' : 
-        widthOption.innerHTML = `<option class="options-width" value="1.3">1.3 MM</option><option class="options-width" value="1.7">1.7 MM</option><option class="options-width" value="1.9">1.9 MM</option>`;
-        break;
-        case 'Alu brosse' : 
-        widthOption.innerHTML = `<option class="options-width" value="1.3">1.3 MM</option><option class="options-width" value="1.7">1.7 MM</option><option class="options-width" value="1.9">1.9 MM</option>`;
-        break;
-        case 'Alu brillant' : 
-        widthOption.innerHTML = `<option class="options-width" value="1.3">1.3 MM</option><option class="options-width" value="1.7">1.7 MM</option><option class="options-width" value="1.9">1.9 MM</option>`;
+        case 'Alu Standard' : 
+        widthOption.innerHTML = `<option class="options-width" value='{"thickness":2,"speed":8000}'>2 MM</option><option class="options-width" value='{"thickness":2.5,"speed":7500}'>2,5 MM</option><option class="options-width" value='{"thickness":3,"speed":7000}'>3 MM</option><option class="options-width" value='{"thickness":4,"speed":6000}'>4 MM</option><option class="options-width" value='{"thickness":5,"speed":5700}'>5 MM</option><option class="options-width" value='{"thickness":6,"speed":4000}'>6 MM</option><option class="options-width" value='{"thickness":8,"speed":4000}'>8 MM</option><option class="options-width" value='{"thickness":10,"speed":3000}'>10 MM</option><option class="options-width" value='{"thickness":12,"speed":2500}'>12 MM</option><option class="options-width" value='{"thickness":15,"speed":1200}'>15 MM</option>`;
         break;
     };
 };
@@ -296,13 +318,76 @@ function addToCart () {
     .then((json) => {
         let currentCart = JSON.parse(localStorage.getItem('currentCart'));
         if(currentCart !== null) {
-            if(currentCart[json.id] === undefined) {
-                currentCart.push(json.id);
+            console.log(currentCart)
+            const modif = {
+                cartId: currentCart
             };
+            const myInit = {
+                method: "PUT",
+                body: JSON.stringify(modif),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+            };
+            fetch(`http://localhost:3000/api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
+            .then((res) => res.json())
+            .then((quote) => {
+                const modifs = {
+                    price: quote.price,
+                    length: quote.height,
+                    width: quote.width,
+                    thickness: quote.thickness,
+                    quantity: quote.quantity,
+                    weight: quote.weight
+                }
+                console.log(modifs)
+                const myInit = {
+                    method: "PUT",
+                    body: JSON.stringify(modifs),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                }
+                fetch(`http://localhost:3000/api/mylaser/cart/${currentCart}`, myInit)
+                .then((res) => res.json())
+                .then((cart) => console.log(cart))
+            })
         } else {
-            currentCart = [json.id];
+            const myCart = {
+                price: json.price,
+                length: json.height,
+                width: json.width,
+                height: (json.thickness/10)*json.quantity,
+                weight: json.weight
+            }
+            const myInit = {
+            method: "POST",
+                body: JSON.stringify(myCart),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+            }
+            fetch(`http://localhost:3000/api/mylaser/cart`, myInit)
+            .then((res) => res.json())
+            .then((cart) => {
+                console.log(cart)
+                currentCart = cart.id;
+                localStorage.setItem('currentCart', JSON.stringify(currentCart));
+                const modif = {
+                    cartId: cart.id
+                };
+                const myInit = {
+                    method: "PUT",
+                    body: JSON.stringify(modif),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                };
+                fetch(`http://localhost:3000/api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
+                .then((res) => res.json())
+                .then((quote) => console.log(quote))
+            })
         };
-        localStorage.setItem('currentCart', JSON.stringify(currentCart));
     })
     .then(() => {
         apparitionNext();
@@ -322,11 +407,9 @@ function apparitionNext () {
     page.appendChild(box);
     const main = document.querySelector('#main');
     main.classList.add('on2');
-
     document.getElementById('go-to-import').addEventListener('click', () => {
         window.location.href = '/importdxf.html';
     });
-
     document.getElementById('go-to-cart').addEventListener('click', () => {
         window.location.href = '/cart.html';
     });

@@ -1,0 +1,24 @@
+.banner{
+    position: fixed;
+    z-index: 200;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(39, 40, 51, 0.712);
+    padding: 15px 20px;
+}
+#banner-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#banner-txt{
+    font-size: 0.8rem;
+    margin: 0;
+}
+#banner-button{
+    font-size: 0.7rem;
+    margin-left: 10px;
+}
+.banner-off{
+    display: none;
+}
