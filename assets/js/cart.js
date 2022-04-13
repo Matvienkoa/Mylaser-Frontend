@@ -47,7 +47,7 @@ if(cart) {
                 '<td>' + product.steel + '</td>' +
                 '<td>' + product.thickness + ' mm</td>' +
                 '<td>' + product.quantity + '</td>' +
-                '<td nowrap="nowrap">' + product.price + ' €</td>' +
+                '<td nowrap="nowrap">' + product.price/100 + ' €</td>' +
                 '<td class="bin-td"><i class="icon solid fa-trash bin" data-id=' + product.id + '></i></td>';
                 tableBody.appendChild(productRow);
 
@@ -85,8 +85,8 @@ if(cart) {
         });
 
         let boxPrice = document.getElementById('total-price');
-        boxPrice.innerHTML = cartNumber.price.toFixed(2) + ' €';
-        totalTVA.innerHTML = 'dont TVA (20%) : ' + ((cartNumber.price/(1+20/100))*20/100).toFixed(2) + ' €';
+        boxPrice.innerHTML = (cartNumber.price/100).toFixed(2) + ' €';
+        totalTVA.innerHTML = 'dont TVA (20%) : ' + (((cartNumber.price/100)/(1+20/100))*20/100).toFixed(2) + ' €';
 
         back.addEventListener('click', () => {
             window.location.href = 'importdxf.html';
@@ -112,26 +112,81 @@ if(cart) {
 };
 
 function deleteProduct(product) {
-    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
-    .then(() => {
-        const index = products.findIndex(p => p === product.id);
-        if(index !== -1) {
-            products.splice(index, 1);
-        };
-        localStorage.setItem('currentCart', JSON.stringify(products));
-        if(products.length === 0){
-            localStorage.removeItem('currentCart');
-        };
-        window.location.reload();
-    });
-};
+    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
+    .then((res) => res.json())
+    .then((quote) => {
+        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
+        .then((res) => {
+            res.json();
+            fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+            .then((res) => res.json())
+            .then((currentCart) => {
+                const price = currentCart.price - quote.price;
+                const weight = Math.ceil(currentCart.weight - quote.weight);
+                const height = currentCart.height - (quote.thickness)/10*quote.quantity;
+                const length = getLength();
+                const width = getWidth();
+                function getWidth() {
+                    if(quote.width < currentCart.width) {
+                        return currentCart.width;
+                    }
+                    if(quote.width == currentCart.width) {
+                        return Math.max.apply(Math, currentCart.quotes.map(function(o) {return o.width;}))
+                    }
+                }
+                function getLength() {
+                    if(quote.height < currentCart.length) {
+                        return currentCart.length;
+                    }
+                    if(quote.height == currentCart.length) {
+                        return Math.max.apply(Math, currentCart.quotes.map(function(o) {return o.height;}))
+                    }
+                }
+                const newCart = {
+                    price: price,
+                    weight: weight,
+                    height: height,
+                    width: width,
+                    length: length
+                }
+                const updateCart = {
+                    method: "PUT",
+                    body: JSON.stringify(newCart),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                };
+                fetch(`http://localhost:3000/api/mylaser/cart/removequote/${cart}`, updateCart)
+                .then((res) => res.json())
+                .then((cart) => {
+                    fetch(`http://localhost:3000/api/mylaser/cart/${cart.id}`)
+                    .then((res) => res.json())
+                    .then((currentCart) => {
+                        if(currentCart.quotes.length == 0) {
+                            deleteCart();
+                        } else {
+                            window.location.reload();
+                        }
+                    })
+                })
+            })
+        })
+    })
+}
 
 function deleteCart() {
-    products.forEach(product => {
-        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
-        .then(() => {
-            localStorage.removeItem('currentCart');
-            window.location.reload();
-        });
-    });
+    fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+    .then(res => res.json())
+    .then((cart) => {
+        cart.quotes.forEach(quote => {
+            fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
+            .then(() => {
+                fetch(`http://localhost:3000/api/mylaser/cart/${cart.id}`, {method: "DELETE"})
+                .then(() => {
+                    localStorage.removeItem('currentCart');
+                    window.location.reload();
+                })
+            })
+        })
+    })
 };

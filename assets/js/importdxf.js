@@ -147,18 +147,20 @@ function showSVG(arrayData) {
 
     // Send Quote to DB
     const quoteInfos = {
-        length: totalLengthPath,
-        surface: surfaceUtile,
+        width: parseInt(widthSvg),
+        height: parseInt(heightSvg),
+        surface: Math.ceil(surfaceUtile),
+        length: Math.ceil(totalLengthPath),
+        thickness: thickness.thickness,
+        steel: steel,
         quantity: quantity,
-        width: widthSvg,
-        height: heightSvg,
         dxf: arrayData[1],
         svg: svgData,
-        steel: steel,
-        thickness: thickness.thickness,
         density: density,
         speed: speed.speed
     };
+
+    console.log(quoteInfos)
 
     const myInit2 = {
         method: "POST",
@@ -189,8 +191,9 @@ function showSVG(arrayData) {
         } else {
             res.json()
             .then((quote) => {
+                console.log(quote)
                 localStorage.setItem('currentQuote', JSON.stringify(quote.id))
-                document.getElementById('price').textContent = (quote.price).toFixed(2)
+                document.getElementById('price').textContent = ((quote.price*1.2)/100).toFixed(2) + ' € TTC'
             })
             .catch(function (error) {
                 console.log(error)
@@ -207,7 +210,7 @@ widthOptions();
 
 function updatePrice() {
     const currentQuote = localStorage.getItem('currentQuote');
-    const quantity = document.getElementById('quantityList').value;
+    const quantity = JSON.parse(document.getElementById('quantityList').value);
     const thickness = JSON.parse(document.getElementById('width-options').value);
     const steel = document.getElementById('steel-options').value;
     let speed = JSON.parse(document.getElementById('width-options').value);
@@ -246,7 +249,8 @@ function updatePrice() {
     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`, myInit)
     .then((res) => res.json())
     .then((json) => {
-        document.getElementById('price').textContent = json.price;
+        console.log(json)
+        document.getElementById('price').textContent = ((json.price*1.2)/100).toFixed(2) + ' € TTC';
     });
 };
 
@@ -318,7 +322,6 @@ function addToCart () {
     .then((json) => {
         let currentCart = JSON.parse(localStorage.getItem('currentCart'));
         if(currentCart !== null) {
-            console.log(currentCart)
             const modif = {
                 cartId: currentCart
             };
@@ -340,7 +343,6 @@ function addToCart () {
                     quantity: quote.quantity,
                     weight: quote.weight
                 }
-                console.log(modifs)
                 const myInit = {
                     method: "PUT",
                     body: JSON.stringify(modifs),
@@ -350,7 +352,6 @@ function addToCart () {
                 }
                 fetch(`http://localhost:3000/api/mylaser/cart/${currentCart}`, myInit)
                 .then((res) => res.json())
-                .then((cart) => console.log(cart))
             })
         } else {
             const myCart = {
@@ -370,7 +371,6 @@ function addToCart () {
             fetch(`http://localhost:3000/api/mylaser/cart`, myInit)
             .then((res) => res.json())
             .then((cart) => {
-                console.log(cart)
                 currentCart = cart.id;
                 localStorage.setItem('currentCart', JSON.stringify(currentCart));
                 const modif = {
