@@ -145,8 +145,11 @@ function sendOrder(order) {
                 const price = cartNumber.price;
                 const operatorService = cartNumber.operatorService;
                 const operatorCode = cartNumber.operatorCode;
+                const operatorLabel = cartNumber.operatorLabel;
                 const operatorPriceHT = cartNumber.operatorPriceHT;
                 const operatorPriceTTC = cartNumber.operatorPriceTTC;
+                const relayCode = cartNumber.relayCode;
+                const shippingType = cartNumber.shippingType;
                 const length = cartNumber.length;
                 const width = cartNumber.width;
                 const height = cartNumber.height;
@@ -155,6 +158,9 @@ function sendOrder(order) {
                     price: price,
                     operatorService: operatorService,
                     operatorCode: operatorCode,
+                    operatorLabel: operatorLabel,
+                    relayCode: relayCode,
+                    shippingType: shippingType,
                     operatorPriceHT: operatorPriceHT,
                     operatorPriceTTC: operatorPriceTTC,
                     length: length,

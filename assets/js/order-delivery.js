@@ -3,7 +3,23 @@ const cart = JSON.parse(localStorage.getItem('currentCart'));
 const token = localStorage.getItem('customer');
 const deliveries = document.getElementById('deliveries')
 
-sendInfosColis()
+showSpinner();
+
+// ----------- Spinner -----------
+function showSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.replace('spinner-off', 'lds-ring');
+    const body = document.querySelector('body');
+    body.classList.add('on');
+};
+function hideSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.replace('lds-ring', 'spinner-off');
+    const body = document.querySelector('body');
+    body.classList.remove('on');
+};
+
+sendInfosColis();
 
 function getInfosUser() {
     return new Promise(resolve => {
@@ -27,12 +43,14 @@ function getInfosCart() {
             const longueur = currentCart.length/10;
             const largeur = currentCart.width/10;
             const hauteur = Math.ceil(currentCart.height);
-            const poids = currentCart.weight/1000
+            const poids = currentCart.weight/1000;
+            const valeur = currentCart.price*1.2;
             const infosShipping = {
                 longueur: longueur,
                 largeur: largeur,
                 hauteur: hauteur,
-                poids: poids
+                poids: poids,
+                valeur: valeur
             }
             resolve(infosShipping)
         })
@@ -51,7 +69,6 @@ async function sendInfosColis() {
             poids: cart.poids
         }
     }
-    console.log(colisInfos)
     const myInit = {
         method: "POST",
         body: JSON.stringify(colisInfos),
@@ -62,19 +79,16 @@ async function sendInfosColis() {
     fetch('http://localhost:3000/api/mylaser/boxtal/', myInit)
     .then((res) => res.json())
     .then((shipments) => {
-        createList(shipments.cotation.shipment.offer)
+        hideSpinner();
+        createList(shipments.cotation.shipment.offer);
     })
 }
 
 function createList(offerList) {
     offerList.forEach(offer => {
             console.log(offer);
-
             const delivery = document.createElement('div');
             delivery.className = 'delivery';
-            delivery.setAttribute('data-operator', offer.operator.code._text);
-            delivery.setAttribute('data-service', offer.service.code._text);
-
             if(offer.operator.code._text === 'DHLE') {
                 delivery.innerHTML =
                 '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
@@ -90,29 +104,34 @@ function createList(offerList) {
                 '<h4 class="delivery-description-title">' + offer.service.label._text +'</h4>' +
                 '<p class="delivery-description-text">' + offer.delivery.label._text + '</p></span>'
             }
-
             deliveries.appendChild(delivery)
-
             delivery.addEventListener('click', () => {
-                localStorage.setItem('deliveryOperator', delivery.dataset.operator);
-                localStorage.setItem('deliveryService', delivery.dataset.service);
                 sendShippingInfos(offer)
-                window.location.href = '/order-payment.html';
+                console.log(offer.delivery.type.code._text)
+                if(offer.delivery.type.code._text === 'PICKUP_POINT') {
+                    window.location.href = '/order-delivery-relay.html';
+                } else {
+                    window.location.href = '/order-payment.html';
+                }
             });
     })
 }
 
 function sendShippingInfos(offer) {
     const operatorCode = offer.operator.code._text;
-    const operatorService = offer.operator.label._text;
+    const operatorService = offer.service.code._text;
     const operatorPriceHT = offer.price["tax-exclusive"]._text;
     const operatorPriceTTC = offer.price["tax-inclusive"]._text;
+    const operatorLabel = offer.operator.label._text;
+    const shippingType = offer.delivery.type.code._text;
 
     const newCart = {
         operatorCode: operatorCode,
         operatorService: operatorService,
         operatorPriceHT: operatorPriceHT,
-        operatorPriceTTC: operatorPriceTTC
+        operatorPriceTTC: operatorPriceTTC,
+        operatorLabel: operatorLabel,
+        shippingType: shippingType
     }
 
     console.log(newCart)
@@ -128,5 +147,9 @@ function sendShippingInfos(offer) {
     .then((newCartEdit) => console.log(newCartEdit))
 }
 
+// INFOS API BOXTAL CONTENTS
+// fetch('http://localhost:3000/api/mylaser/boxtal/')
+// .then((res) => res.json())
+// .then((contents) => console.log(contents))
 
 

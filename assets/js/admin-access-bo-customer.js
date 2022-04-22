@@ -57,13 +57,13 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
     } else {
         user.orders.forEach(order => {
             const date = new Date(order.createdAt)
-            const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+            const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
             const orderRow = document.createElement('tr');
             orderRow.className = "orderRow";
             orderRow.innerHTML =
             '<td>' + order.number + '</td>' +
             '<td nowrap="nowrap">' + dateFormated + '</td>' +
-            '<td nowrap="nowrap">' + order.price + ' €</td>' +
+            '<td nowrap="nowrap">' + ((order.priceTTC)/100).toFixed(2) + ' €</td>' +
             '<td nowrap="nowrap">' + order.status + '</td>' +
             '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>'
             tableBody.appendChild(orderRow);

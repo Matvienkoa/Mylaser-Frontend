@@ -43,11 +43,11 @@ if(cart) {
                 productRow.className = "productRow";
                 productRow.innerHTML =
                 '<td class="img">' + JSON.parse(product.svg) + '</td>' +
-                '<td>' + (product.width).toFixed(2) + ' X ' + (product.height).toFixed(2) +' mm</td>' + 
+                '<td>' + product.width + ' X ' + product.height +' mm</td>' + 
                 '<td>' + product.steel + '</td>' +
                 '<td>' + product.thickness + ' mm</td>' +
                 '<td>' + product.quantity + '</td>' +
-                '<td nowrap="nowrap">' + product.price/100 + ' €</td>' +
+                '<td nowrap="nowrap">' + ((product.price/100)*1.2).toFixed(2) + ' €</td>' +
                 '<td class="bin-td"><i class="icon solid fa-trash bin" data-id=' + product.id + '></i></td>';
                 tableBody.appendChild(productRow);
 
@@ -85,8 +85,8 @@ if(cart) {
         });
 
         let boxPrice = document.getElementById('total-price');
-        boxPrice.innerHTML = (cartNumber.price/100).toFixed(2) + ' €';
-        totalTVA.innerHTML = 'dont TVA (20%) : ' + (((cartNumber.price/100)/(1+20/100))*20/100).toFixed(2) + ' €';
+        boxPrice.innerHTML = ((cartNumber.price/100)*1.2).toFixed(2) + ' €';
+        totalTVA.innerHTML = 'dont TVA (20%) : ' + ((cartNumber.price/100)*0.2).toFixed(2) + ' €';
 
         back.addEventListener('click', () => {
             window.location.href = 'importdxf.html';
@@ -162,8 +162,8 @@ function deleteProduct(product) {
                     fetch(`http://localhost:3000/api/mylaser/cart/${cart.id}`)
                     .then((res) => res.json())
                     .then((currentCart) => {
-                        if(currentCart.quotes.length == 0) {
-                            deleteCart();
+                        if(currentCart.quotes.length === 0) {
+                            deleteEmptyCart(cart.id);
                         } else {
                             window.location.reload();
                         }
@@ -171,6 +171,14 @@ function deleteProduct(product) {
                 })
             })
         })
+    })
+}
+
+function deleteEmptyCart(cartId) {
+    fetch(`http://localhost:3000/api/mylaser/cart/${cartId}`, {method: "DELETE"})
+    .then(() => {
+        localStorage.removeItem('currentCart');
+        window.location.reload();
     })
 }
 

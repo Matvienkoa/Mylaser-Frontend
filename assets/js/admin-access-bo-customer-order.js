@@ -34,7 +34,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
     .then((res) => res.json())
     .then((order) => {
         const date = new Date(order.createdAt);
-        const dateFormated = date.getDay() + ' / ' + date.getMonth() + ' / ' + date.getFullYear();
+        const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         dateOrder.innerHTML = dateFormated;
 
         statusOption.value = order.status;
@@ -49,11 +49,11 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
             }
         })
 
-        subTotal.innerHTML = order.price + ' €';
-        shipping.innerHTML = order.shippingPrice + ' €';
-        totalPrice.innerHTML = order.price + order.shippingPrice + ' €';
+        subTotal.innerHTML = ((order.priceTTC-order.shippingPriceTTC)/100).toFixed(2) + ' €';
+        shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
+        totalPrice.innerHTML = (order.priceTTC/100).toFixed(2) + ' €';
 
-        delivery.innerHTML = order.shipping;
+        delivery.innerHTML = order.shippingLabel;
 
         dafn.innerHTML = order.daFN;
         daln.innerHTML = order.daLN;
@@ -84,7 +84,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 '<td>' + quote.steel + '</td>' +
                 '<td>' + quote.thickness + ' mm</td>' +
                 '<td>' + quote.quantity + '</td>' +
-                '<td nowrap="nowrap">' + quote.price + ' €</td>' +
+                '<td nowrap="nowrap">' + ((quote.price/100)*1.2).toFixed(2) + ' €</td>' +
                 '<td><a href=' + quote.dxf + ' id="file-link"><i class="icon solid fa-file"</i></a></td>';
                 tableBody.appendChild(productRow);
 

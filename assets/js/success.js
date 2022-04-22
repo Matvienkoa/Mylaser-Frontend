@@ -17,8 +17,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
 .then(res => {
     if(res.ok) {
         localStorage.removeItem('currentCart');
-        localStorage.removeItem('deliveryChoice');
-        localStorage.removeItem('currentPrice');
         localStorage.removeItem('currentQuote');
         res.json()
         .then(number => {
@@ -55,37 +53,75 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                     const destTel = order.daPhone;
                     const operator = order.shippingCode;
                     const service = order.shipping;
+                    const valeur = order.priceTTC/100;
+                    const relayCode = order.relayCode;
 
-                    const shippingInfos = {
-                        poids: poids,
-                        longueur: longueur,
-                        largeur: largeur,
-                        hauteur: hauteur,
-                        destCP: destCP,
-                        destCity: destCity,
-                        destAdress: destAdress,
-                        destFN: destFN,
-                        destLN: destLN,
-                        destEmail: destEmail,
-                        destTel: destTel,
-                        operator: operator,
-                        service: service
+                    if(order.shippingType === 'PICKUP_POINT') {
+                        const shippingInfos = {
+                            poids: poids,
+                            longueur: longueur,
+                            largeur: largeur,
+                            hauteur: hauteur,
+                            destCP: destCP,
+                            destCity: destCity,
+                            destAdress: destAdress,
+                            destFN: destFN,
+                            destLN: destLN,
+                            destEmail: destEmail,
+                            destTel: destTel,
+                            operator: operator,
+                            service: service,
+                            relayCode: relayCode,
+                            valeur: valeur,
+                        }
+
+                        console.log(shippingInfos)
+
+                        const myInit = {
+                            method: "POST",
+                            body: JSON.stringify(shippingInfos),
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8"
+                            },
+                        }
+                        fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmentpickuppoint', myInit)
+                        .then((res) => res.json())
+                        .then((commande) => {
+                            console.log(commande)
+                        })
+                    } else {
+                        const shippingInfos = {
+                            poids: poids,
+                            longueur: longueur,
+                            largeur: largeur,
+                            hauteur: hauteur,
+                            destCP: destCP,
+                            destCity: destCity,
+                            destAdress: destAdress,
+                            destFN: destFN,
+                            destLN: destLN,
+                            destEmail: destEmail,
+                            destTel: destTel,
+                            operator: operator,
+                            service: service,
+                            valeur: valeur,
+                        }
+
+                        console.log(shippingInfos)
+
+                        const myInit = {
+                            method: "POST",
+                            body: JSON.stringify(shippingInfos),
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8"
+                            },
+                        }
+                        fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmenthome', myInit)
+                        .then((res) => res.json())
+                        .then((commande) => {
+                            console.log(commande)
+                        })
                     }
-
-                    console.log(shippingInfos)
-
-                    const myInit = {
-                        method: "POST",
-                        body: JSON.stringify(shippingInfos),
-                        headers: {
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                    }
-                    fetch('http://localhost:3000/api/mylaser/boxtal/sendshipment', myInit)
-                    .then((res) => res.json())
-                    .then((commande) => {
-                        console.log(commande)
-                    })
                 })
             })
             .catch(e => {console.error(e.error)})

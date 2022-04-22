@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Sélectionner un mode de livraison</title>
+		<title>Sélectionner un point relais</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/order-delivery.css" />
+		<link rel="stylesheet" href="assets/css/order-delivery-relay.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -25,10 +25,24 @@
 			<div id="main" class="wrapper style1">
 				<div class="container">
 					<header class="major" id="title-dxf">
-						<h2>Mode de livraison</h2>
+						<h2>Sélectionnez votre point Relais</h2>
 					</header>
 					<div id="spinner" class="spinner-off"><div></div><div></div><div></div><div></div></div>
-					<section id="deliveries"></section>
+					<section id="boxtal-result">
+						<div id="boxtal-maps-iframe"></div>
+						<div id="boxtal-relay">
+							<div id="boxtal-relay-infos">
+								<h3 id="name"></h3>
+								<p id="adress"></p>
+								<span>
+									<p id="cp"></p>
+									<p id="city"></p>
+								</span>
+							</div>
+							<div id="button-box"></div>
+						</div>
+					</section>
+					<section id="relaysList"></section>
 				</div>
 			</div>
 			<footer id="footer">
@@ -50,12 +64,13 @@
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
+		<script src="https://maps.boxtal.com/app/boxtal-maps-iframe.js"></script>
 		<script src="assets/js/linkaccount.js"></script>
 		<script src="assets/js/cart-circle.js"></script>
 		<script src="assets/js/xml2json.min.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/jwt-decode.js"></script>
-		<script src="assets/js/order-delivery.js"></script>
+		<script src="assets/js/order-delivery-relay.js"></script>
 		<script src="assets/js/not-logged.js"></script>
 	</body>
 </html>

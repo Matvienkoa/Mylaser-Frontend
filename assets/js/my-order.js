@@ -34,11 +34,11 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
         const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         dateOrder.innerHTML = dateFormated;
 
-        subTotal.innerHTML = order.price + ' €';
-        shipping.innerHTML = order.shippingPrice + ' €';
-        totalPrice.innerHTML = order.price + order.shippingPrice + ' €';
+        subTotal.innerHTML = ((order.priceTTC-order.shippingPriceTTC)/100).toFixed(2) + ' €';
+        shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
+        totalPrice.innerHTML = (order.priceTTC/100).toFixed(2) + ' €';
 
-        delivery.innerHTML = order.shipping;
+        delivery.innerHTML = order.shippingLabel;
 
         dafn.innerHTML = order.daFN;
         daln.innerHTML = order.daLN;
@@ -71,7 +71,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 '<td>' + quote.steel + '</td>' +
                 '<td>' + quote.thickness + ' mm</td>' +
                 '<td>' + quote.quantity + '</td>' +
-                '<td nowrap="nowrap">' + quote.price + ' €</td>'
+                '<td nowrap="nowrap">' + ((quote.price/100)*1.2).toFixed(2) + ' €</td>'
                 tableBody.appendChild(productRow);
 
                 let paths = document.querySelectorAll('path');
@@ -120,10 +120,10 @@ function downloadInvoice() {
                 //     "template": "SGVsbG8gd29ybGQh" // Must be base64 encoded html. This example contains 'Hello World!' in base64
                 // },
                 images: {
-                    logo: 'https://public.easyinvoice.cloud/img/logo_en_original.png'
+                    logo: 'https://i.ibb.co/MkhLZRn/logo-black-resize.png'
                 },
                 sender: {
-                    company: 'DT Systèmes',
+                    company: 'My Laser By DT-Systèmes',
                     address: '12 Rue Louis Lumière',
                     zip: '44980',
                     city: 'Sainte-Luce-sur-Loire',
@@ -134,7 +134,7 @@ function downloadInvoice() {
                 },
                 client: {
                     company: user.firstName + ' ' + user.lastName,
-                    address: order.baLine1 + order.baLine2,
+                    address: order.baLine1,
                     zip: order.baPC,
                     city: order.baCity,
                     country: order.baCountry
@@ -152,16 +152,16 @@ function downloadInvoice() {
                         quantity: 1,
                         description: 'Découpe métal - Commande N° : ' +  order.number,
                         'tax-rate': 20,
-                        price: order.price
+                        price: (order.price-order.shippingPrice)/100
                     },
                     {
                         quantity: 1,
                         description: 'Frais de Transport',
                         'tax-rate': 20,
-                        price: order.shippingPrice
+                        price: order.shippingPrice/100
                     }
                 ],
-                'bottom-notice': 'Kindly pay your invoice within 15 days.',
+                'bottom-notice': "My Laser By DT-SYSTEMES - 12 RUE LOUIS LUMIERE - PARC D'ACTIVITES DE LA MADELEINE </br>44980 SAINTE LUCE SUR LOIRE - Email : contact@mylaser.fr - www.mylaser.fr</br>SIRET : 80523847 - APE : 3311Z - TVA Intra : FR 80 805 238 474",
                 settings: {
                     currency: 'EUR',
                     locale: 'fr-FR',

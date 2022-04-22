@@ -1,0 +1,31 @@
+#footer{
+    margin-top: 300px;
+}
+#boxtal-result{
+    display: flex;
+    justify-content: space-between;
+}
+#boxtal-maps-iframe{
+    height: 400px;
+    width: 60%;
+}
+#boxtal-relay{
+    height: 400px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#boxtal-relay-infos span{
+    display: flex;
+}
+#name, #adress, #cp, #city{
+    margin: 0;
+}
+#cp{
+    margin-right: 10px;
+}
+#relay-button{
+    margin-top: 50px;
+}
