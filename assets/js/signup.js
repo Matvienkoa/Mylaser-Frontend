@@ -32,8 +32,8 @@ function signUp() {
                 res.json()
                 .then((res) => {
                     //Send email auto
-                    sendEmailToCustomer(res.user.email);
-                    sendEmailToAdmin(res.user.email);
+                    sendEmailToCustomer(res.user);
+                    sendEmailToAdmin();
                     //Login auto after signup
                     fetch(`http://localhost:3000/api/mylaser/auth/login`, myInit)
                     .then(res => res.json())
@@ -52,12 +52,16 @@ function signUp() {
     })
 }
 
-function sendEmailToCustomer(mail) {
+function sendEmailToCustomer(user) {
     const mailInfos = {
-        email: mail,
-        subject: 'Nouveau compte',
-        text: 'Votre compte a bien été créé',
-        html: 'Votre compte a bien été créé'
+        name: user.firstName,
+        intro: 'Bienvenue chez MyLaser',
+        email: user.email,
+        subject: 'Bienvenue chez MyLaser',
+        instructions: 'Votre compte client a bien été créé. Vous pouvez désormais vous rendre sur votre espace client en vous connectant ici :',
+        text: 'Accéder à votre compte',
+        link: 'http://localhost:5501/my-account.html',
+        outro: 'L\'équipe MyLaser vous remercie et vous souhaite une agréable navigation'
     }
     const mailInit = {
         method: "POST",
@@ -72,12 +76,16 @@ function sendEmailToCustomer(mail) {
     })
 }
 
-function sendEmailToAdmin(mail) {
+function sendEmailToAdmin() {
     const mailInfos = {
-        email: mail,
-        subject: 'Nouveau compte client',
-        text: 'Un nouveau compte client a été créé',
-        html: 'Un nouveau compte client a été créé'
+        name: 'MyLaser',
+        intro: 'Un nouveau compte client a été créé !',
+        email: 'matvienko.anthony@gmail.com',
+        subject: 'Nouveaux Compte Client',
+        instructions: 'Vous pouvez le retrouver sur votre espace Admin en cliquant ici :',
+        text: 'Accéder à votre espace',
+        link: 'http://localhost:5501/admin-access-bo.html',
+        outro: 'A bientôt'
     }
     const mailInit = {
         method: "POST",
