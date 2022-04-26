@@ -15,6 +15,13 @@
 	visibility: visible;
 }
 
+#logo-link{
+	border: 0;
+}
+#logo{
+	height: 100%;
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -148,10 +155,16 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 	}
 
-		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-			color: inherit;
-			border: 0;
-		}
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+		color: inherit;
+		border: 0;
+	}
+
+	h1 {
+		font-size: 2.3em;
+		line-height: 1.5em;
+		letter-spacing: -0.025em;
+	}
 
 	h2 {
 		font-size: 2em;

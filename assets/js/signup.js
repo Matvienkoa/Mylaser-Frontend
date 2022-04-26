@@ -55,13 +55,13 @@ function signUp() {
 function sendEmailToCustomer(user) {
     const mailInfos = {
         name: user.firstName,
-        intro: 'Bienvenue chez MyLaser',
+        intro: 'Bienvenue chez MyLaser !',
         email: user.email,
-        subject: 'Bienvenue chez MyLaser',
-        instructions: 'Votre compte client a bien été créé. Vous pouvez désormais vous rendre sur votre espace client en vous connectant ici :',
+        subject: 'Bienvenue chez MyLaser !',
+        instructions: 'Votre Espace client a bien été créé. Vous pouvez désormais vous y rendre en vous connectant ici :',
         text: 'Accéder à votre compte',
         link: 'http://localhost:5501/my-account.html',
-        outro: 'L\'équipe MyLaser vous remercie et vous souhaite une agréable navigation'
+        outro: 'L\'équipe MyLaser vous remercie et a hâte de vous retrouver !'
     }
     const mailInit = {
         method: "POST",
@@ -81,11 +81,11 @@ function sendEmailToAdmin() {
         name: 'MyLaser',
         intro: 'Un nouveau compte client a été créé !',
         email: 'matvienko.anthony@gmail.com',
-        subject: 'Nouveaux Compte Client',
+        subject: 'Nouveaux Compte Client !',
         instructions: 'Vous pouvez le retrouver sur votre espace Admin en cliquant ici :',
         text: 'Accéder à votre espace',
         link: 'http://localhost:5501/admin-access-bo.html',
-        outro: 'A bientôt'
+        outro: 'A bientôt !'
     }
     const mailInit = {
         method: "POST",

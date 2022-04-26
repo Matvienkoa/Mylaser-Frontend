@@ -140,10 +140,14 @@ function sendEmailToCustomerOrderPrepared(user) {
     .then((res) => res.json())
     .then((user) => {
         const mailInfos = {
+            name: user.firstName,
+            intro: `Votre commande N° : ${number} est en cours de préparation !`,
             email: user.email,
-            subject: 'Commande en préparation',
-            text: 'Votre commande est en cours de préparation',
-            html: 'Votre commande est en cours de préparation'
+            subject: `Votre Commande MyLaser N° : ${number} est en préparation !`,
+            instructions: 'Elle sera expédiée rapidement et vous serez informé de son suivi. Vous la retrouverez ici :',
+            text: 'Votre Commande',
+            link: `http://localhost:5501/my-order.html?order=${number}`,
+            outro: 'A bientôt sur MyLaser !'
         }
         const mailInit = {
             method: "POST",
@@ -165,10 +169,14 @@ function sendEmailToCustomerOrderShipped(user) {
     .then((res) => res.json())
     .then((user) => {
         const mailInfos = {
+            name: user.firstName,
+            intro: `Votre commande N° : ${number} a été expédiée !`,
             email: user.email,
-            subject: 'Commande expédiée',
-            text: 'Votre commande a été expédiée',
-            html: 'Votre commande a été expédiée'
+            subject: `Votre Commande MyLaser N° : ${number} est en route !`,
+            instructions: 'Vous la retrouverez ici :',
+            text: 'Votre Commande',
+            link: `http://localhost:5501/my-order.html?order=${number}`,
+            outro: 'A bientôt sur MyLaser !'
         }
         const mailInit = {
             method: "POST",

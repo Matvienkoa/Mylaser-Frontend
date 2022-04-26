@@ -12,7 +12,7 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
         res.json()
         .then(number => {
             sendEmailToCustomer(number);
-            sendEmailToAdmin();
+            sendEmailToAdmin(number);
             orderNumber.innerHTML = number;
             const editPayment = {
                 payment: "Valid"
@@ -128,13 +128,13 @@ function sendEmailToCustomer(number) {
     .then((user) => {
         const mailInfos = {
             name: user.firstName,
-            intro: `Nous vous confirmons votre commande N° : ${number}`,
+            intro: `Nous vous remercions pour votre commande N° : ${number} sur le site de MyLaser !`,
             email: user.email,
-            subject: `Confirmation de votre Commande N° : ${number}`,
-            instructions: 'Merci pour votre commande, elle sera traitée rapidement et vous serez informé de son état d\'avancement. Vous la retrouverez ici :',
-            text: 'Vos Commandes',
-            link: 'http://localhost:5501/my-orders.html',
-            outro: 'L\'équipe MyLaser vous remercie et vous souhaite une agréable navigation'
+            subject: `Confirmation de Commande N° : ${number} !`,
+            instructions: 'Votre commande a bien été enregistrée, vous serez rapidement informé de son état d\'avancement. Pour la retrouver :',
+            text: 'Ma Commande',
+            link: `http://localhost:5501/my-order.html?order=${number}`,
+            outro: 'A bientôt sur MyLaser !'
         }
         const mailInit = {
             method: "POST",
@@ -151,15 +151,15 @@ function sendEmailToCustomer(number) {
     })
 }
 
-function sendEmailToAdmin() {
+function sendEmailToAdmin(number) {
     const mailInfos = {
         name: 'MyLaser',
-        intro: 'Un nouvelle commande est arrivée!',
+        intro: 'Un nouvelle commande est arrivée !',
         email: 'matvienko.anthony@gmail.com',
-        subject: 'Nouvelle Commande',
-        instructions: 'Vous pouvez la retrouver sur votre espace Admin en cliquant ici :',
-        text: 'Commandes',
-        link: 'http://localhost:5501/admin-access-bo-orders.html',
+        subject: 'Nouvelle Commande !',
+        instructions: 'Vous pouvez la retrouver en cliquant ici :',
+        text: 'Commande',
+        link: `http://localhost:5501/admin-access-bo-order.html?order=${number}`,
         outro: 'A bientôt'
     }
     const mailInit = {

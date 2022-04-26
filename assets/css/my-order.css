@@ -2,10 +2,10 @@
 p{
     margin: 0;
 }
-h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
+h3, #number-order, #date-order, #status-order, #subtotal, #shipping, #total-price{
     margin: 0;
 }
-#number-order, #date-order, #subtotal, #shipping, #total-price{
+#number-order, #date-order, #status-order, #subtotal, #shipping, #total-price{
     font-size: 1.3rem;
     color: #e44c65;
     font-weight: 500;
@@ -16,7 +16,7 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 #box-infos{
     margin-bottom: 50px;
 }
-#ref-infos, #date-infos{
+#ref-infos, #date-infos, #status-infos{
     display: flex;
     align-items: center;
 }

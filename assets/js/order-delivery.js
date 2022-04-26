@@ -92,14 +92,14 @@ function createList(offerList) {
             if(offer.operator.code._text === 'DHLE') {
                 delivery.innerHTML =
                 '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' €</p>' +
+                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
                 '<span class="delivery-description">' +
                 '<h4 class="delivery-description-title">' + offer.service.label._text +'</h4>' +
                 '<p class="delivery-description-text">Texte</p></span>'
             } else {
                 delivery.innerHTML =
                 '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' €</p>' +
+                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
                 '<span class="delivery-description">' +
                 '<h4 class="delivery-description-title">' + offer.service.label._text +'</h4>' +
                 '<p class="delivery-description-text">' + offer.delivery.label._text + '</p></span>'
