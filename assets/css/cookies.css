@@ -1,24 +1,86 @@
-.banner{
+#banner-cookies{
     position: fixed;
     z-index: 200;
     bottom: 0;
     width: 100%;
     background-color: rgba(39, 40, 51, 0.712);
     padding: 15px 20px;
-}
-#banner-box{
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    align-items: center;
 }
 #banner-txt{
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin: 0;
 }
-#banner-button{
-    font-size: 0.7rem;
+#cookies-buttons-box{
+    display: flex;
+    justify-content: space-between;
+}
+#banner-cookies input{
+    font-size: 0.6rem;
     margin-left: 10px;
 }
-.banner-off{
-    display: none;
+
+.hidden-consent{
+    visibility: hidden;
+}
+.visible-consent {
+    visibility: visible;
+}
+
+#cookies-preferences{
+    position: fixed;
+    z-index: 200;
+    bottom: 0;
+    width: 320px;
+    background-color: rgba(39, 40, 51, 0.712);
+    border-radius: 10px 10px 0 0;
+    padding: 20px 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#cookies-preferences h2{
+    font-size: 1.1rem;
+}
+#cookies-preferences p{
+    font-size: 0.8rem;
+    text-align: center;
+}
+#checkbox-box{
+    display: flex;
+}
+#checkbox-box label{
+    font-size: 0.8rem;
+}
+#validate-pref{
+    font-size: 0.8rem;
+}
+
+@media screen and (max-width: 650px) {
+    #banner-cookies{
+        flex-direction: column;
+    }
+    #banner-txt{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    #banner-cookies input {
+        font-size: 0.6rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    #banner-cookies input {
+        padding: 0 10px;
+    }
+    #cookies-preferences{
+        width: 300px;
+        padding-left: 20px;
+    }
+    #validate-pref{
+        padding: 0 20px;
+    }
 }

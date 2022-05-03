@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/order-connection.css" />
+		<link rel="stylesheet" href="assets/css/cookies.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -71,6 +72,24 @@
 					</section>
 				</div>
 			</div>
+			<aside id='banner-cookies'>
+				<p id='banner-txt'>En poursuivant votre navigation, sans changer les paramètres de votre navigateur, vous acceptez l'utilisation de cookies pour garantir une bonne expérience sur notre site.</p>
+				<span id="cookies-buttons-box">
+					<input type='button' value='Accepter' id='banner-button-accept' class="primary">
+					<input type='button' value='Refuser' id='banner-button-decline'>
+					<input type='button' value='Préférences' id='banner-button-pref'>
+				</span>
+			</aside>
+				
+			<aside id="cookies-preferences" class="hidden-consent">
+				<h2>Gérer le consentement aux Cookies</h2>
+				<span id="checkbox-box">
+					<input type="checkbox" name="consent-stat" id="checkbox-stat">
+					<label for="checkbox-stat">Utilisation de Statistiques (Google Analytics)</label>
+				</span>
+				<p>Le stockage ou l’accès technique qui est utilisé exclusivement à des fins statistiques.</p>
+				<input type="button" value="Appliquer" id="validate-pref" class="primary">
+			</aside>
 			<footer id="footer">
 				<ul class="icons">
 					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -95,5 +114,6 @@
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/jwt-decode.js"></script>
 		<script src="assets/js/order-connection.js"></script>
+		<script src="assets/js/cookies.js"></script>
 	</body>
 </html>
