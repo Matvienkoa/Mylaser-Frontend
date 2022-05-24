@@ -7,7 +7,7 @@
 }
 #boxtal-maps-iframe{
     height: 400px;
-    width: 60%;
+    width: 55%;
 }
 #boxtal-relay{
     height: 400px;
@@ -17,8 +17,12 @@
     justify-content: center;
     align-items: center;
 }
+#boxtal-relay-infos{
+    text-align: center;
+}
 #boxtal-relay-infos span{
     display: flex;
+    justify-content: center;
 }
 #name, #adress, #cp, #city{
     margin: 0;
