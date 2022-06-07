@@ -1,18 +1,24 @@
 #prices{
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 #prices h3{
     margin: 0;
     text-align: start;
 }
-#product-price, #delivery-price, #total-price{
+#product-price, #delivery-price, #total-price, #discount-price{
     margin-left: 10px;
     color: #e44c65;
     font-weight: 500;
 }
-
+#ifExpress{
+    font-size: 1.2rem;
+}
+#express-price{
+    color: #e44c65;
+    font-weight: 500;
+}
 #cgv-box{
     margin-top: 20px;
     margin-bottom: 20px;

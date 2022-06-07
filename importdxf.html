@@ -38,7 +38,12 @@
 							<input type="submit" value="Téléchargez le fichier" id="upload-dxf" class="primary">
 						</form>
 						<div id="spinner" class="spinner-off"><div></div><div></div><div></div><div></div></div>
-						<p id="box-error" class="box-hidden">Une erreur est survenue! Veuillez réessayer ou vérifier que votre fichier correspond aux critères demandés.</p>
+						<div id="box-error" class="box-hidden">
+							<p id="box-error-msg">Une erreur est survenue! Veuillez réessayer ou vérifier que votre fichier correspond aux critères demandés.</p>
+							<p id="box-error-link">Vous pouvez nous envoyer votre fichier par mail pour une demande spécifique à:</p>
+							<a href="mailto:contact@dt-mylaser.com"><input type="button" value="contact@dt-mylaser.com" id="box-error-button" class="primary"></a>
+						</div>
+						</p>
 						<div id="svg-box">
 							<div id="svgContainer">
 							</div>

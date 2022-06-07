@@ -5,7 +5,7 @@ document.getElementById("form-dxf").addEventListener("submit", (e) => {
         showSpinner();
         uploadDXF();
     };
-})  ;
+});
 
 // ----------- Show file name + size -----------
 const file = document.getElementById('file');
@@ -160,8 +160,6 @@ function showSVG(arrayData) {
         speed: speed.speed
     };
 
-    console.log(quoteInfos)
-
     const myInit2 = {
         method: "POST",
         body: JSON.stringify(quoteInfos),
@@ -191,7 +189,6 @@ function showSVG(arrayData) {
         } else {
             res.json()
             .then((quote) => {
-                console.log(quote)
                 localStorage.setItem('currentQuote', JSON.stringify(quote.id))
                 document.getElementById('price').textContent = ((quote.price*1.2)/100).toFixed(2) + ' € TTC'
             })
@@ -249,7 +246,6 @@ function updatePrice() {
     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`, myInit)
     .then((res) => res.json())
     .then((json) => {
-        console.log(json)
         document.getElementById('price').textContent = ((json.price*1.2)/100).toFixed(2) + ' € TTC';
     });
 };

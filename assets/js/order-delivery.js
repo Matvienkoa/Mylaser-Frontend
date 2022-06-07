@@ -86,7 +86,6 @@ async function sendInfosColis() {
 
 function createList(offerList) {
     offerList.forEach(offer => {
-            console.log(offer);
             const delivery = document.createElement('div');
             delivery.className = 'delivery';
             if(offer.operator.code._text === 'DHLE') {
@@ -107,7 +106,6 @@ function createList(offerList) {
             deliveries.appendChild(delivery)
             delivery.addEventListener('click', () => {
                 sendShippingInfos(offer)
-                console.log(offer.delivery.type.code._text)
                 if(offer.delivery.type.code._text === 'PICKUP_POINT') {
                     window.location.href = '/order-delivery-relay.html';
                 } else {
@@ -133,8 +131,6 @@ function sendShippingInfos(offer) {
         operatorLabel: operatorLabel,
         shippingType: shippingType
     }
-
-    console.log(newCart)
     const updateCart = {
         method: "PUT",
         body: JSON.stringify(newCart),
@@ -144,7 +140,6 @@ function sendShippingInfos(offer) {
     };
     fetch(`http://localhost:3000/api/mylaser/cart/addshippinginfos/${cart}`, updateCart)
     .then((res) => res.json())
-    .then((newCartEdit) => console.log(newCartEdit))
 }
 
 // INFOS API BOXTAL CONTENTS

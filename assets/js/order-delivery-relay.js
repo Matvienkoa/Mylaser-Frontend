@@ -4,19 +4,16 @@ const decodedToken = jwt_decode(token);
 const relaysList = document.getElementById('relaysList')
 
 getMap();
-// getRelays();
 
 function getInfosUser() {
     return new Promise(resolve => {
         fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
-            console.log(user.deliveryAdresses[0])
             const adressInfos = {
                 city: user.deliveryAdresses[0].city,
                 postalCode: user.deliveryAdresses[0].postalCode,
                 adress: user.deliveryAdresses[0].line1,
-
             }
             resolve(adressInfos)
         })
@@ -28,7 +25,6 @@ function getInfosCart() {
         fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
         .then((res) => res.json())
         .then((currentCart) => {
-            console.log(currentCart)
             const operator = currentCart.operatorCode;
             resolve(operator)
         })
@@ -97,10 +93,6 @@ async function getMap() {
         .then((res) => res.json())
         .then((token) => {
             var boxtalMapsIframe = new BoxtalMapsIframe("boxtal-maps-iframe");
-
-            console.log(infosUser)
-            console.log(infosCart)
-
             const parcelPoints = {
                 accessToken : token.accessToken,
                 address: {
@@ -113,8 +105,6 @@ async function getMap() {
             };
 
             boxtalMapsIframe.searchParcelPoints(parcelPoints, function (parcelPoint) {
-                console.log(parcelPoint)
-
                 document.getElementById('name').innerHTML = parcelPoint.name;
                 document.getElementById('adress').innerHTML = parcelPoint.location.street;
                 document.getElementById('cp').innerHTML = parcelPoint.location.zipCode;
@@ -135,16 +125,13 @@ async function getMap() {
                 fetch(`http://localhost:3000/api/mylaser/cart/addrelayinfos/${cart}`, updateCart)
                 .then((res) => res.json())
                 .then((newCartEdit) => {
-                    console.log(newCartEdit)
                     document.getElementById('relay-button').addEventListener('click', () => {
                         window.location.href = '/order-payment.html'
                     })
                 })
-
             }, function (message) {
                 // handle the error message
             });
-
         })
 }
 

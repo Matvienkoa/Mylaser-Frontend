@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fiche récap</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/admin-access-bo-summary-order.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<main id="page">
+			<section id="infos-order">
+                <h3 id="order-number"></h3>
+                <h3 id="order-date"></h3>
+                <h3 id="order-statut"></h3>
+                <h3 id="ifExpress"></h3>
+            </section>
+            <section id="delivery-infos">
+                <h3 class="titles">Adresse de Facturation :</h3>
+                <h3 id="b-name"></h3>
+                <h3 id="b-adress"></h3>
+                <h3 class="titles">Adresse de Livraison :</h3>
+                <h3 id="d-name"></h3>
+                <h3 id="d-adress"></h3>
+                <h3 id="trans"></h3>
+            </section>
+			<section id="products-order">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Visuel</th>
+                            <th>Dimensions</th>
+                            <th>Métal</th>
+                            <th>Epaisseur</th>
+                            <th>Quantité</th>
+                            <th>DXF</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <script src="assets/js/admin-access-bo-summary-order.js"></script>
+        <script src="assets/js/jwt-decode.js"></script>
+        <script src="assets/js/not-logged-as-admin.js"></script>
+	</body>
+</html>

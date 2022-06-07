@@ -42,9 +42,9 @@ function sendEmail() {
             .then(() => {
                 email.value = '';
                 message.value = '';
+                boxError.innerHTML = '';
                 boxError.innerHTML = 'Votre Message a bien été envoyé';
             })
         }
     })
-    console.log(mailInfos);
 }

@@ -25,7 +25,6 @@ const bacity = document.getElementById('bacity');
 const bacountry = document.getElementById('bacountry');
 const baphone = document.getElementById('baphone');
 
-
 numberOrder.innerHTML = number;
 
 fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
@@ -40,12 +39,23 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
                 dateOrder.innerHTML = dateFormated;
                 statusOrder.innerHTML = order.status;
+
+                if(order.express === 'yes') {
+                    const expressStatut = document.createElement('p');
+                    expressStatut.setAttribute('id', 'express-text')
+                    expressStatut.innerHTML = 'Préparation Express - 24H';
+                    const boxInfo = document.getElementById('box-infos');
+                    boxInfo.appendChild(expressStatut);
+                }
+
+                if(order.discount === "yes") {
+                    document.getElementById('ifDiscount').innerHTML = 'Remise de ' + order.discountAmount + '% appliquée'
+                }
+
                 subTotal.innerHTML = ((order.priceTTC-order.shippingPriceTTC)/100).toFixed(2) + ' €';
                 shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
                 totalPrice.innerHTML = (order.priceTTC/100).toFixed(2) + ' €';
-
                 delivery.innerHTML = order.shippingLabel;
-
                 dafn.innerHTML = order.daFN;
                 daln.innerHTML = order.daLN;
                 dal1.innerHTML = order.daLine1;
@@ -62,8 +72,6 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 bacity.innerHTML = order.baCity;
                 bacountry.innerHTML = order.baCountry;
                 baphone.innerHTML = order.baPhone;
-
-                
 
                 order.orderdetails.forEach(quote => {
                     fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.quote}`)

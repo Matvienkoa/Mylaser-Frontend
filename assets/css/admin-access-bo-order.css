@@ -29,6 +29,12 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
     font-size: 0.8rem;
     margin-left: 20px;
 }
+#express-text{
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 600;
+    margin-top: 20px;
+}
 
 /*------Table------*/
 .productRow{
@@ -49,6 +55,11 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 #box-prices div{
     display: flex;
     align-items: center;
+}
+#ifDiscount{
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 600;
 }
 
 /*------Shipping------*/
@@ -79,6 +90,13 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
 }
 .marge{
     margin-right: 10px;
+}
+
+/* Summary */
+#recap{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
 }
 
 /* Button Back */
@@ -124,6 +142,9 @@ h3, #number-order, #date-order, #subtotal, #shipping, #total-price{
         font-size: 1.1rem;
     }
     #confirmation-delete-order{
-    font-size: 0.8rem;
-}
+        font-size: 0.8rem;
+    }
+    #recap{
+        padding: 0 20px;
+    }
 }

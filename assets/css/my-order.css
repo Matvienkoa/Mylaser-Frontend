@@ -12,6 +12,13 @@ h3, #number-order, #date-order, #status-order, #subtotal, #shipping, #total-pric
     margin-left: 10px;
 }
 
+#express-text {
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 /*------Infos Order------*/
 #box-infos{
     margin-bottom: 50px;
@@ -37,6 +44,11 @@ h3, #number-order, #date-order, #status-order, #subtotal, #shipping, #total-pric
 #box-prices div{
     display: flex;
     align-items: center;
+}
+#ifDiscount {
+    font-size: 1.3rem;
+    color: #e44c65;
+    font-weight: 600;
 }
 
 /*------Shipping------*/

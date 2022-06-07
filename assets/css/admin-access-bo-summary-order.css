@@ -1,0 +1,59 @@
+#page{
+    padding: 10px;
+}
+
+/* Infos Order */
+#infos-order{
+    margin-bottom: 20px;
+    width: 100%;
+}
+h3{
+    font-size: 1rem;
+    margin: 0;
+}
+.infos-details{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Infos Delivery */
+#delivery-infos{
+    margin-bottom: 60px;
+}
+.titles{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#trans{
+    margin-top: 10px;
+}
+
+#products-order{
+    width: 100%;
+}
+#products-order table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: middle;
+    display: table;
+}
+thead{
+    border-bottom: solid 1px black;
+    vertical-align: middle;
+    display: table-header-group;
+}
+th{
+    padding: 0 0.75em 0.75em 0.75em;
+    text-align: left;
+}
+tbody{
+    width: 100%;
+    
+}
+td{
+    padding: 0.75em 0.75em;
+}
+tr{
+    border-bottom: solid 1px black;
+}

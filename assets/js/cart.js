@@ -10,6 +10,8 @@ const cartButtons = document.getElementById('cart-buttons');
 const importDxf = document.getElementById('import-dxf');
 const back = document.getElementById('back');
 const order = document.getElementById('order');
+const express = document.getElementById('express');
+const expressBox = document.getElementById('express-box');
 
 if(!cart) {
     const emptyCart = document.createElement('p');
@@ -22,6 +24,7 @@ if(!cart) {
     goToImportdxf.id = 'import-dxf';
     tableWrapper.appendChild(emptyCart);
     tableWrapper.appendChild(goToImportdxf);
+    expressBox.classList.replace('visible', 'hidden');
     deleteBox.classList.replace('visible', 'hidden');
     totalCart.classList.replace('visible', 'hidden');
     cartButtons.classList.replace('visible', 'hidden');
@@ -34,7 +37,6 @@ if(cart) {
     fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
     .then((res) => res.json())
     .then((cartNumber) => {
-        console.log(cartNumber)
         cartNumber.quotes.forEach(product => {
             fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
             .then((res) => res.json())
@@ -84,9 +86,56 @@ if(cart) {
             });
         });
 
+        if(cartNumber.express === 'yes') {
+            express.checked = true;
+        }
+
         let boxPrice = document.getElementById('total-price');
         boxPrice.innerHTML = ((cartNumber.price/100)*1.2).toFixed(2) + ' €';
         totalTVA.innerHTML = 'dont TVA (20%) : ' + ((cartNumber.price/100)*0.2).toFixed(2) + ' €';
+
+        express.addEventListener('change', () => {
+            if(express.checked === true) {
+                const newCart = {
+                    express: 'yes'
+                }
+                const updateCart = {
+                    method: "PUT",
+                    body: JSON.stringify(newCart),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                };
+                fetch(`http://localhost:3000/api/mylaser/cart/addExpress/${cart}`, updateCart)
+                .then((res) => res.json())
+                .then((newCartEdit) => {
+                    boxPrice.innerHTML = ''
+                    totalTVA.innerHTML = ''
+                    boxPrice.innerHTML = ((newCartEdit.price/100)*1.2).toFixed(2) + ' €';
+                    totalTVA.innerHTML = 'dont TVA (20%) : ' + ((newCartEdit.price/100)*0.2).toFixed(2) + ' €';
+                })
+            }
+            if(express.checked === false) {
+                const newCart = {
+                    express: 'no'
+                }
+                const updateCart = {
+                    method: "PUT",
+                    body: JSON.stringify(newCart),
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                };
+                fetch(`http://localhost:3000/api/mylaser/cart/removeExpress/${cart}`, updateCart)
+                .then((res) => res.json())
+                .then((newCartEdit) => {
+                    boxPrice.innerHTML = ''
+                    totalTVA.innerHTML = ''
+                    boxPrice.innerHTML = ((newCartEdit.price/100)*1.2).toFixed(2) + ' €';
+                    totalTVA.innerHTML = 'dont TVA (20%) : ' + ((newCartEdit.price/100)*0.2).toFixed(2) + ' €';
+                })
+            }
+        })
 
         back.addEventListener('click', () => {
             window.location.href = 'importdxf.html';

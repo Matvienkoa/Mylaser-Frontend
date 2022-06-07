@@ -26,9 +26,13 @@ const bapc = document.getElementById('bapc');
 const bacity = document.getElementById('bacity');
 const bacountry = document.getElementById('bacountry');
 const baphone = document.getElementById('baphone');
-
+const recapLink = document.getElementById('recap');
 
 numberOrder.innerHTML = number;
+
+recapLink.addEventListener('click', () => {
+    window.open('/admin-access-bo-summary-order.html?order=' + number);
+});
 
 fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
@@ -48,6 +52,18 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 sendEmailToCustomerOrderShipped(order.userId);
             }
         })
+
+        if(order.express === 'yes') {
+            const expressStatut = document.createElement('p');
+            expressStatut.setAttribute('id', 'express-text')
+            expressStatut.innerHTML = 'Préparation Express - 24H';
+            const boxInfo = document.getElementById('box-infos');
+            boxInfo.appendChild(expressStatut);
+        }
+
+        if(order.discount === "yes") {
+            document.getElementById('ifDiscount').innerHTML = 'Remise de ' + order.discountAmount + '% appliquée'
+        }
 
         subTotal.innerHTML = ((order.priceTTC-order.shippingPriceTTC)/100).toFixed(2) + ' €';
         shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
@@ -159,9 +175,6 @@ function sendEmailToCustomerOrderPrepared(user) {
             },
         }
         fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-        .then((res) => {
-            console.log(res)
-        })
     })
 }
 
@@ -188,9 +201,6 @@ function sendEmailToCustomerOrderShipped(user) {
             },
         }
         fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-        .then((res) => {
-            console.log(res)
-        })
     })
 }
 

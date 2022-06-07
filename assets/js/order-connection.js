@@ -119,9 +119,6 @@ function sendEmailToCustomer(user) {
         },
     }
     fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-    .then((res) => {
-        console.log(res)
-    })
 }
 
 function sendEmailToAdmin() {
@@ -143,7 +140,4 @@ function sendEmailToAdmin() {
         },
     }
     fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-    .then((res) => {
-        console.log(res)
-    })
 }

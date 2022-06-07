@@ -5,11 +5,39 @@ h3, p{
 /* Infos */
 #infos{
     font-size: 1.2rem;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 #infos p span{
     margin-left: 10px;
     color: white;
+}
+
+/* VIP */
+#vip-box{
+    margin-bottom: 30px;
+}
+#vip-box label{
+    margin-bottom: 10px;
+}
+#amount-box{
+    display: flex;
+}
+#amount{
+    height: 30px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
+}
+#discount-button{
+    height: 30px;
+    width: 100px;
+    line-height: normal;
+    padding: 0px 10px;
+}
+#discount-infos{
+    margin-top: 10px;
+    color: #e44c65;
 }
 
 /* Adresses */
@@ -92,7 +120,7 @@ h3, p{
     }
 }
 @media screen and (max-width: 480px) {
-    #back-button, #delete-customrer{
+    #back-button, #delete-customrer, #yes, #no{
         padding: 0 20px;
     }
     #delete-customer{

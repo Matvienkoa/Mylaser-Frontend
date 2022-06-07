@@ -96,15 +96,26 @@ footer{
 /*------Box error------*/
 .box-visible{
   display: block;
-  color: #e44c65;
+  
   margin: auto;
   margin-top: 80px;
   font-size: 1.2rem;
-  font-weight: 600;
+  
   width: 80%;
 }
 .box-hidden{
   display: none;
+}
+#box-error-msg{
+  color: #e44c65;
+  font-weight: 600;
+}
+#box-error-link{
+  margin-top: 20px;
+}
+#box-error-button{
+  font-size: 0.8rem;
+  margin-top: 20px;
 }
 
 /*------Show Options------*/
@@ -290,6 +301,10 @@ footer{
   }
   .add-cart-next-box p{
     font-size: 1.1rem;
+  }
+
+  #box-error-button{
+    padding: 0 20px;
   }
 }
 

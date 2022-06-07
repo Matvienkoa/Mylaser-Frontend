@@ -31,8 +31,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                 fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
                 .then((res) => res.json())
                 .then((order) => {
-                    console.log(order)
-                    
                     const poids = order.weight/1000;
                     const longueur = order.length/10;
                     const largeur = order.width/10;
@@ -68,8 +66,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                             valeur: valeur,
                         }
 
-                        console.log(shippingInfos)
-
                         const myInit = {
                             method: "POST",
                             body: JSON.stringify(shippingInfos),
@@ -79,9 +75,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                         }
                         fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmentpickuppoint', myInit)
                         .then((res) => res.json())
-                        .then((commande) => {
-                            console.log(commande)
-                        })
                     } else {
                         const shippingInfos = {
                             poids: poids,
@@ -100,8 +93,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                             valeur: valeur,
                         }
 
-                        console.log(shippingInfos)
-
                         const myInit = {
                             method: "POST",
                             body: JSON.stringify(shippingInfos),
@@ -111,9 +102,6 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                         }
                         fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmenthome', myInit)
                         .then((res) => res.json())
-                        .then((commande) => {
-                            console.log(commande)
-                        })
                     }
                 })
             })
@@ -145,9 +133,6 @@ function sendEmailToCustomer(number) {
             },
         }
         fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-        .then((res) => {
-            console.log(res)
-        })
     })
 }
 
@@ -171,9 +156,6 @@ function sendEmailToAdmin(number) {
         },
     }
     fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
-    .then((res) => {
-        console.log(res)
-    })
 }
         
 orders.addEventListener('click', () => {

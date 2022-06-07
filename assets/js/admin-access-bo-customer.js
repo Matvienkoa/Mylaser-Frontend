@@ -5,6 +5,10 @@ const deliveryAdress = document.getElementById('delivery-adress');
 const billingAdress = document.getElementById('billing-adress');
 const tableBody = document.getElementById('table-body');
 const backButton = document.getElementById('back-button');
+const discountInfos = document.getElementById('discount-infos');
+const discountCheckbox = document.getElementById('vip');
+const addDiscount = document.getElementById('discount-button');
+const amount = document.getElementById('amount');
 
 fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
@@ -18,6 +22,59 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
     '<p>Prénom :<span class="l-name">' + user.firstName + '</span></p>' +
     '<p>Email :<span class="email">' + user.email + '</span></p>' +
     '<p>Inscription le :<span class="created-at">' + dateFormated + '</span></p>';
+
+    if(user.discount === 'no') {
+        discountInfos.innerHTML = 'Pas de remise appliquée';
+        discountCheckbox.checked = false;
+    }
+    if(user.discount === 'yes') {
+        discountCheckbox.checked = true;
+        discountInfos.innerHTML = `Ce client bénéficie de ${user.discountAmount} % de remise`
+    }
+
+    addDiscount.addEventListener('click', () => {
+        if(discountCheckbox.checked === true && amount.value) {
+            const vipInfos = {
+                discount: 'yes',
+                discountAmount: parseFloat(amount.value)
+            }
+            console.log(vipInfos)
+            const myInit = {
+                method: "PUT",
+                body: JSON.stringify(vipInfos),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+            };
+            fetch(`http://localhost:3000/api/mylaser/user/vip/${user.id}`, myInit)
+            .then((res) => res.json())
+            .then(() => {
+                window.location.reload();
+            })
+        }
+    })
+
+    discountCheckbox.addEventListener('change', () => {
+        if(discountCheckbox.checked === false) {
+            const vipInfos = {
+                discount: 'no',
+                discountAmount: 0
+            }
+            console.log(vipInfos)
+            const myInit = {
+                method: "PUT",
+                body: JSON.stringify(vipInfos),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+            };
+            fetch(`http://localhost:3000/api/mylaser/user/vip/${user.id}`, myInit)
+            .then((res) => res.json())
+            .then(() => {
+                window.location.reload();
+            })
+        }
+    })
 
     if(user.deliveryAdresses.length === 1) {
         deliveryAdress.innerHTML =
@@ -56,17 +113,19 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
         document.getElementById('no-order').innerHTML = "Le client n'a pas passé de commande";
     } else {
         user.orders.forEach(order => {
-            const date = new Date(order.createdAt)
-            const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
-            const orderRow = document.createElement('tr');
-            orderRow.className = "orderRow";
-            orderRow.innerHTML =
-            '<td>' + order.number + '</td>' +
-            '<td nowrap="nowrap">' + dateFormated + '</td>' +
-            '<td nowrap="nowrap">' + ((order.priceTTC)/100).toFixed(2) + ' €</td>' +
-            '<td nowrap="nowrap">' + order.status + '</td>' +
-            '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>'
-            tableBody.appendChild(orderRow);
+            if(order.payment === 'Valid') {
+                const date = new Date(order.createdAt)
+                const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
+                const orderRow = document.createElement('tr');
+                orderRow.className = "orderRow";
+                orderRow.innerHTML =
+                '<td>' + order.number + '</td>' +
+                '<td nowrap="nowrap">' + dateFormated + '</td>' +
+                '<td nowrap="nowrap">' + ((order.priceTTC)/100).toFixed(2) + ' €</td>' +
+                '<td nowrap="nowrap">' + order.status + '</td>' +
+                '<td><i class="icon solid fa-search glass" data-number=' + order.number + '></i></td>'
+                tableBody.appendChild(orderRow);
+            }
         });
         let searchGlasses = document.querySelectorAll('.glass');
         searchGlasses.forEach(glass => {

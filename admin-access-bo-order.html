@@ -53,7 +53,7 @@
 										<th>Métal</th>
 										<th>Epaisseur</th>
 										<th>Quantité</th>
-										<th>Prix</th>
+										<th>Prix de base</th>
 										<th>Fichier</th>
 									</tr>
 								</thead>
@@ -64,6 +64,7 @@
 					</section>
 					<section id="files"></section>
 					<section id="box-prices">
+						<h3 id="ifDiscount"></h3>
 						<div id="subtotal-infos"><h3>Sous Total (TTC) :</h3><p id="subtotal"></p></div>
 						<div id="shipping-infos"><h3>Transport :</h3><p id="shipping"></p></div>
 						<div id="total-price-infos"><h3>TOTAL TTC :</h3><p id="total-price"></p></div>
@@ -108,6 +109,7 @@
 							</div>
 						</div>
 					</section>
+					<input type="button" id="recap" value="Voir la Fiche pour Atelier" class="primary">
 					<section id="buttons">
 						<input type="button" value="Retour" id="back-to-orders">
 						<input type="button" value="Supprimer" id="delete-order" onclick="showConfirm()">
