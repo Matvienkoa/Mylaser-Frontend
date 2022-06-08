@@ -381,7 +381,6 @@ function addToCart () {
                 };
                 fetch(`http://localhost:3000/api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
                 .then((res) => res.json())
-                .then((quote) => console.log(quote))
             })
         };
     })

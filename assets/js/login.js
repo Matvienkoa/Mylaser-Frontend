@@ -1,3 +1,17 @@
+const tokenLS = localStorage.getItem('customer');
+const boxError = document.getElementById('box-error');
+
+// Token expired - redirect to Login
+if(tokenLS) {
+    const tokenLSV = jwt_decode(tokenLS);
+    console.log(tokenLSV)
+
+    if(Date.now() >= tokenLSV.exp*1000) {
+        boxError.innerHTML = "Votre session a expirée, veuillez vous reconnecter"
+    }
+}
+
+// Login
 function login() {
     return new Promise(() => {
         const loginInfos = {
@@ -16,7 +30,6 @@ function login() {
             if(!res.ok) {
                 // Error states
                 res.json().then((data) => {
-                    const boxError = document.getElementById('box-error');
                     boxError.innerHTML = data.message;
                     const emptyInput = document.querySelectorAll('.input');
                     emptyInput.forEach(input => {

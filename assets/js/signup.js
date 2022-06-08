@@ -70,7 +70,7 @@ function sendEmailToCustomer(user) {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+    fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
 }
 
 function sendEmailToAdmin() {
@@ -91,5 +91,5 @@ function sendEmailToAdmin() {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+    fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
 }

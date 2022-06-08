@@ -5,6 +5,10 @@ if(token) {
     .then((user) => {
         if(!user) {
             window.location.href = '/login.html'
+        } else {
+            if(Date.now() >= decodedToken.exp*1000) {
+                window.location.href = '/login.html'
+            }
         }
     })
 } else {

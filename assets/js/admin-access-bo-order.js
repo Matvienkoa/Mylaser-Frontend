@@ -161,7 +161,7 @@ function sendEmailToCustomerOrderPrepared(user) {
             intro: `Votre commande N° : ${number} est en cours de préparation !`,
             email: user.email,
             subject: `Votre Commande MyLaser N° : ${number} est en préparation !`,
-            instructions: 'Elle sera expédiée rapidement et vous serez informé de son suivi. Vous la retrouverez ici :',
+            instructions: `Elle sera expédiée rapidement et vous serez informé de son suivi. Vous la retrouverez ici : http://localhost:5501/my-order.html?order=${number}`,
             text: 'Votre Commande',
             link: `http://localhost:5501/my-order.html?order=${number}`,
             outro: 'A bientôt sur MyLaser !'
@@ -174,7 +174,7 @@ function sendEmailToCustomerOrderPrepared(user) {
                 "Authorization": 'Bearer ' + token,
             },
         }
-        fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+        fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
     })
 }
 
@@ -187,7 +187,7 @@ function sendEmailToCustomerOrderShipped(user) {
             intro: `Votre commande N° : ${number} a été expédiée !`,
             email: user.email,
             subject: `Votre Commande MyLaser N° : ${number} est en route !`,
-            instructions: 'Vous la retrouverez ici :',
+            instructions: `Vous la retrouverez ici : http://localhost:5501/my-order.html?order=${number}`,
             text: 'Votre Commande',
             link: `http://localhost:5501/my-order.html?order=${number}`,
             outro: 'A bientôt sur MyLaser !'
@@ -200,7 +200,7 @@ function sendEmailToCustomerOrderShipped(user) {
                 "Authorization": 'Bearer ' + token,
             },
         }
-        fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+        fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
     })
 }
 

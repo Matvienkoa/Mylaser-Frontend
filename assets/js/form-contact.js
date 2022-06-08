@@ -4,20 +4,21 @@ const message = document.getElementById('message');
 const boxError = document.getElementById('box-error');
 
 function sendEmail() {
-    const mailInfos = {
+    const mailInfos2 = {
         email: email.value,
-        subject: 'Nouveau message',
-        text: message.value,
-        html: message.value
+        subject: 'Merci pour votre message sur MyLaser!',
+        intro: 'Nous avons bien reçu votre message!',
+        instructions: 'Notre équipe vous répondras dans les plus brefs délais.',
+        outro: 'L\'équipe MyLaser vous remercie et a hâte de vous retrouver !'
     }
-    const mailInit = {
+    const mailInit2 = {
         method: "POST",
-        body: JSON.stringify(mailInfos),
+        body: JSON.stringify(mailInfos2),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail`, mailInit)
+    fetch(`http://localhost:3000/api/mylaser/mail/infos`, mailInit2)
     .then(res => {
         if(!res.ok) {
             // Error states
@@ -25,20 +26,21 @@ function sendEmail() {
                 boxError.innerHTML = data.message;
             })
         } else {
-            const mailInfos2 = {
-                email: email.value,
-                subject: 'Merci pour votre message',
-                text: 'Nous avons bien reçu votre message et vous en remercions',
-                html: 'Nous avons bien reçu votre message et vous en remercions'
+            const mailInfos = {
+                email: 'anthony.matvienko@westcode-dev.fr',
+                subject: 'Vous avez reçu un Nouveau message',
+                intro: 'Vous avez reçu un nouveau message de : ' + email.value + ' :',
+                instructions: message.value,
+                outro: 'A bientôt !'
             }
-            const mailInit2 = {
+            const mailInit = {
                 method: "POST",
-                body: JSON.stringify(mailInfos2),
+                body: JSON.stringify(mailInfos),
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
             }
-            fetch(`http://localhost:3000/api/mylaser/mail`, mailInit2)
+            fetch(`http://localhost:3000/api/mylaser/mail/infos`, mailInit)
             .then(() => {
                 email.value = '';
                 message.value = '';
