@@ -1,9 +1,13 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 	<head>
-		<title>Mes informations personnelles</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<title>Mes Informations Personnelles - Mylaser</title>
+		<meta name="description" content="Mes informations personnelles! Je consulte ou je modifie mes informations personnelles.">
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" type="image/png" href="favicon.ico">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/my-infos.css" />
 		<link rel="stylesheet" href="assets/css/cookies.css" />
@@ -11,74 +15,72 @@
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
-				<header id="header">
-					<a href="index.html" id="logo-link"><img src="/images/logo-white.png" alt="" id="logo"></a>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Accueil</a></li>
-							<li><a href="functioning.html">Fonctionnement</a></li>
-							<li><a href="importdxf.html">Importer mon DXF</a></li>
-							<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
-							<li id="linkOptions"><a id="link" class="button primary"></a></li>
-						</ul>
-					</nav>
-				</header>
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major" id="title-dxf">
-							<h2>Mes Informations Personnelles</h2>
-						</header>
-
-						<section id="form-login">
-							<div id="form">
-								<label>Mon email</label>
-								<input class="input" type="email" id="email">
-								<label>Mon prénom</label>
-								<input class="input" type="text" id="firstName">
-								<label>Mon nom</label>
-								<input class="input" type="text" id="lastName">
-								<label>Nouveau Mot de passe : (optionnel)</label>
-								<input type="password" id="new-password" placeholder="Nouveau Mot de Passe">
-							</div>
-							<p id="box-error"></p>
-							<input type="button" onclick="updateInfos()" id="button-update" value="Mettre à jour" class="button primary">
-							<span id="back-box">
-								<input type="button" value="Retour à mon Compte" id="back-button">
-								<input type="button" value="Supprimer mon compte" id="delete-account" onclick="showConfirm()">
-							</span>
-							<p id="confirmation-delete-user" class="hidden">Etes-vous sûr de vouloir supprimer votre compte?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
-						</section>
-					</div>
+			<header id="header">
+				<a href="index.html" id="logo-link"><img src="/images/logo-white.png" alt="Logo de Mylaser" id="logo"></a>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Accueil</a></li>
+						<li><a href="functioning.html">Fonctionnement</a></li>
+						<li><a href="importdxf.html">Importer mon DXF</a></li>
+						<li><a href="cart.html">Panier</a><i class="icon solid fa-circle circle-hidden" id="circle-cart"></i></li>
+						<li id="linkOptions"><a id="link" class="button primary"></a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="main" class="wrapper style1">
+				<div class="container">
+					<header class="major" id="title-dxf">
+						<h1>Mes Informations Personnelles</h1>
+					</header>
+					<section id="form-login">
+						<div id="form">
+							<label>Mon email</label>
+							<input class="input" type="email" id="email">
+							<label>Mon prénom</label>
+							<input class="input" type="text" id="firstName">
+							<label>Mon nom</label>
+							<input class="input" type="text" id="lastName">
+							<label>Nouveau Mot de passe : (optionnel)</label>
+							<input type="password" id="new-password" placeholder="Nouveau Mot de Passe">
+						</div>
+						<p id="box-error"></p>
+						<input type="button" onclick="updateInfos()" id="button-update" value="Mettre à jour" class="button primary">
+						<span id="back-box">
+							<input type="button" value="Retour à mon Compte" id="back-button">
+							<input type="button" value="Supprimer mon compte" id="delete-account" onclick="showConfirm()">
+						</span>
+						<p id="confirmation-delete-user" class="hidden">Etes-vous sûr de vouloir supprimer votre compte?<input type="button" value="Oui" id="yes"><input type="button" value="Non" id="no" onclick="hideConfirm()"></p>
+					</section>
 				</div>
-				<aside id='banner-cookies'>
-					<p id='banner-txt'>En poursuivant votre navigation, sans changer les paramètres de votre navigateur, vous acceptez l'utilisation de cookies pour garantir une bonne expérience sur notre site.</p>
-					<span id="cookies-buttons-box">
-						<input type='button' value='Accepter' id='banner-button-accept' class="primary">
-						<input type='button' value='Refuser' id='banner-button-decline'>
-						<input type='button' value='Préférences' id='banner-button-pref'>
-					</span>
-				</aside>
-					
-				<aside id="cookies-preferences" class="hidden-consent">
-					<h2>Gérer le consentement aux Cookies</h2>
-					<span id="checkbox-box">
-						<input type="checkbox" name="consent-stat" id="checkbox-stat">
-						<label for="checkbox-stat">Utilisation de Statistiques (Google Analytics)</label>
-					</span>
-					<p>Le stockage ou l’accès technique qui est utilisé exclusivement à des fins statistiques.</p>
-					<input type="button" value="Appliquer" id="validate-pref" class="primary">
-				</aside>
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; 2022 Tous droits réservés.</li><li><a href="cgv.html">Nos CGV</a></li><li>Site Web by <a href="westcode-dev.fr">Westcode</a></li>
-					</ul>
-				</footer>
+			</div>
+			<aside id='banner-cookies'>
+				<p id='banner-txt'>En poursuivant votre navigation, sans changer les paramètres de votre navigateur, vous acceptez l'utilisation de cookies pour garantir une bonne expérience sur notre site.</p>
+				<span id="cookies-buttons-box">
+					<input type='button' value='Accepter' id='banner-button-accept' class="primary">
+					<input type='button' value='Refuser' id='banner-button-decline'>
+					<input type='button' value='Préférences' id='banner-button-pref'>
+				</span>
+			</aside>
+			<aside id="cookies-preferences" class="hidden-consent">
+				<h4>Gérer le consentement aux Cookies</h4>
+				<span id="checkbox-box">
+					<input type="checkbox" name="consent-stat" id="checkbox-stat">
+					<label for="checkbox-stat">Utilisation de Statistiques (Google Analytics, Méta...)</label>
+				</span>
+				<p>Le stockage ou l’accès technique qui est utilisé exclusivement à des fins statistiques.</p>
+				<input type="button" value="Appliquer" id="validate-pref" class="primary">
+			</aside>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2022 Tous droits réservés.</li><li><a href="mentions-légales.html">Mentions Légales</a></li><li><a href="cgv.html">Nos CGV</a></li><li>Site Web réalisé par <a href="https://westcode-dev.fr" target="_blank" rel="noopener">Westcode</a></li>
+				</ul>
+			</footer>
 		</div>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>

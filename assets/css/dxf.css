@@ -26,6 +26,7 @@ footer{
 }
 #upload-dxf{
   height: 48px;
+  line-height: normal;
 }
 .file {
   opacity: 0;

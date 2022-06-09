@@ -10,6 +10,16 @@ const country = document.getElementById('country');
 const phone = document.getElementById('phone');
 const adressOption = document.getElementById('adress-option');
 
+if(token) {
+    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    .then((res) => res.json())
+    .then((user) => {
+        if(user.billingAdresses.length === 1) {
+            window.location.href = `/my-adresses.html`;
+        }
+    })
+}
+
 function addBillingAdress() {
     const adressInfos = {
         firstName: firstName.value,
