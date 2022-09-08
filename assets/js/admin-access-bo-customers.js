@@ -5,7 +5,7 @@ const token = localStorage.getItem('customer');
 
 let customersArray;
 
-fetch(`http://localhost:3000/api/mylaser/user`, {headers: {"Authorization": 'Bearer ' + token}})
+fetch(`api/mylaser/user`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((users) => {
     createCustomersList(users);

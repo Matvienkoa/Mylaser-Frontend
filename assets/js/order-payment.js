@@ -14,7 +14,7 @@ const expressInfos = document.getElementById('ifExpress');
 
 // Check if Discount VIP
 function showDiscount(cartNumber) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         if(user.discount === 'yes') {
@@ -34,11 +34,11 @@ showCartDetails();
 // Show products details in table
 function showCartDetails() {
     if(cart) {
-        fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+        fetch(`api/mylaser/cart/${cart}`)
         .then((res) => res.json())
         .then((cartNumber) => {
             cartNumber.quotes.forEach(product => {
-                fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
+                fetch(`api/mylaser/dxf/quote/${product.id}`)
                 .then((res) => res.json())
                 .then((product) => {
                     const productRow = document.createElement('tr');
@@ -77,7 +77,7 @@ function showCartDetails() {
                 })
             });
             if(cartNumber.express === 'yes') {
-                expressInfos.innerHTML = 'Dont <span id="express-price">9.90 €</span> de Fabrication Express'
+                expressInfos.innerHTML = 'Dont <span id="express-price">19.90 €</span> de Fabrication Express'
             }
             showDiscount(cartNumber)
         });
@@ -94,7 +94,7 @@ validate.addEventListener('click', () => {
 
 function checkAdresses() {
     return new Promise(resolve => {
-        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             if(user.billingAdresses.length === 1) {
@@ -164,10 +164,10 @@ function sendOrder(order) {
                 "Authorization": 'Bearer ' + token,
             },
         };
-        fetch("http://localhost:3000/api/mylaser/order", myInit)
+        fetch("api/mylaser/order", myInit)
         .then((res) => res.json())
         .then((order) => {
-            fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+            fetch(`api/mylaser/cart/${cart}`)
             .then((res) => res.json())
             .then((cartNumber) => {
                 const price = cartNumber.price;
@@ -206,11 +206,11 @@ function sendOrder(order) {
                         "Authorization": 'Bearer ' + token,
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/order/${order.id}/price`, myInitPrice)
+                fetch(`api/mylaser/order/${order.id}/price`, myInitPrice)
                 .then((res) => res.json())
                 .then((order) => {
                     cartNumber.quotes.forEach(product => {
-                        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
+                        fetch(`api/mylaser/dxf/quote/${product.id}`)
                         .then((res) => res.json())
                         .then((quote) => {
                             const orderDetails = {
@@ -226,7 +226,7 @@ function sendOrder(order) {
                                     "Authorization": 'Bearer ' + token,
                                 },
                             };
-                            fetch("http://localhost:3000/api/mylaser/orderdetails", myInit)
+                            fetch("api/mylaser/orderdetails", myInit)
                             .then((res) => res.json())
                         });
                     })
@@ -242,8 +242,7 @@ function sendOrder(order) {
     const result = await checkAdresses();
     const result2 = await sendOrder(result);
     const infosOrder = {
-        number: result2.number,
-        price: result2.priceTTC
+        id: result2.id
     }
     const myInit4 = {
         method: "POST",
@@ -253,7 +252,7 @@ function sendOrder(order) {
             "Authorization": 'Bearer ' + token,
         },
     };
-    fetch("http://localhost:3000/api/mylaser/payment", myInit4)
+    fetch("api/mylaser/payment", myInit4)
     .then(res => {
         if (res.ok) return res.json()
         return res.json().then(json => Promise.reject(json))

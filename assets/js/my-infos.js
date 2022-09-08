@@ -8,7 +8,7 @@ const backButton = document.getElementById('back-button');
 const deleteUser = document.getElementById('confirmation-delete-user');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         email.value = user.email
@@ -33,7 +33,7 @@ function updateInfos() {
                     "Authorization": 'Bearer ' + token,
                 },
     }
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, myInit)
+    fetch(`api/mylaser/user/${decodedToken.userId}`, myInit)
     .then(res => {
         if(!res.ok) {
             // Error states
@@ -70,7 +70,7 @@ document.getElementById('yes').addEventListener('click', () => {
 });
 
 function deleteAccount(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         localStorage.removeItem('customer');
         window.location.href = `/index.html`;

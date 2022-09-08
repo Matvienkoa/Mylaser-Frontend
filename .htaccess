@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.dt-mylaser.com [NC]
+RewriteRule ^(.*)$ https://dt-mylaser.com/$1 [L,R=301]
+
+RewriteEngine on
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]

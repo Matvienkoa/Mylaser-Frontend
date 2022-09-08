@@ -4,8 +4,6 @@ const boxError = document.getElementById('box-error');
 // Token expired - redirect to Login
 if(tokenLS) {
     const tokenLSV = jwt_decode(tokenLS);
-    console.log(tokenLSV)
-
     if(Date.now() >= tokenLSV.exp*1000) {
         boxError.innerHTML = "Votre session a expirée, veuillez vous reconnecter"
     }
@@ -25,7 +23,7 @@ function login() {
                     "Content-Type": "application/json; charset=utf-8",
                 },
         }
-        fetch(`http://localhost:3000/api/mylaser/auth/login`, myInit)
+        fetch(`api/mylaser/auth/login`, myInit)
         .then(res => {
             if(!res.ok) {
                 // Error states
@@ -44,7 +42,7 @@ function login() {
                     const token = data.token;
                     const decodedToken = jwt_decode(token);
                     if(token){
-                        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+                        fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
                         .then((res) => res.json())
                         .then((user) => {
                             if(user.role === "customer") {

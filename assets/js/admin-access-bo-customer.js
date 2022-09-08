@@ -10,7 +10,7 @@ const discountCheckbox = document.getElementById('vip');
 const addDiscount = document.getElementById('discount-button');
 const amount = document.getElementById('amount');
 
-fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Authorization": 'Bearer ' + token}})
+fetch(`api/mylaser/user/${userNumber}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then((res) => res.json())
 .then((user) => {
     const date = new Date(user.createdAt);
@@ -38,7 +38,6 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
                 discount: 'yes',
                 discountAmount: parseFloat(amount.value)
             }
-            console.log(vipInfos)
             const myInit = {
                 method: "PUT",
                 body: JSON.stringify(vipInfos),
@@ -46,7 +45,7 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
                     "Content-Type": "application/json; charset=utf-8"
                 },
             };
-            fetch(`http://localhost:3000/api/mylaser/user/vip/${user.id}`, myInit)
+            fetch(`api/mylaser/user/vip/${user.id}`, myInit)
             .then((res) => res.json())
             .then(() => {
                 window.location.reload();
@@ -60,7 +59,6 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
                 discount: 'no',
                 discountAmount: 0
             }
-            console.log(vipInfos)
             const myInit = {
                 method: "PUT",
                 body: JSON.stringify(vipInfos),
@@ -68,7 +66,7 @@ fetch(`http://localhost:3000/api/mylaser/user/${userNumber}`, {headers: {"Author
                     "Content-Type": "application/json; charset=utf-8"
                 },
             };
-            fetch(`http://localhost:3000/api/mylaser/user/vip/${user.id}`, myInit)
+            fetch(`api/mylaser/user/vip/${user.id}`, myInit)
             .then((res) => res.json())
             .then(() => {
                 window.location.reload();
@@ -155,7 +153,7 @@ function hideConfirm() {
 }
 
 function deleteCustomer(user) {
-    fetch(`http://localhost:3000/api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${user}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         window.location.href = `/admin-access-bo-customers.html`;
     })

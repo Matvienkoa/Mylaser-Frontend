@@ -4,14 +4,14 @@ const orders = document.getElementById('orders');
 const token = localStorage.getItem('customer');
 const decodedToken = jwt_decode(token);
 
-fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Authorization": 'Bearer ' + token}})
+fetch(`api/mylaser/payment/${session_id}`, {headers: {"Authorization": 'Bearer ' + token}})
 .then(res => {
     if(res.ok) {
         localStorage.removeItem('currentCart');
         localStorage.removeItem('currentQuote');
         res.json()
         .then(number => {
-            fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+            fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
             .then((res) => res.json())
             .then((order) => {
                 orderNumber.innerHTML = number;
@@ -29,10 +29,10 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                             "Authorization": 'Bearer ' + token,
                         },
                     };
-                    fetch(`http://localhost:3000/api/mylaser/order/${number}/payment`, myInitPayment)
+                    fetch(`api/mylaser/order/${number}/payment`, myInitPayment)
                     .then((response) => {
                         response.json()
-                        fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+                        fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
                         .then((res) => res.json())
                         .then((order) => {
                             const poids = order.weight/1000;
@@ -77,7 +77,7 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                                         "Content-Type": "application/json; charset=utf-8"
                                     },
                                 }
-                                fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmentpickuppoint', myInit)
+                                fetch('api/mylaser/boxtal/sendshipmentpickuppoint', myInit)
                                 .then((res) => res.json())
                             } else {
                                 const shippingInfos = {
@@ -104,7 +104,7 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
                                         "Content-Type": "application/json; charset=utf-8"
                                     },
                                 }
-                                fetch('http://localhost:3000/api/mylaser/boxtal/sendshipmenthome', myInit)
+                                fetch('api/mylaser/boxtal/sendshipmenthome', myInit)
                                 .then((res) => res.json())
                             }
                         })
@@ -117,7 +117,7 @@ fetch(`http://localhost:3000/api/mylaser/payment/${session_id}`, {headers: {"Aut
 })
 
 function sendEmailToCustomer(number) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const mailInfos = {
@@ -125,9 +125,9 @@ function sendEmailToCustomer(number) {
             intro: `Nous vous remercions pour votre commande N° : ${number} sur le site de MyLaser !`,
             email: user.email,
             subject: `Confirmation de Commande N° : ${number} !`,
-            instructions: `Votre commande a bien été enregistrée, vous serez rapidement informé de son état d\'avancement. Pour la retrouver : http://localhost:5501/my-order.html?order=${number}`,
+            instructions: `Votre commande a bien été enregistrée, vous serez rapidement informé de son état d\'avancement. Pour la retrouver : https://dt-mylaser.com/my-order.html?order=${number}`,
             text: 'Ma Commande',
-            link: `http://localhost:5501/my-order.html?order=${number}`,
+            link: `https://dt-mylaser.com/my-order.html?order=${number}`,
             outro: 'A bientôt sur MyLaser !'
         }
         const mailInit = {
@@ -138,7 +138,7 @@ function sendEmailToCustomer(number) {
                 "Authorization": 'Bearer ' + token,
             },
         }
-        fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
+        fetch(`api/mylaser/mail/button`, mailInit)
     })
 }
 
@@ -146,11 +146,11 @@ function sendEmailToAdmin(number) {
     const mailInfos = {
         name: 'MyLaser',
         intro: 'Un nouvelle commande est arrivée !',
-        email: 'anthony.matvienko@westcode-dev.fr',
+        email: 'contact@dt-mylaser.com',
         subject: 'Nouvelle Commande !',
-        instructions: `Vous pouvez la retrouver en cliquant ici : http://localhost:5501/admin-access-bo-order.html?order=${number}`,
+        instructions: `Vous pouvez la retrouver en cliquant ici : https://dt-mylaser.com/admin-access-bo-order.html?order=${number}`,
         text: 'Commande',
-        link: `http://localhost:5501/admin-access-bo-order.html?order=${number}`,
+        link: `https://dt-mylaser.com/admin-access-bo-order.html?order=${number}`,
         outro: 'A bientôt'
     }
     const mailInit = {
@@ -161,7 +161,7 @@ function sendEmailToAdmin(number) {
             "Authorization": 'Bearer ' + token,
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
+    fetch(`api/mylaser/mail/button`, mailInit)
 }
         
 orders.addEventListener('click', () => {

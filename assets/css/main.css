@@ -29,6 +29,12 @@
 	cursor: pointer;
 }
 
+#banner .content .image #laser{
+	width: 100%;
+	height: inherit;
+	object-fit: cover;
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -3481,7 +3487,7 @@ input, select, textarea {
 	#banner {
 		background-attachment: fixed;
 		background-color: #272833;
-		background-image: url("../../images/laser2.jpg");
+		background-image: url("../../images/laser2.webp");
 		background-repeat:no-repeat ;
 		background-position: center center;
 		background-size: cover;
@@ -3531,6 +3537,11 @@ input, select, textarea {
 			}
 
 				#banner .content header h2 {
+					font-size: 2.5em;
+					margin: 0;
+				}
+
+				#banner .content header h1 {
 					font-size: 2.5em;
 					margin: 0;
 				}

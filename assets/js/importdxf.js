@@ -43,7 +43,7 @@ function uploadDXF() {
             "enctype": "multipart/form-data"
         },
     };
-    fetch("http://localhost:3000/api/mylaser/dxf", myInit)
+    fetch("api/mylaser/dxf", myInit)
     .then(res => {
         if(!res.ok) {
             hideSpinner();
@@ -167,7 +167,7 @@ function showSVG(arrayData) {
             "Content-Type": "application/json; charset=utf-8"
         },
     };
-    fetch("http://localhost:3000/api/mylaser/dxf/quote", myInit2)
+    fetch("api/mylaser/dxf/quote", myInit2)
     .then(res => {
         if(!res.ok) {
             // Error states
@@ -181,7 +181,7 @@ function showSVG(arrayData) {
                     "Content-Type": "application/json; charset=utf-8"
                 },
             };
-            fetch("http://localhost:3000/api/mylaser/dxf/file", myInitFile)
+            fetch("api/mylaser/dxf/file", myInitFile)
             .then(() => {
                 document.getElementById('box-error').classList.replace('box-hidden', 'box-visible');
                 document.getElementById('infos-dxf').classList.replace("visible", "hidden");
@@ -243,7 +243,7 @@ function updatePrice() {
             "Content-Type": "application/json; charset=utf-8"
         },
     };
-    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`, myInit)
+    fetch(`api/mylaser/dxf/quote/${currentQuote}`, myInit)
     .then((res) => res.json())
     .then((json) => {
         document.getElementById('price').textContent = ((json.price*1.2)/100).toFixed(2) + ' € TTC';
@@ -296,7 +296,7 @@ document.getElementById('file').addEventListener('change', (e) => {
 function deleteQuote() {
     const quote = localStorage.getItem('currentQuote');
     if(quote) {
-        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote}`, {method: "DELETE"})
+        fetch(`api/mylaser/dxf/quote/${quote}`, {method: "DELETE"})
         .then(() => localStorage.removeItem('currentQuote'));
     };
 };
@@ -313,7 +313,7 @@ function hideError() {
 
 function addToCart () {
     const currentQuote = localStorage.getItem('currentQuote');
-    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${currentQuote}`)
+    fetch(`api/mylaser/dxf/quote/${currentQuote}`)
     .then((res) => res.json())
     .then((json) => {
         let currentCart = JSON.parse(localStorage.getItem('currentCart'));
@@ -328,7 +328,7 @@ function addToCart () {
                     "Content-Type": "application/json; charset=utf-8"
                 },
             };
-            fetch(`http://localhost:3000/api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
+            fetch(`api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
             .then((res) => res.json())
             .then((quote) => {
                 const modifs = {
@@ -346,7 +346,7 @@ function addToCart () {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 }
-                fetch(`http://localhost:3000/api/mylaser/cart/${currentCart}`, myInit)
+                fetch(`api/mylaser/cart/${currentCart}`, myInit)
                 .then((res) => res.json())
             })
         } else {
@@ -364,7 +364,7 @@ function addToCart () {
                     "Content-Type": "application/json; charset=utf-8"
                 },
             }
-            fetch(`http://localhost:3000/api/mylaser/cart`, myInit)
+            fetch(`api/mylaser/cart`, myInit)
             .then((res) => res.json())
             .then((cart) => {
                 currentCart = cart.id;
@@ -379,7 +379,7 @@ function addToCart () {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
+                fetch(`api/mylaser/dxf/linkquote/${currentQuote}`, myInit)
                 .then((res) => res.json())
             })
         };

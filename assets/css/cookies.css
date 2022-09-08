@@ -33,18 +33,19 @@
     position: fixed;
     z-index: 200;
     bottom: 0;
-    width: 320px;
+    width: 340px;
     background-color: rgba(39, 40, 51, 0.712);
     border-radius: 10px 10px 0 0;
     padding: 20px 10px;
-    margin-left: 10px;
+    margin-left: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-#cookies-preferences h4{
-    font-size: 1.1rem;
+#cookies-preferences h2{
+    font-size: 1.4rem;
+    text-align: center;
 }
 #cookies-preferences p{
     font-size: 0.8rem;
@@ -55,6 +56,7 @@
 }
 #checkbox-box label{
     font-size: 0.8rem;
+    margin-left: 10%;
 }
 #validate-pref{
     font-size: 0.8rem;
@@ -76,11 +78,13 @@
     #banner-cookies input {
         padding: 0 10px;
     }
-    #cookies-preferences{
-        width: 300px;
-        padding-left: 20px;
-    }
     #validate-pref{
         padding: 0 20px;
+    }
+}
+@media screen and (max-width: 450px) {
+    #cookies-preferences{
+        width: 90%;
+        margin-left: 5%;
     }
 }

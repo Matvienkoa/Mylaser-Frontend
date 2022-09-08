@@ -3,49 +3,66 @@ const send = document.getElementById('send');
 const message = document.getElementById('message');
 const boxError = document.getElementById('box-error');
 
-function sendEmail() {
-    const mailInfos2 = {
+send.addEventListener('click', () => {
+    sendEmailToCustomer();
+})
+
+function sendEmailToCustomer() {
+    const mailInfos = {
+        name: '',
+        intro: 'Nous avons bien reçu votre message :',
         email: email.value,
         subject: 'Merci pour votre message sur MyLaser!',
-        intro: 'Nous avons bien reçu votre message!',
-        instructions: 'Notre équipe vous répondras dans les plus brefs délais.',
-        outro: 'L\'équipe MyLaser vous remercie et a hâte de vous retrouver !'
+        instructions: message.value,
+        text: 'Accéder à MyLaser',
+        link: 'https://dt-mylaser.com/',
+        outro: 'L\'équipe MyLaser vous répondra dans les plus brefs délais et a hâte de vous retrouver !'
     }
-    const mailInit2 = {
+    const mailInit = {
         method: "POST",
-        body: JSON.stringify(mailInfos2),
+        body: JSON.stringify(mailInfos),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail/infos`, mailInit2)
+    fetch(`api/mylaser/mail/infos`, mailInit)
     .then(res => {
         if(!res.ok) {
             // Error states
             res.json().then((data) => {
+                boxError.innerHTML = '';
                 boxError.innerHTML = data.message;
             })
         } else {
-            const mailInfos = {
-                email: 'anthony.matvienko@westcode-dev.fr',
-                subject: 'Vous avez reçu un Nouveau message',
+            const mailInfos2 = {
+                name: '',
                 intro: 'Vous avez reçu un nouveau message de : ' + email.value + ' :',
+                email: 'contact@dt-mylaser.com',
+                subject: 'Vous avez reçu un Nouveau message',
                 instructions: message.value,
+                text: 'Accéder à MyLaser',
+                link: 'https://dt-mylaser.com/',
                 outro: 'A bientôt !'
             }
-            const mailInit = {
+            const mailInit2 = {
                 method: "POST",
-                body: JSON.stringify(mailInfos),
+                body: JSON.stringify(mailInfos2),
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
             }
-            fetch(`http://localhost:3000/api/mylaser/mail/infos`, mailInit)
-            .then(() => {
-                email.value = '';
-                message.value = '';
-                boxError.innerHTML = '';
-                boxError.innerHTML = 'Votre Message a bien été envoyé';
+            fetch(`api/mylaser/mail/infos`, mailInit2)
+            .then(res => {
+                if(!res.ok) {
+                    // Error states
+                    boxError.innerHTML = '';
+                    boxError.innerHTML = 'Un problème est survenu, veuillez réessayer!';
+                } else {
+                    email.value = '';
+                    message.value = '';
+                    boxError.innerHTML = '';
+                    boxError.innerHTML = 'Votre Message a bien été envoyé';
+                }
             })
         }
     })

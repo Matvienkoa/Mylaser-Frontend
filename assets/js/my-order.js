@@ -27,11 +27,11 @@ const baphone = document.getElementById('baphone');
 
 numberOrder.innerHTML = number;
 
-fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
         const decodedToken = jwt_decode(token);
-        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             if(order.userId === user.id || user.role === 'admin') {
@@ -74,7 +74,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
                 baphone.innerHTML = order.baPhone;
 
                 order.orderdetails.forEach(quote => {
-                    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.quote}`)
+                    fetch(`api/mylaser/dxf/quote/${quote.quote}`)
                     .then((res) => res.json())
                     .then((quote) => {
                         const productRow = document.createElement('tr');
@@ -123,10 +123,10 @@ document.getElementById('back-to-orders').addEventListener('click', () => {
 })
 
 function downloadInvoice() {
-    fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
-        fetch(`http://localhost:3000/api/mylaser/user/${order.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        fetch(`api/mylaser/user/${order.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             

@@ -11,7 +11,7 @@ const dName = document.getElementById('d-name');
 const dAdress = document.getElementById('d-adress');
 const trans = document.getElementById('trans');
 
-fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
+fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
 
@@ -34,7 +34,7 @@ fetch(`http://localhost:3000/api/mylaser/order/number/${number}`, {headers: {"Au
         trans.innerHTML = 'Transporteur : ' + order.shippingLabel;
 
         order.orderdetails.forEach(quote => {
-            fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.quote}`)
+            fetch(`api/mylaser/dxf/quote/${quote.quote}`)
             .then((res) => res.json())
             .then((quote) => {
                 const productRow = document.createElement('tr');

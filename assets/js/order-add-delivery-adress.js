@@ -38,7 +38,7 @@ function addDeliveryAdress() {
             "Authorization": 'Bearer ' + token,
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/deliveryadress`, myInit)
+    fetch(`api/mylaser/deliveryadress`, myInit)
     .then(res => {
         if(!res.ok) {
             // Error states
@@ -57,14 +57,14 @@ function addDeliveryAdress() {
                 });
             });
         } else {
-            fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+            fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
             .then((res) => res.json())
             .then((user) => {
                 if(adressOption.value === "yes" && user.billingAdresses.length === 1) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress/${user.billingAdresses[0].id}`, myInit2)
+                    fetch(`api/mylaser/billingadress/${user.billingAdresses[0].id}`, myInit2)
                     .then(() => window.location.href = '/order-adresses.html')
                 } if(adressOption.value === "yes" && user.billingAdresses.length === 0) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
+                    fetch(`api/mylaser/billingadress`, myInit)
                     .then(() => window.location.href = '/order-adresses.html')
                 } if(adressOption.value === "no" && user.billingAdresses.length === 0) {
                     window.location.href = '/order-add-billing-adress.html';

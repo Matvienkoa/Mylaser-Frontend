@@ -11,7 +11,7 @@ function login() {
                     "Content-Type": "application/json; charset=utf-8",
                 },
         }
-        fetch(`http://localhost:3000/api/mylaser/auth/login`, myInit)
+        fetch(`api/mylaser/auth/login`, myInit)
         .then(res => {
             if(!res.ok) {
                 // Error states
@@ -58,7 +58,7 @@ function signUp() {
                     "Content-Type": "application/json; charset=utf-8",
                 },
         }
-        fetch(`http://localhost:3000/api/mylaser/auth/signup`, myInit)
+        fetch(`api/mylaser/auth/signup`, myInit)
         .then(res => {
             if(!res.ok) {
                 // Error states
@@ -79,7 +79,7 @@ function signUp() {
                     sendEmailToCustomer(res.user);
                     sendEmailToAdmin();
                     //Login auto after signup
-                    fetch(`http://localhost:3000/api/mylaser/auth/login`, myInit)
+                    fetch(`api/mylaser/auth/login`, myInit)
                     .then(res => res.json())
                     .then(data => {
                         if(data.token){
@@ -106,9 +106,9 @@ function sendEmailToCustomer(user) {
         intro: 'Bienvenue chez MyLaser !',
         email: user.email,
         subject: 'Bienvenue chez MyLaser !',
-        instructions: 'Votre Espace client a bien été créé. Vous pouvez désormais vous y rendre en vous connectant ici : http://localhost:5501/my-account.html',
+        instructions: 'Votre Espace client a bien été créé. Vous pouvez désormais vous y rendre en vous connectant ici : https://dt-mylaser.com/my-account.html',
         text: 'Accéder à votre compte',
-        link: 'http://localhost:5501/my-account.html',
+        link: 'https://dt-mylaser.com/my-account.html',
         outro: 'L\'équipe MyLaser vous remercie et a hâte de vous retrouver !'
     }
     const mailInit = {
@@ -118,18 +118,18 @@ function sendEmailToCustomer(user) {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
+    fetch(`api/mylaser/mail/button`, mailInit)
 }
 
 function sendEmailToAdmin() {
     const mailInfos = {
         name: 'MyLaser',
         intro: 'Un nouveau compte client a été créé !',
-        email: 'anthony.matvienko@westcode-dev.fr',
+        email: 'contact@dt-mylaser.com',
         subject: 'Nouveaux Compte Client !',
-        instructions: 'Vous pouvez le retrouver sur votre espace Admin en cliquant ici : http://localhost:5501/admin-access-bo.html',
+        instructions: 'Vous pouvez le retrouver sur votre espace Admin en cliquant ici : https://dt-mylaser.com/admin-access-bo.html',
         text: 'Accéder à votre espace',
-        link: 'http://localhost:5501/admin-access-bo.html',
+        link: 'https://dt-mylaser.com/admin-access-bo.html',
         outro: 'A bientôt !'
     }
     const mailInit = {
@@ -139,5 +139,5 @@ function sendEmailToAdmin() {
             "Content-Type": "application/json; charset=utf-8",
         },
     }
-    fetch(`http://localhost:3000/api/mylaser/mail/button`, mailInit)
+    fetch(`api/mylaser/mail/button`, mailInit)
 }

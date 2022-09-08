@@ -30,7 +30,7 @@ function addBillingAdress() {
             "Authorization": 'Bearer ' + token,
         },
     };
-    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
+    fetch(`api/mylaser/billingadress`, myInit)
     .then(res => {
         if(!res.ok) {
             // Error states

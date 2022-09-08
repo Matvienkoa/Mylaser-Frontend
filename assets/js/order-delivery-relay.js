@@ -7,7 +7,7 @@ getMap();
 
 function getInfosUser() {
     return new Promise(resolve => {
-        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             const adressInfos = {
@@ -22,7 +22,7 @@ function getInfosUser() {
 
 function getInfosCart() {
     return new Promise(resolve => {
-        fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+        fetch(`api/mylaser/cart/${cart}`)
         .then((res) => res.json())
         .then((currentCart) => {
             const operator = currentCart.operatorCode;
@@ -31,65 +31,10 @@ function getInfosCart() {
     })
 }
 
-// async function getRelays() {
-//     const infosUser = await getInfosUser()
-//     const infosCart = await getInfosCart()
-//     const infosRelay = {
-//         user: infosUser,
-//         cart: infosCart
-//     }
-//     console.log(infosRelay)
-//     const myInit = {
-//         method: "POST",
-//         body: JSON.stringify(infosRelay),
-//         headers: {
-//             "Content-Type": "application/json; charset=utf-8"
-//         },
-//     }
-//     fetch('http://localhost:3000/api/mylaser/boxtal/getrelays', myInit)
-//     .then((res) => res.json())
-//     .then((relays) => {
-//         console.log(relays.points)
-//         createList(relays.points.point)
-//     })
-// }
-
-// function createList(relayList) {
-//     relayList.forEach(relay => {
-//             console.log(relay);
-//             const relayDetail = document.createElement('div');
-//             relayDetail.className = 'relay';
-//             relayDetail.innerHTML =
-//             '<span>' + relay.name._text + '</span>'
-//             relaysList.appendChild(relayDetail)
-//             relayDetail.addEventListener('click', () => {
-//                 sendRelayInfos(relay);
-//                 window.location.href = '/order-payment.html';
-//             })
-//     })
-// }
-
-// function sendRelayInfos(relay) {
-//     const relayCode = relay.code._text;
-//     const newCart = {
-//         relayCode: relayCode
-//     }
-//     const updateCart = {
-//         method: "PUT",
-//         body: JSON.stringify(newCart),
-//         headers: {
-//             "Content-Type": "application/json; charset=utf-8"
-//         },
-//     };
-//     fetch(`http://localhost:3000/api/mylaser/cart/addrelayinfos/${cart}`, updateCart)
-//     .then((res) => res.json())
-//     .then((newCartEdit) => console.log(newCartEdit))
-// }
-
 async function getMap() {
     const infosUser = await getInfosUser()
     const infosCart = await getInfosCart()
-    fetch('http://localhost:3000/api/mylaser/boxtal/gettoken')
+    fetch('api/mylaser/boxtal/gettoken')
         .then((res) => res.json())
         .then((token) => {
             var boxtalMapsIframe = new BoxtalMapsIframe("boxtal-maps-iframe");
@@ -111,7 +56,6 @@ async function getMap() {
                 document.getElementById('city').innerHTML = parcelPoint.location.city;
                 document.getElementById('button-box').innerHTML = 
                 '<input type="button" value="Valider" id="relay-button" class="primary">'
-
                 const newCart = {
                     relayCode: parcelPoint.code
                 }
@@ -122,7 +66,7 @@ async function getMap() {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/cart/addrelayinfos/${cart}`, updateCart)
+                fetch(`api/mylaser/cart/addrelayinfos/${cart}`, updateCart)
                 .then((res) => res.json())
                 .then((newCartEdit) => {
                     document.getElementById('relay-button').addEventListener('click', () => {
@@ -130,7 +74,6 @@ async function getMap() {
                     })
                 })
             }, function (message) {
-                // handle the error message
             });
         })
 }

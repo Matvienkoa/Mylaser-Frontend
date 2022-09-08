@@ -11,7 +11,7 @@ const phone = document.getElementById('phone');
 const adressOption = document.getElementById('adress-option');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         if(user.billingAdresses.length === 1) {
@@ -40,7 +40,7 @@ function addBillingAdress() {
             "Authorization": 'Bearer ' + token,
         },
     };
-    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
+    fetch(`api/mylaser/billingadress`, myInit)
     .then(res => {
         if(!res.ok) {
             // Error states

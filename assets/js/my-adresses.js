@@ -7,7 +7,7 @@ const deleteBilling = document.getElementById('deleteBilling');
 const backButton = document.getElementById('back-button');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const deliveryAdress = user.deliveryAdresses[0];
@@ -114,14 +114,14 @@ function hideConfirmBA() {
 };
 
 function deleteDeliveryAdress(adressId) {
-    fetch(`http://localhost:3000/api/mylaser/deliveryadress/${adressId}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/deliveryadress/${adressId}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         window.location.reload();
     });
 };
 
 function deleteBillingAdress(adressId) {
-    fetch(`http://localhost:3000/api/mylaser/billingadress/${adressId}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/billingadress/${adressId}`, {method: "DELETE", headers: {"Authorization": 'Bearer ' + token}})
     .then(() => {
         window.location.reload();
     });

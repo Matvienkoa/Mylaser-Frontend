@@ -11,7 +11,7 @@ const phone = document.getElementById('phone');
 const adressOption = document.getElementById('adress-option');
 
 if(token) {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         if(user.deliveryAdresses.length === 1) {
@@ -21,7 +21,7 @@ if(token) {
 }
 
 function addDeliveryAdress() {
-    fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+    fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
         const bAdress = user.billingAdresses[0];
@@ -52,7 +52,7 @@ function addDeliveryAdress() {
                 "Authorization": 'Bearer ' + token,
             },
         };
-        fetch(`http://localhost:3000/api/mylaser/deliveryadress`, myInit)
+        fetch(`api/mylaser/deliveryadress`, myInit)
         .then(res => {
             if(!res.ok) {
                 // Error states
@@ -72,12 +72,17 @@ function addDeliveryAdress() {
                 });
             } else {
                 if(adressOption.value === "yes" && user.billingAdresses.length === 0) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress`, myInit)
+                    fetch(`api/mylaser/billingadress`, myInit)
+                    .then(() => {
+                        window.location.href = '/my-adresses.html';
+                    })
                 };
                 if(adressOption.value === "yes" && user.billingAdresses.length === 1) {
-                    fetch(`http://localhost:3000/api/mylaser/billingadress/${bAdress.id}`, myInit2)
+                    fetch(`api/mylaser/billingadress/${bAdress.id}`, myInit2)
+                    .then(() => {
+                        window.location.href = '/my-adresses.html';
+                    })
                 };
-                window.location.href = '/my-adresses.html';
             };
         })
         .catch(function (error) {

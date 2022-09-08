@@ -24,7 +24,7 @@ sendInfosColis();
 function getInfosUser() {
     return new Promise(resolve => {
         const decodedToken = jwt_decode(token);
-        fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+        fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
         .then((res) => res.json())
         .then((user) => {
             const sender = {
@@ -37,7 +37,7 @@ function getInfosUser() {
 
 function getInfosCart() {
     return new Promise(resolve => {
-        fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+        fetch(`api/mylaser/cart/${cart}`)
         .then((res) => res.json())
         .then((currentCart) => {
             const longueur = currentCart.length/10;
@@ -50,7 +50,8 @@ function getInfosCart() {
                 largeur: largeur,
                 hauteur: hauteur,
                 poids: poids,
-                valeur: valeur
+                valeur: valeur,
+                express: currentCart.express
             }
             resolve(infosShipping)
         })
@@ -60,13 +61,15 @@ function getInfosCart() {
 async function sendInfosColis() {
     const user = await getInfosUser()
     const cart = await getInfosCart()
+    console.log(cart)
     const colisInfos = {
         user: user,
         quotes: {
             longueur: cart.longueur,
             largeur: cart.largeur,
             hauteur: cart.hauteur,
-            poids: cart.poids
+            poids: cart.poids,
+            express: cart.express
         }
     }
     const myInit = {
@@ -76,42 +79,73 @@ async function sendInfosColis() {
             "Content-Type": "application/json; charset=utf-8"
         },
     }
-    fetch('http://localhost:3000/api/mylaser/boxtal/', myInit)
+    fetch('api/mylaser/boxtal/', myInit)
     .then((res) => res.json())
     .then((shipments) => {
         hideSpinner();
         createList(shipments.cotation.shipment.offer);
+        
     })
 }
 
 function createList(offerList) {
     offerList.forEach(offer => {
-            const delivery = document.createElement('div');
-            delivery.className = 'delivery';
-            if(offer.operator.code._text === 'DHLE') {
+            if(offer.service.code._text === 'CpourToi') {
+                const delivery = document.createElement('div');
+                delivery.className = 'delivery';
                 delivery.innerHTML =
                 '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
                 '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
                 '<span class="delivery-description">' +
                 '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">Texte</p></span>'
-            } else {
-                delivery.innerHTML =
-                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
-                '<span class="delivery-description">' +
-                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">' + offer.delivery.label._text + '</p></span>'
+                '<p class="delivery-description-text">Choisissez votre point relais "Mondial Relay" et retirez votre colis sous 3 à 4 jours après expédition</p></span>'
+                deliveries.appendChild(delivery)
+                delivery.addEventListener('click', () => {
+                    sendShippingInfos(offer)
+                });
             }
-            deliveries.appendChild(delivery)
-            delivery.addEventListener('click', () => {
-                sendShippingInfos(offer)
-                if(offer.delivery.type.code._text === 'PICKUP_POINT') {
-                    window.location.href = '/order-delivery-relay.html';
-                } else {
-                    window.location.href = '/order-payment.html';
-                }
-            });
+            if(offer.service.code._text === 'EconomyAccessPoint') {
+                const delivery = document.createElement('div');
+                delivery.className = 'delivery';
+                delivery.innerHTML =
+                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
+                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
+                '<span class="delivery-description">' +
+                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
+                '<p class="delivery-description-text">Choisissez votre point relais "UPS" et retirez votre colis sous 48H après expédition</p></span>'
+                deliveries.appendChild(delivery)
+                delivery.addEventListener('click', () => {
+                    sendShippingInfos(offer)
+                });
+            }
+            if(offer.service.code._text === 'Standard') {
+                const delivery = document.createElement('div');
+                delivery.className = 'delivery';
+                delivery.innerHTML =
+                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
+                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
+                '<span class="delivery-description">' +
+                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
+                '<p class="delivery-description-text">Livraison de votre colis à domicile sous 24H</p></span>'
+                deliveries.appendChild(delivery)
+                delivery.addEventListener('click', () => {
+                    sendShippingInfos(offer)
+                });
+            }
+            if(offer.service.code._text === 'ColissimoAccess') {
+                const delivery = document.createElement('div');
+                delivery.className = 'delivery';
+                delivery.innerHTML =
+                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
+                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
+                '<span class="delivery-description">' +
+                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
+                '<p class="delivery-description-text">Livraison de votre colis à domicile sous 48H</p></span>'
+                deliveries.appendChild(delivery)
+                delivery.addEventListener('click', () => {
+                    sendShippingInfos(offer)
+                });
+            }
     })
 }
 
@@ -138,13 +172,15 @@ function sendShippingInfos(offer) {
             "Content-Type": "application/json; charset=utf-8"
         },
     };
-    fetch(`http://localhost:3000/api/mylaser/cart/addshippinginfos/${cart}`, updateCart)
+    fetch(`api/mylaser/cart/addshippinginfos/${cart}`, updateCart)
     .then((res) => res.json())
+    .then((newCart) => {
+        if (newCart.shippingType === 'HOME') {
+            window.location.href = '/order-payment.html';
+        } else {
+            window.location.href = '/order-delivery-relay.html';
+        }
+    })
 }
-
-// INFOS API BOXTAL CONTENTS
-// fetch('http://localhost:3000/api/mylaser/boxtal/')
-// .then((res) => res.json())
-// .then((contents) => console.log(contents))
 
 

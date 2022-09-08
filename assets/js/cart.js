@@ -34,11 +34,11 @@ if(!cart) {
 };
 
 if(cart) {
-    fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+    fetch(`api/mylaser/cart/${cart}`)
     .then((res) => res.json())
     .then((cartNumber) => {
         cartNumber.quotes.forEach(product => {
-            fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
+            fetch(`api/mylaser/dxf/quote/${product.id}`)
             .then((res) => res.json())
             .then((product) => {
                 const productRow = document.createElement('tr');
@@ -106,7 +106,7 @@ if(cart) {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/cart/addExpress/${cart}`, updateCart)
+                fetch(`api/mylaser/cart/addExpress/${cart}`, updateCart)
                 .then((res) => res.json())
                 .then((newCartEdit) => {
                     boxPrice.innerHTML = ''
@@ -126,7 +126,7 @@ if(cart) {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/cart/removeExpress/${cart}`, updateCart)
+                fetch(`api/mylaser/cart/removeExpress/${cart}`, updateCart)
                 .then((res) => res.json())
                 .then((newCartEdit) => {
                     boxPrice.innerHTML = ''
@@ -144,7 +144,7 @@ if(cart) {
         order.addEventListener('click', () => {
             if(token) {
                 const decodedToken = jwt_decode(token);
-                fetch(`http://localhost:3000/api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
+                fetch(`api/mylaser/user/${decodedToken.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
                 .then((res) => res.json())
                 .then((user) => {
                     if(user.deliveryAdresses.length === 1) {
@@ -161,13 +161,13 @@ if(cart) {
 };
 
 function deleteProduct(product) {
-    fetch(`http://localhost:3000/api/mylaser/dxf/quote/${product.id}`)
+    fetch(`api/mylaser/dxf/quote/${product.id}`)
     .then((res) => res.json())
     .then((quote) => {
-        fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
+        fetch(`api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
         .then((res) => {
             res.json();
-            fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+            fetch(`api/mylaser/cart/${cart}`)
             .then((res) => res.json())
             .then((currentCart) => {
                 const price = currentCart.price - quote.price;
@@ -205,10 +205,10 @@ function deleteProduct(product) {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                 };
-                fetch(`http://localhost:3000/api/mylaser/cart/removequote/${cart}`, updateCart)
+                fetch(`api/mylaser/cart/removequote/${cart}`, updateCart)
                 .then((res) => res.json())
                 .then((cart) => {
-                    fetch(`http://localhost:3000/api/mylaser/cart/${cart.id}`)
+                    fetch(`api/mylaser/cart/${cart.id}`)
                     .then((res) => res.json())
                     .then((currentCart) => {
                         if(currentCart.quotes.length === 0) {
@@ -224,7 +224,7 @@ function deleteProduct(product) {
 }
 
 function deleteEmptyCart(cartId) {
-    fetch(`http://localhost:3000/api/mylaser/cart/${cartId}`, {method: "DELETE"})
+    fetch(`api/mylaser/cart/${cartId}`, {method: "DELETE"})
     .then(() => {
         localStorage.removeItem('currentCart');
         window.location.reload();
@@ -232,13 +232,13 @@ function deleteEmptyCart(cartId) {
 }
 
 function deleteCart() {
-    fetch(`http://localhost:3000/api/mylaser/cart/${cart}`)
+    fetch(`api/mylaser/cart/${cart}`)
     .then(res => res.json())
     .then((cart) => {
         cart.quotes.forEach(quote => {
-            fetch(`http://localhost:3000/api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
+            fetch(`api/mylaser/dxf/quote/${quote.id}`, {method: "DELETE"})
             .then(() => {
-                fetch(`http://localhost:3000/api/mylaser/cart/${cart.id}`, {method: "DELETE"})
+                fetch(`api/mylaser/cart/${cart.id}`, {method: "DELETE"})
                 .then(() => {
                     localStorage.removeItem('currentCart');
                     window.location.reload();
