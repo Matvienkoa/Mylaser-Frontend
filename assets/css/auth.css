@@ -8,8 +8,17 @@ footer{
     display: block;
     margin: auto;
 }
-#email, #password, #password2, #firstName{
+#email, #password2, #firstName {
     margin-bottom: 30px;
+}
+#password {
+    margin-bottom: 15px;
+}
+#label-show-password {
+    margin-bottom: 30px;
+}
+#require {
+    margin-bottom: 10px;
 }
 
 /*------Error------*/

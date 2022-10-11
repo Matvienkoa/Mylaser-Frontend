@@ -69,7 +69,11 @@ fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer 
         shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
         totalPrice.innerHTML = (order.priceTTC/100).toFixed(2) + ' €';
 
-        delivery.innerHTML = order.shippingLabel;
+        if (order.shippingLabel === "COMPANY") {
+            delivery.innerHTML = "Retrait à l'entrepôt"
+        } else {
+            delivery.innerHTML = order.shippingLabel;
+        }
 
         dafn.innerHTML = order.daFN;
         daln.innerHTML = order.daLN;
@@ -178,29 +182,51 @@ function sendEmailToCustomerOrderPrepared(user) {
     })
 }
 
-function sendEmailToCustomerOrderShipped(user) {
-    fetch(`api/mylaser/user/${user}`, {headers: {"Authorization": 'Bearer ' + token}})
+function sendEmailToCustomerOrderShipped(order) {
+    fetch(`api/mylaser/user/${order.userId}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((user) => {
-        const mailInfos = {
-            name: user.firstName,
-            intro: `Votre commande N° : ${number} a été expédiée !`,
-            email: user.email,
-            subject: `Votre Commande MyLaser N° : ${number} est en route !`,
-            instructions: `Vous la retrouverez ici : https://dt-mylaser.com/my-order.html?order=${number}`,
-            text: 'Votre Commande',
-            link: `https://dt-mylaser.com/my-order.html?order=${number}`,
-            outro: 'A bientôt sur MyLaser !'
+        if (order.shipping === "COMPANY") {
+            const mailInfos = {
+                name: user.firstName,
+                intro: `Votre commande N° : ${number} est prête !`,
+                email: user.email,
+                subject: `Votre Commande MyLaser N° : ${number} est disponible à l'enlèvement ! Vous pouvez venir la chercher dès à présent!`,
+                instructions: `Vous la retrouverez ici : https://dt-mylaser.com/my-order.html?order=${number}`,
+                text: 'Votre Commande',
+                link: `https://dt-mylaser.com/my-order.html?order=${number}`,
+                outro: 'A bientôt sur MyLaser !'
+            }
+            const mailInit = {
+                method: "POST",
+                body: JSON.stringify(mailInfos),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": 'Bearer ' + token,
+                },
+            }
+            fetch(`api/mylaser/mail/button`, mailInit)
+        } else {
+            const mailInfos = {
+                name: user.firstName,
+                intro: `Votre commande N° : ${number} a été expédiée !`,
+                email: user.email,
+                subject: `Votre Commande MyLaser N° : ${number} est en route !`,
+                instructions: `Vous la retrouverez ici : https://dt-mylaser.com/my-order.html?order=${number}`,
+                text: 'Votre Commande',
+                link: `https://dt-mylaser.com/my-order.html?order=${number}`,
+                outro: 'A bientôt sur MyLaser !'
+            }
+            const mailInit = {
+                method: "POST",
+                body: JSON.stringify(mailInfos),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Authorization": 'Bearer ' + token,
+                },
+            }
+            fetch(`api/mylaser/mail/button`, mailInit)
         }
-        const mailInit = {
-            method: "POST",
-            body: JSON.stringify(mailInfos),
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Authorization": 'Bearer ' + token,
-            },
-        }
-        fetch(`api/mylaser/mail/button`, mailInit)
     })
 }
 

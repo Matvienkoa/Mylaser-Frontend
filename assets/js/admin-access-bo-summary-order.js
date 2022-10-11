@@ -14,25 +14,27 @@ const trans = document.getElementById('trans');
 fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer ' + token}})
     .then((res) => res.json())
     .then((order) => {
-
-        console.log(order)
-
         numberOrder.innerHTML = 'Référence de la commande : <span class="infos-details">' + order.number + '</span>';
         const date = new Date(order.createdAt);
         const dateFormated = date.getDate() + ' / ' + (date.getMonth()+1) + ' / ' + date.getFullYear();
         dateOrder.innerHTML = 'Date de la commande : <span class="infos-details">' + dateFormated + '</span>';
-        statutOrder.innerHTML = 'Statut de la commande : <span class="infos-details">' + order.status + '</span>';
+        if (order.shipping === 'COMPANY' && order.status === 'Expédiée') {
+            statutOrder.innerHTML = 'Statut de la commande : <span class="infos-details">Prête pour enlèvement</span>';
+        } else {
+            statutOrder.innerHTML = 'Statut de la commande : <span class="infos-details">' + order.status + '</span>';
+        }
         if(order.express === 'yes') {
             ifExpress.innerHTML = 'Préparation Express - 24H'
         }
-
         bName.innerHTML = order.baLN + ' ' + order.baFN;
         bAdress.innerHTML = order.baLine1 + ' ' + order.baPC + ' ' + order.baCity;
         dName.innerHTML = order.daLN + ' ' + order.daFN;
         dAdress.innerHTML = order.daLine1 + ' ' + order.daPC + ' ' + order.daCity;
-
-        trans.innerHTML = 'Transporteur : ' + order.shippingLabel;
-
+        if (order.shippingLabel === "COMPANY") {
+            trans.innerHTML = "Transporteur : Retrait à l'entrepôt";
+        } else {
+            trans.innerHTML = 'Transporteur : ' + order.shippingLabel;
+        }
         order.orderdetails.forEach(quote => {
             fetch(`api/mylaser/dxf/quote/${quote.quote}`)
             .then((res) => res.json())

@@ -4,8 +4,11 @@
     display: block;
     margin: auto;
 }
-#email, #password, #new-password, #firstName, #lastName{
+#email, #password, #firstName, #lastName {
     margin-bottom: 30px;
+}
+#new-password {
+    margin-bottom: 15px;
 }
 #box-error{
     text-align: center;

@@ -76,3 +76,12 @@ function deleteAccount(user) {
         window.location.href = `/index.html`;
     })
 }
+
+function showPassword() {
+    const password = document.getElementById('new-password');
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password"
+    }
+}

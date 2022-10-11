@@ -55,7 +55,12 @@ fetch(`api/mylaser/order/number/${number}`, {headers: {"Authorization": 'Bearer 
                 subTotal.innerHTML = ((order.priceTTC-order.shippingPriceTTC)/100).toFixed(2) + ' €';
                 shipping.innerHTML = (order.shippingPriceTTC/100).toFixed(2) + ' €';
                 totalPrice.innerHTML = (order.priceTTC/100).toFixed(2) + ' €';
-                delivery.innerHTML = order.shippingLabel;
+                
+                if (order.shippingLabel === "COMPANY") {
+                    delivery.innerHTML = "Retrait à l'entrepôt"
+                } else {
+                    delivery.innerHTML = order.shippingLabel;
+                }
                 dafn.innerHTML = order.daFN;
                 daln.innerHTML = order.daLN;
                 dal1.innerHTML = order.daLine1;

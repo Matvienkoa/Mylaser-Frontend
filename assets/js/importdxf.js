@@ -65,8 +65,8 @@ function showSVG(arrayData) {
     let svgContainer = document.getElementById('svgContainer');
     svgContainer.innerHTML = arrayData[0];
     let svg = document.querySelector('svg');
-    let widthSvg = svg.getAttribute('width');
-    let heightSvg = svg.getAttribute('height');
+    let widthSvg = svg.getAttribute('width').replace(/[a-zA-Z]/g, '');
+    let heightSvg = svg.getAttribute('height').replace(/[a-zA-Z]/g, '');
     document.getElementById('hauteur').innerHTML = Math.round(heightSvg);
     document.getElementById('largeur').innerHTML = Math.round(widthSvg) + ' mm';
     let surfaceUtile = heightSvg*widthSvg;
@@ -185,6 +185,7 @@ function showSVG(arrayData) {
             .then(() => {
                 document.getElementById('box-error').classList.replace('box-hidden', 'box-visible');
                 document.getElementById('infos-dxf').classList.replace("visible", "hidden");
+                svgContainer.innerHTML = '';
             });
         } else {
             res.json()

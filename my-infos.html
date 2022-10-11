@@ -53,6 +53,8 @@
 							<input class="input" type="text" id="lastName">
 							<label>Nouveau Mot de passe : (optionnel)</label>
 							<input type="password" id="new-password" placeholder="Nouveau Mot de Passe">
+							<input type="checkbox" name="show-password" id="show-password" onclick="showPassword()">
+							<label for="show-password" id="label-show-password">Afficher le mot de passe</label>
 						</div>
 						<p id="box-error"></p>
 						<input type="button" onclick="updateInfos()" id="button-update" value="Mettre à jour" class="button primary">

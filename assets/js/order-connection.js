@@ -141,3 +141,21 @@ function sendEmailToAdmin() {
     }
     fetch(`api/mylaser/mail/button`, mailInit)
 }
+
+function showLoginPassword() {
+    const password = document.getElementById('login-password');
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password"
+    }
+}
+
+function showSignupPassword() {
+    const password = document.getElementById('signup-password');
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password"
+    }
+}

@@ -61,7 +61,6 @@ function getInfosCart() {
 async function sendInfosColis() {
     const user = await getInfosUser()
     const cart = await getInfosCart()
-    console.log(cart)
     const colisInfos = {
         user: user,
         quotes: {
@@ -89,64 +88,130 @@ async function sendInfosColis() {
 }
 
 function createList(offerList) {
-    offerList.forEach(offer => {
-            if(offer.service.code._text === 'CpourToi') {
-                const delivery = document.createElement('div');
-                delivery.className = 'delivery';
-                delivery.innerHTML =
+    const delivery = document.createElement('div');
+    delivery.className = 'delivery';
+    delivery.innerHTML =
+        '<span class="delivery-title"><img src="./images/logo-white.png" alt=""></span>' +
+        '<p class="delivery-price">Gratuit</p>' +
+        '<span class="delivery-description">' +
+        "<h3 class='delivery-description-title'>Retrait à l'entrepôt</h3>" +
+        "<p class='delivery-description-text'>Retirez votre commande directement à l'adresse de notre entrepôt :<br>12 Rue Louis Lumière<br>44980 Sainte-Luce-sur-Loire</p></span>"
+    deliveries.appendChild(delivery)
+    delivery.addEventListener('click', () => {
+        sendShippingInfosCompany()
+    });
+
+    function service(offer) {
+        let text = "";
+        if (offer.service.code._text === 'ChronoShoptoShop') {
+            text = "Retirez votre colis dans un point relais Chronopost sous 3 à 4 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'CoprRelaisRelaisNat') {
+            text = "Retirez votre colis dans un point relais Colis Privé sous 6 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'RelaisColis') {
+            text = "Retirez votre colis dans un point relais Relais Colis sous 3 à 5 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'CpourToi') {
+            text = "Retirez votre colis dans un point relais Mondial Relay sous 3 à 4 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ChronoRelais') {
+            text = "Retirez votre colis dans un Chrono relais sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'CoprRelaisDomicileNat') {
+            text = "Recevez votre colis à Domicile sans signature sous 6 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'CoprRelaisSignatureNat') {
+            text = "Recevez votre colis à Domicile contre signature sous 6 jours après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'EconomyAccessPoint') {
+            text = "Retirez votre colis dans un point relais UPS sous 48 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ColissimoAccess') {
+            text = "Recevez votre colis à Domicile sans signature sous 48 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ColissimoExpert') {
+            text = "Recevez votre colis à Domicile contre signature sous 48 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'Chrono18') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ChronoRelaisPickup') {
+            text = "Retirez votre colis dans un Chrono relais sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'Chrono13') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'DomesticExpress') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'Chrono18Pickup') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ExpressNationalPremium12H') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'Standard') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ExpressSaver') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+        if (offer.service.code._text === 'ExpressStandard') {
+            text = "Recevez votre colis à Domicile en express sous 24 heures après expédition";
+            return text
+        }
+    }
+
+    if (!offerList.length) {
+        const delivery = document.createElement('div');
+        delivery.className = 'delivery';
+        delivery.innerHTML =
+            '<span class="delivery-title"><img src="' + offerList.operator.logo._text + '" alt=""></span>' +
+            '<p class="delivery-price">' + offerList.price["tax-inclusive"]._text + ' € TTC</p>' +
+            '<span class="delivery-description">' +
+            '<h3 class="delivery-description-title">' + offerList.service.label._text + '</h3>' +
+            '<p class="delivery-description-text">' + service(offerList) + '</p></span>'
+        deliveries.appendChild(delivery)
+        delivery.addEventListener('click', () => {
+            sendShippingInfos(offerList)
+        });
+    }
+
+    if (offerList.length) {
+        offerList.forEach(offer => {
+            const delivery = document.createElement('div');
+            delivery.className = 'delivery';
+            delivery.innerHTML =
                 '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
                 '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
                 '<span class="delivery-description">' +
-                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">Choisissez votre point relais "Mondial Relay" et retirez votre colis sous 3 à 4 jours après expédition</p></span>'
-                deliveries.appendChild(delivery)
-                delivery.addEventListener('click', () => {
-                    sendShippingInfos(offer)
-                });
-            }
-            if(offer.service.code._text === 'EconomyAccessPoint') {
-                const delivery = document.createElement('div');
-                delivery.className = 'delivery';
-                delivery.innerHTML =
-                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
-                '<span class="delivery-description">' +
-                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">Choisissez votre point relais "UPS" et retirez votre colis sous 48H après expédition</p></span>'
-                deliveries.appendChild(delivery)
-                delivery.addEventListener('click', () => {
-                    sendShippingInfos(offer)
-                });
-            }
-            if(offer.service.code._text === 'Standard') {
-                const delivery = document.createElement('div');
-                delivery.className = 'delivery';
-                delivery.innerHTML =
-                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
-                '<span class="delivery-description">' +
-                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">Livraison de votre colis à domicile sous 24H</p></span>'
-                deliveries.appendChild(delivery)
-                delivery.addEventListener('click', () => {
-                    sendShippingInfos(offer)
-                });
-            }
-            if(offer.service.code._text === 'ColissimoAccess') {
-                const delivery = document.createElement('div');
-                delivery.className = 'delivery';
-                delivery.innerHTML =
-                '<span class="delivery-title"><img src="' + offer.operator.logo._text + '" alt=""></span>' +
-                '<p class="delivery-price">' + offer.price["tax-inclusive"]._text + ' € TTC</p>' +
-                '<span class="delivery-description">' +
-                '<h3 class="delivery-description-title">' + offer.service.label._text +'</h3>' +
-                '<p class="delivery-description-text">Livraison de votre colis à domicile sous 48H</p></span>'
-                deliveries.appendChild(delivery)
-                delivery.addEventListener('click', () => {
-                    sendShippingInfos(offer)
-                });
-            }
-    })
+                '<h3 class="delivery-description-title">' + offer.service.label._text + '</h3>' +
+                '<p class="delivery-description-text">' + service(offer) + '</p></span>'
+            deliveries.appendChild(delivery)
+            delivery.addEventListener('click', () => {
+                sendShippingInfos(offer)
+            });
+        })
+    }
 }
 
 function sendShippingInfos(offer) {
@@ -181,6 +246,29 @@ function sendShippingInfos(offer) {
             window.location.href = '/order-delivery-relay.html';
         }
     })
+}
+
+function sendShippingInfosCompany() {
+    const newCart = {
+        operatorCode: 'COMPANY',
+        shippingType: 'COMPANY',
+        operatorService: 'COMPANY',
+        operatorLabel: 'COMPANY',
+        operatorPriceHT: 0,
+        operatorPriceTTC: 0,
+    }
+    const updateCart = {
+        method: "PUT",
+        body: JSON.stringify(newCart),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+    };
+    fetch(`http://localhost:3000/api/mylaser/cart/addshippinginfos/${cart}`, updateCart)
+        .then((res) => res.json())
+        .then(() => {
+            window.location.href = '/order-payment.html';
+        })
 }
 
 

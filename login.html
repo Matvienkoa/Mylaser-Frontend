@@ -49,6 +49,8 @@
 							<input class="input" type="email" id="email" placeholder="e-mail">
 							<label>Mot de passe :</label>
 							<input class="input" type="password" id="password" placeholder="Mot de passe">
+							<input type="checkbox" name="show-password" id="show-password" onclick="showPassword()">
+							<label for="show-password" id="label-show-password">Afficher le mot de passe</label>
 						</div>
 						<p id="box-error"></p>
 						<input type="button" onclick="login()" id="button-login" value="Connexion" class="button primary">

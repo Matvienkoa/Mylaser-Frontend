@@ -47,12 +47,14 @@
 						<div id="form">
 							<label>E-mail :</label>
 							<input class="input" type="email" id="email" placeholder="e-mail">
-							<label>Mot de Passe :</label>
+							<label>Mot de Passe : </label><p id="require">(Le mot de passe doit contenir entre 8 et 30 caractères, avec au moins une minuscule, une majuscule et un chiffre)</p>
 							<input class="input" type="password" id="password" placeholder="Mot de Passe">
+							<input type="checkbox" name="show-password" id="show-password" onclick="showPassword()">
+							<label for="show-password" id="label-show-password">Afficher le mot de passe</label>
 							<label>Confirmer le Mot de Passe :</label>
 							<input class="input" type="password" id="password2" placeholder="Mot de Passe">
-							<label>Prénom :</label>
-							<input class="input" type="text" id="firstName" placeholder="Prénom">
+							<label>Prénom ( Raison Sociale si Société ) :</label>
+							<input class="input" type="text" id="firstName" placeholder="Prénom ( Raison Sociale si Société )">
 							<label>Nom :</label>
 							<input class="input" type="text" id="lastName" placeholder="Nom">
 						</div>
